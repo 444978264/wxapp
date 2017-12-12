@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/test/test",
+    "pages/download/download",
+    "pages/manage/manage",
+    "pages/fromshare/fromshare",
+    "pages/usercenter/usercenter",
+    "pages/share/share",
+    "pages/edit/edit",
+    "pages/list/list",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "呼吸相册",
+    "navigationBarTextStyle": "#fff",
+    "backgroundColor": "#eeeeee"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "图库"
+      },
+      {
+        "pagePath": "pages/location/location",
+        "text": "发布"
+      }
+    ],
+    "position": "top"
+  },
+  "debug": true
+}

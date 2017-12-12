@@ -1,0 +1,5 @@
+/* test.wxss */
+page{
+  height:100%;
+  background:#39383d;
+}

@@ -1,0 +1,12 @@
+<template name='item'>
+  <view class="list-item">
+    <image class='img-item' src="{{cover}}" />
+    <view class="main-container">
+      <view class="box">
+        <text>{{title}}</text>
+        <text> 评分：<text class='c_red'>{{rate}}</text></text>
+      </view>
+      <view>简介： <text class='info-text'>该片讲述美队扮演一名原本波士顿大学助教现在是修船工的Frank Adler在姐姐自杀后领养了外甥</text></view>
+    </view>
+  </view>
+</template>
