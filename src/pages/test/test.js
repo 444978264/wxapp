@@ -2,6 +2,8 @@
 import { dataset, alert, push, redirect } from '../../utils/util.js';
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
+console.log(Page)
+
 Page({
 
   /**
@@ -80,7 +82,8 @@ Page({
    */
   onLoad: function (options) {
     var val = wx.getStorageSync('emoji');
-    this.setData({ val })
+    this.setData({ val });
+    console.log(this);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
