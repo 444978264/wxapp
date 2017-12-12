@@ -1,19 +1,11 @@
 {
   "pages": [
-    "pages/test/test",
-    "pages/download/download",
-    "pages/manage/manage",
-    "pages/fromshare/fromshare",
-    "pages/usercenter/usercenter",
-    "pages/share/share",
-    "pages/edit/edit",
-    "pages/list/list",
-    "pages/login/login"
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "呼吸相册",
+    "navigationBarTitleText": "广告红包",
     "navigationBarTextStyle": "#fff",
     "backgroundColor": "#eeeeee"
   },
