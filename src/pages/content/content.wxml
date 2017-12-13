@@ -1,0 +1,9 @@
+<view wx:if="{{result!=null}}" style="height:40%;position:absolute;bottom:0;width:100%;padding-top:60px;display:flex;justify-content:center;align-items:center;background:#c33b25;">
+  <view style="background:#fff6e4;padding:30px 20px 60px;position:absolute;width:70%;border-radius: 5px;bottom:100%;transform:translateY(30%);z-index:-1;text-align:center;">
+  <text style="font-size:18px;line-height:40px;font-weight:500;color:#7a3629;">{{result.title}}</text>
+  </view>
+  <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+    <image bindtap="recording" style="width:40px; height: 40px;background:#fec93b;padding:10px;border-radius:50%;box-shadow:1px 2px 2px 1px rgba(0,0,0,.45)" src="/img/record.svg"></image>
+    <text style="font-size:12px;font-weight:600;line-height:40px;color:#7a3629;">按住 读口令</text>
+  </view>
+</view>

@@ -71,15 +71,17 @@ export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), pa
 
 
 //红包详情
-export const getOne = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
-//红包详情
+export const getOne = (params, config) => ajax(getUrl('index', 'get_one'), params, config);
+//红包列表
 export const lst = (params, config) => ajax(getUrl('index', 'lst'), params, config);
-//红包详情
+//今日统计
 export const total = (params, config) => ajax(getUrl('index', 'total'), params, config);
-//红包详情
+//今日土豪
 export const rich = (params, config) => ajax(getUrl('index', 'rich'), params, config);
-//红包详情
+//手气最佳
 export const winner = (params, config) => ajax(getUrl('index', 'winner'), params, config);
+//获得红包
+export const getRed = (params, config) => ajax(getUrl('index', 'get_red'), params, config);
 
 export default {
   TOKEN,
@@ -90,7 +92,8 @@ export default {
   total,
   rich,
   winner,
-  uploadUrl
+  uploadUrl,
+  getRed
 }
 
 // 登陆

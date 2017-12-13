@@ -1,43 +1,24 @@
 // test.js
 import extend from '../../libs/extends.js';
-
 extend({
     /**
      * 页面的初始数据
      */
     data: {
-        list: [],
-        totalResult: {
-            access_count: '--',
-            all_get_count: '--',
-            total: '--'
-        }
+        result:null,
     },
-    page: 1,
-    pagesize: 20,
-    has_next: true,
+    id: null,
     loading: false,
     fetch() {
-        if (!this.has_next) return
+        if(this.loading)return 
         this.loading = true;
-        this.$http.lst({
-            page: this.page,
-            pagesize: this.pagesize
-        }, ).then(res => {
+        console.log(this.id)
+        this.$http.getOne({
+            red_log_id: this.id
+        }).then(result => {
             this.loading = false;
-            let { list } = this.data;
-            list = list.concat(res.result);
-            this.setData({ list });
-            this.page++;
-            this.has_next = res.has_next;
-        })
-    },
-    total() {
-        this.$http.total().then(res => {
-            this.setData({
-                totalResult: res
-            })
-            console.log(res)
+            this.setData({result})
+            this.setItem('red_detail',result.article);
         })
     },
     getContent(e) {
@@ -46,22 +27,28 @@ extend({
             id: id
         })
     },
-    publishRed(e) {
-        console.log('发红包去咯')
+    recording(){
+        console.log('抢红包开始');
+        this.$http.getRed({
+            red_log_id:this.id
+        }).then(res=>{
+            console.log(res)
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let { id } = options;
+        this.id = id;
         this.fetch();
-        this.total();
         // this.$preLoad('hello world')
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        
     },
 
     /**
@@ -96,8 +83,7 @@ extend({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        if (this.loading) return
-        this.fetch()
+
     },
 
     /**

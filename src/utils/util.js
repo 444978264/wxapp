@@ -108,6 +108,22 @@ export const goback = id => {
     delta: id || 1
   })
 }
+
+// 数据缓存--sync 同步
+export const setItem = (key, data, success) => wx.setStorage({ key, data, success });
+export const setItemSync = wx.setStorageSync;
+export const getItem = (key, success) => wx.getStorage({ key, sucess });
+export const getItemSync = wx.getStorageSync;
+export const getItems = (success, fail) => wx.getStorageInfo({ success, fail });
+export const getItemsSync = wx.getStorageInfoSync;
+export const removeItem = (key, success) => wx.removeStorage({ key, success });
+export const removeItemSync = wx.removeStorageSync;
+export const clearStorage = wx.clearStorage;
+export const clearStorageSync = wx.clearStorageSync;
+
+
+
+
 export default {
   formatTime,
   login,
@@ -116,5 +132,15 @@ export default {
   $push: push,
   $redirect: redirect,
   $reLaunch: reLaunch,
-  goback
+  goback,
+  setItem,
+  setItemSync,
+  getItem,
+  getItemSync,
+  getItems,
+  getItemsSync,
+  removeItem,
+  removeItemSync,
+  clearStorage,
+  clearStorageSync
 }
