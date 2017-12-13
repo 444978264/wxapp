@@ -28,13 +28,18 @@ var config = {
         })
     },
     // 上传文件
-    uploadFile(tempFilePath) {
+    uploadFile(tempFilePath, id, cbk) {
+        console.log(id, api.uploadUrl);
         wx.uploadFile({
             url: api.uploadUrl,
             filePath: tempFilePath,
             name: 'file',
+            formData: {
+                red_log_id: id,
+                token: api.TOKEN
+            },
             success: res => {
-                console.log(res.data)
+                cbk && cbk(res)
             },
             fail: err => {
                 console.log(err)
@@ -42,7 +47,15 @@ var config = {
         })
     },
     // 录音
-    $recordStart() {
+    $recordStart(id, cbk) {
+        const options = {
+            duration: 15000,
+            sampleRate: 8000,
+            numberOfChannels: 1,
+            encodeBitRate: 16000,
+            format: 'mp3',
+            frameSize: 50
+        }
         this.recorderManager.onStart(() => {
             console.log('recorder start')
         })
@@ -52,36 +65,26 @@ var config = {
         this.recorderManager.onPause(() => {
             console.log('recorder pause')
         })
+        // 停止事件回调
         this.recorderManager.onStop((res) => {
             console.log('recorder stop', res)
             const { tempFilePath } = res;
-            let { voices } = this.data;
-            voices.push(tempFilePath);
-            this.uploadFile(tempFilePath)
-            this.setData({ voices })
+            this.uploadFile(tempFilePath, id, cbk)
         })
         this.recorderManager.onFrameRecorded((res) => {
             const { frameBuffer } = res
             console.log('frameBuffer.byteLength', frameBuffer.byteLength)
         })
-        const options = {
-            duration: 5000,
-            sampleRate: 8000,
-            numberOfChannels: 1,
-            encodeBitRate: 16000,
-            format: 'mp3',
-            frameSize: 50
-        }
         this.recorderManager.start(options)
     },
     _willMount(params) {
-        console.log(params,this)
+        console.log(params, this)
     }
 }
 Object.assign(config, options);
 export default function Init(params) {
     Object.assign(params, config);
-    params.$preLoad = function(data){
+    params.$preLoad = function (data) {
         config._willMount(data)
     }
     Page(params);

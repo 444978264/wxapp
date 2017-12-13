@@ -1,13 +1,12 @@
 let TOKEN = wx.getStorageSync('token') || '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
-const uploadUrl = 'http://v.yunruikj.com/voicedemo/inx.php';
+
 //设置全局token
 export const setToken = token => TOKEN = token;
 
 //新的fetch---Promise封装 2017-08-01
 const ajax = (url, params, config) => {
   var promise = new Promise((resolve, reject) => {
-    // let { success, fail, ...other } = params;
     let result = Object.assign({
       url: url,
       method: 'POST',
@@ -16,7 +15,10 @@ const ajax = (url, params, config) => {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: params,
-      success: res => resolve(res.data),
+      success: res => {
+        wx.hideLoading();
+        resolve(res.data)
+      },
       fail: err => reject(err)
     }, config);
 
@@ -27,20 +29,22 @@ const ajax = (url, params, config) => {
     } else {
       result.data.token = TOKEN;
     }
+    //显示loading
+    wx.showLoading();
     wx.request(result);
   });
   return promise.then(res => {
     if (res.code <= -9999) {
       console.log(res, 'promise')
-      wx.navigateTo({
-        url: '/pages/login/login',
-        success: function (data) {
-          console.log(data)
-        },
-        fail: function (err) {
-          console.log(err)
-        }
-      })
+      // wx.navigateTo({
+      //   url: '/pages/login/login',
+      //   success: function (data) {
+      //     console.log(data)
+      //   },
+      //   fail: function (err) {
+      //     console.log(err)
+      //   }
+      // })
       return false
     }
     if (res.code < 0) {
@@ -65,6 +69,10 @@ export const getUrl = (c, a) => {
   // return `https://mi.yunruikj.com/hx/index.php/apx/${c}/${a}`
   return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
+// const uploadUrl = 'http://v.yunruikj.com/voicedemo/inx.php';
+
+const uploadUrl = getUrl('index', 'ai_do');
+
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
@@ -82,6 +90,8 @@ export const rich = (params, config) => ajax(getUrl('index', 'rich'), params, co
 export const winner = (params, config) => ajax(getUrl('index', 'winner'), params, config);
 //获得红包
 export const getRed = (params, config) => ajax(getUrl('index', 'get_red'), params, config);
+//获得红包
+export const recognize = (params, config) => ajax(getUrl('index', 'ai_do'), params, config);
 
 export default {
   TOKEN,

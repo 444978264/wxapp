@@ -1,9 +1,6 @@
 // test.js
 import extend from '../../libs/extends.js';
 extend({
-    /**
-     * 页面的初始数据
-     */
     data: {
         result: null,
         isNormal: true
@@ -31,12 +28,20 @@ extend({
         this.push("content_detail");
     },
     recording() {
-        console.log('抢红包开始');
-        this.$http.getRed({
-            red_log_id: this.id
-        }).then(res => {
+        if (!this.data.isNormal) return
+        this.alert('开始录音')
+        this.$recordStart(this.id, (res) => {
             console.log(res)
-        })
+        });
+        // this.$http.getRed({
+        //     red_log_id: this.id
+        // }).then(res => {
+        //     console.log(res)
+        // })
+    },
+    stopRecord() {
+        this.alert('录音结束')
+        this.recorderManager.stop();
     },
     /**
      * 生命周期函数--监听页面加载
@@ -65,21 +70,6 @@ extend({
             })
         }
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
