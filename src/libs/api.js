@@ -1,6 +1,6 @@
 let TOKEN = wx.getStorageSync('token') || '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
-
+const uploadUrl = 'http://v.yunruikj.com/voicedemo/inx.php';
 //设置全局token
 export const setToken = token => TOKEN = token;
 
@@ -67,19 +67,19 @@ export const getUrl = (c, a) => {
 }
 
 //发送验证码
-export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params,config);
+export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
 
 
 //红包详情
-export const getOne = (params, config) => ajax(getUrl('index', 'get_code'), params,config);
+export const getOne = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
 //红包详情
-export const lst = (params, config) => ajax(getUrl('index', 'lst'), params,config);
+export const lst = (params, config) => ajax(getUrl('index', 'lst'), params, config);
 //红包详情
-export const total = (params, config) => ajax(getUrl('index', 'total'), params,config);
+export const total = (params, config) => ajax(getUrl('index', 'total'), params, config);
 //红包详情
-export const rich = (params, config) => ajax(getUrl('index', 'rich'), params,config);
+export const rich = (params, config) => ajax(getUrl('index', 'rich'), params, config);
 //红包详情
-export const winner = (params, config) => ajax(getUrl('index', 'winner'), params,config);
+export const winner = (params, config) => ajax(getUrl('index', 'winner'), params, config);
 
 export default {
   TOKEN,
@@ -89,7 +89,8 @@ export default {
   lst,
   total,
   rich,
-  winner
+  winner,
+  uploadUrl
 }
 
 // 登陆

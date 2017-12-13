@@ -1,9 +1,7 @@
 // test.js
-import { dataset, alert, push, redirect } from '../../utils/util.js';
-import http from '../../libs/api.js';
-const recorderManager = wx.getRecorderManager();
-const innerAudioContext = wx.createInnerAudioContext();
-Page({
+import extend from '../../libs/extends.js';
+
+extend({
     /**
      * 页面的初始数据
      */
@@ -22,7 +20,7 @@ Page({
     fetch() {
         if (!this.has_next) return
         this.loading = true;
-        http.lst({
+        this.$http.lst({
             page: this.page,
             pagesize: this.pagesize
         }, ).then(res => {
@@ -35,7 +33,7 @@ Page({
         })
     },
     total() {
-        http.total().then(res => {
+        this.$http.total().then(res => {
             this.setData({
                 totalResult: res
             })
@@ -51,6 +49,7 @@ Page({
     onLoad: function (options) {
         this.fetch();
         this.total();
+        // this.$preLoad('hello world')
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

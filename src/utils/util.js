@@ -15,7 +15,6 @@ function formatNumber(n) {
 }
 export const FormatTime = formatTime;
 
-
 // 重新登陆
 export const login = () => {
   wx.navigateTo({
@@ -104,10 +103,18 @@ export const reLaunch = (path, params) => {
   })
 }
 
-
-
 export const goback = id => {
   wx.navigateBack({
     delta: id || 1
   })
+}
+export default {
+  formatTime,
+  login,
+  alert,
+  dataset,
+  $push: push,
+  $redirect: redirect,
+  $reLaunch: reLaunch,
+  goback
 }
