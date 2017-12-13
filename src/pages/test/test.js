@@ -3,6 +3,8 @@ import { dataset, alert, push, redirect } from '../../utils/util.js';
 import http from '../../libs/api.js';
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
+console.log(Page)
+
 Page({
 
   /**
