@@ -1,0 +1,27 @@
+<view wx:if="result!=null" class="main">
+    <view class="header">   
+        <view class="info">
+            <image style="width:30px;border-radius:50%;margin-right:10px;" mode="widthFix" src="{{result.user.head_ico}}" /> 
+            <text style="font-size:12px;color:#a7a7a7;">{{result.user.nickname}}</text> 
+        </view>
+        <span class="ps" style="font-size:11px;">提示：红包口令在页面底部</span>    
+    </view>
+    <view>
+        {{result.article.content}}
+    </view>
+    <view class="hit-count">
+        <span>访问量{{result.article.hit_count}}</span>
+    </view>
+    <view class="footer">
+        <view class="tip" wx:if="{{!showBtn}}">
+            口令将在{{second}}秒后显示
+        </view>
+        <view class="tip" wx:else>
+            {{result.title}}
+        </view>
+        <view class="btn-group">
+            <button wx:if="{{showBtn}}" type="success" size="defaultSize"  bindtap="defaultTap" hover-class="defaultTap">返回读红包口令</button>
+        </view>
+    </view>
+</view>
+

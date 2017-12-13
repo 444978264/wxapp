@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/content/content",
+    "pages/content_detail/content_detail",
     "pages/test/test"    
   ],
   "window": {

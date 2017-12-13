@@ -5,33 +5,36 @@ extend({
      * 页面的初始数据
      */
     data: {
-        result:null,
+        result: null,
+        isNormal: true
     },
     id: null,
     loading: false,
     fetch() {
-        if(this.loading)return 
+        if (this.loading) return
         this.loading = true;
         console.log(this.id)
         this.$http.getOne({
             red_log_id: this.id
         }).then(result => {
             this.loading = false;
-            this.setData({result})
-            this.setItem('red_detail',result.article);
+            this.setData({ result });
+            if (result.article) {
+                this.setData({
+                    isNormal: false
+                })
+                this.setItem('red_detail', result);
+            }
         })
     },
-    getContent(e) {
-        let { id } = this.dataset(e);
-        this.$push('content', {
-            id: id
-        })
+    getDetail() {
+        this.push("content_detail");
     },
-    recording(){
+    recording() {
         console.log('抢红包开始');
         this.$http.getRed({
-            red_log_id:this.id
-        }).then(res=>{
+            red_log_id: this.id
+        }).then(res => {
             console.log(res)
         })
     },
@@ -42,20 +45,25 @@ extend({
         let { id } = options;
         this.id = id;
         this.fetch();
-        // this.$preLoad('hello world')
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        
-    },
 
+    },
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let result = this.getItemSync('red_detail');
+        if (result && result.read) {
+            // 如果已经阅读过广告了，清除缓存
+            this.removeItem('red_detail');
+            this.setData({
+                isNormal: true
+            })
+        }
     },
 
     /**

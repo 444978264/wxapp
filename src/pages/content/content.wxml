@@ -1,9 +1,28 @@
-<view wx:if="{{result!=null}}" style="height:40%;position:absolute;bottom:0;width:100%;padding-top:60px;display:flex;justify-content:center;align-items:center;background:#c33b25;">
-  <view style="background:#fff6e4;padding:30px 20px 60px;position:absolute;width:70%;border-radius: 5px;bottom:100%;transform:translateY(30%);z-index:-1;text-align:center;">
-  <text style="font-size:18px;line-height:40px;font-weight:500;color:#7a3629;">{{result.title}}</text>
+<view wx:if="{{result!=null}}" class="header">
+    <image style="width:50px;border-radius:5px;" mode="widthFix" src="{{result.user.head_ico}}"></image>
+    <view class="info">
+        <span>{{result.user.nickname}}</span>
+        <view style="padding-left:8px;margin-top:5px;">
+            <view class="statement">
+                <text>读出下方口令，领取现金奖励！</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{result!=null}}" class="main">
+  <view class="content">
+    <span wx:if="{{isNormal}}" style="font-size:18px;font-weight:500;color:#7a3629;">
+        {{result.title}} 
+    </span>
+    <span wx:else style="font-size:18px;font-weight:500;color:#7a3629;">
+        这是一个广告口令红包
+    </span>
+    <navigator url="/pages/content_detail/content_detail?id={{result.id}}" wx:if="{{!isNormal}}">点击查看</navigator>
   </view>
-  <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
-    <image bindtap="recording" style="width:40px; height: 40px;background:#fec93b;padding:10px;border-radius:50%;box-shadow:1px 2px 2px 1px rgba(0,0,0,.45)" src="/img/record.svg"></image>
-    <text style="font-size:12px;font-weight:600;line-height:40px;color:#7a3629;">按住 读口令</text>
+  <view class="container">
+    <view class="footer">
+        <image class="record-btn" bindtap="recording" src="/img/record.svg"></image>
+        <text class="tip">按住 读口令</text>
+    </view>
   </view>
 </view>
