@@ -1,11 +1,11 @@
-let TOKEN = wx.getStorageSync('token') || '';
+let TOKEN = wx.getStorageSync('token') || '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
 
 //设置全局token
 export const setToken = token => TOKEN = token;
 
 //新的fetch---Promise封装 2017-08-01
-const ajax = (url, params) => {
+const ajax = (url, params, config) => {
   var promise = new Promise((resolve, reject) => {
     // let { success, fail, ...other } = params;
     let result = Object.assign({
@@ -15,9 +15,10 @@ const ajax = (url, params) => {
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
+      data: params,
       success: res => resolve(res.data),
       fail: err => reject(err)
-    }, params);
+    }, config);
 
     if (!result.data) {
       result.data = {
@@ -61,43 +62,65 @@ const ajax = (url, params) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  return `https://mi.yunruikj.com/hx/index.php/apx/${c}/${a}`
-  // return `http://www.yunruischedule.com:8888/apx/${c}/${a}`
+  // return `https://mi.yunruikj.com/hx/index.php/apx/${c}/${a}`
+  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
-
 //发送验证码
-export const sendCode = params => ajax(getUrl('index', 'get_code'), params);
+export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params,config);
+
+
+//红包详情
+export const getOne = (params, config) => ajax(getUrl('index', 'get_code'), params,config);
+//红包详情
+export const lst = (params, config) => ajax(getUrl('index', 'lst'), params,config);
+//红包详情
+export const total = (params, config) => ajax(getUrl('index', 'total'), params,config);
+//红包详情
+export const rich = (params, config) => ajax(getUrl('index', 'rich'), params,config);
+//红包详情
+export const winner = (params, config) => ajax(getUrl('index', 'winner'), params,config);
+
+export default {
+  TOKEN,
+  sendCode,
+  setToken,
+  getOne,
+  lst,
+  total,
+  rich,
+  winner
+}
 
 // 登陆
-export const goLogin = params => ajax(getUrl('index', 'auth'), params);
+// export const goLogin = params => ajax(getUrl('index', 'auth'), params);
 
 // 获取图库列表
-export const getList = (params) => ajax(getUrl('index', 'lst'), params);
+// export const getList = (params) => ajax(getUrl('index', 'lst'), params);
 
 //发送共享
-export const sendMsg = params => ajax(getUrl('adm', 'add'), params);
+// export const sendMsg = params => ajax(getUrl('adm', 'add'), params);
 
 //下载次数统计
-export const loadCount = params => ajax(getUrl('index', 'download'), params);
+// export const loadCount = params => ajax(getUrl('index', 'download'), params);
 
 // 获取所有相册
-export const cameraLst = params => ajax(getUrl('gallery', 'lst'), params);
+// export const cameraLst = params => ajax(getUrl('gallery', 'lst'), params);
 
 // 转发
-export const share = params => ajax(getUrl('adm', 'share'), params);
+// export const share = params => ajax(getUrl('adm', 'share'), params);
 
 // 加入分享
-export const fromShare = params => ajax(getUrl('index', 'check_share'), params);
+// export const fromShare = params => ajax(getUrl('index', 'check_share'), params);
 
 // 加入分享
-export const getOneLst = params => ajax(getUrl('gallery', 'get_one'), params);
+// export const getOneLst = params => ajax(getUrl('gallery', 'get_one'), params);
 
 // 删除记录
-export const del = params => ajax(getUrl('adm', 'del'), params);
+// export const del = params => ajax(getUrl('adm', 'del'), params);
 
 // 删除成员
-export const memberDel = params => ajax(getUrl('gallery', 'del_user'), params);
+// export const memberDel = params => ajax(getUrl('gallery', 'del_user'), params);
 
 // 设置发布权限
-export const setPublish = params => ajax(getUrl('gallery', 'auth_user'), params);
+// export const setPublish = params => ajax(getUrl('gallery', 'auth_user'), params);

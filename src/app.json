@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/test/test"
+    "pages/index/index",
+    "pages/test/test"    
   ],
   "window": {
     "backgroundTextStyle": "dark",
