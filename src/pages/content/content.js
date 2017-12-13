@@ -14,6 +14,7 @@ extend({
         this.$http.getOne({
             red_log_id: this.id
         }).then(result => {
+            if (!result) return
             this.loading = false;
             this.setData({ result });
             if (result.article) {
