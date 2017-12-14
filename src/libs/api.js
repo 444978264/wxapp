@@ -36,15 +36,6 @@ const ajax = (url, params, config) => {
   return promise.then(res => {
     if (res.code <= -9999) {
       console.log(res, 'promise')
-      // wx.navigateTo({
-      //   url: '/pages/login/login',
-      //   success: function (data) {
-      //     console.log(data)
-      //   },
-      //   fail: function (err) {
-      //     console.log(err)
-      //   }
-      // })
       return false
     }
     if (res.code < 0) {
@@ -69,15 +60,11 @@ export const getUrl = (c, a) => {
   // return `https://mi.yunruikj.com/hx/index.php/apx/${c}/${a}`
   return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
-// const uploadUrl = 'http://v.yunruikj.com/voicedemo/inx.php';
 
 const uploadUrl = getUrl('index', 'ai_do');
 
-
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
-
-
 //红包详情
 export const getOne = (params, config) => ajax(getUrl('index', 'get_one'), params, config);
 //红包列表
@@ -92,6 +79,11 @@ export const winner = (params, config) => ajax(getUrl('index', 'winner'), params
 export const getRed = (params, config) => ajax(getUrl('index', 'get_red'), params, config);
 //获得红包
 export const recognize = (params, config) => ajax(getUrl('index', 'ai_do'), params, config);
+//获得红包日志
+export const getRedLog = (params, config) => ajax(getUrl('index', 'lst_get_log'), params, config);
+//获得个人单个红包获得的金额
+export const getOneMine = (params, config) => ajax(getUrl('index', 'get_one_mine'), params, config);
+
 
 export default {
   TOKEN,
@@ -103,38 +95,7 @@ export default {
   rich,
   winner,
   uploadUrl,
-  getRed
+  getRed,
+  getRedLog,
+  getOneMine
 }
-
-// 登陆
-// export const goLogin = params => ajax(getUrl('index', 'auth'), params);
-
-// 获取图库列表
-// export const getList = (params) => ajax(getUrl('index', 'lst'), params);
-
-//发送共享
-// export const sendMsg = params => ajax(getUrl('adm', 'add'), params);
-
-//下载次数统计
-// export const loadCount = params => ajax(getUrl('index', 'download'), params);
-
-// 获取所有相册
-// export const cameraLst = params => ajax(getUrl('gallery', 'lst'), params);
-
-// 转发
-// export const share = params => ajax(getUrl('adm', 'share'), params);
-
-// 加入分享
-// export const fromShare = params => ajax(getUrl('index', 'check_share'), params);
-
-// 加入分享
-// export const getOneLst = params => ajax(getUrl('gallery', 'get_one'), params);
-
-// 删除记录
-// export const del = params => ajax(getUrl('adm', 'del'), params);
-
-// 删除成员
-// export const memberDel = params => ajax(getUrl('gallery', 'del_user'), params);
-
-// 设置发布权限
-// export const setPublish = params => ajax(getUrl('gallery', 'auth_user'), params);

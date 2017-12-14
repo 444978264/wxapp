@@ -31,14 +31,23 @@ extend({
     recording() {
         if (!this.data.isNormal) return
         this.alert('开始录音')
-        this.$recordStart(this.id, (res) => {
+        this.$recordStart({
+            red_log_id: this.id
+        }, res => {
             console.log(res)
+            let params = {
+                red_log_id: this.id,
+                ai_id:res.result.id
+            }
+            this.$http.getRed(params).then(res => {
+                if (!res) return
+                this.$push('get_red',{
+                    id:this.id
+                })
+                console.log(res)
+            })
         });
-        // this.$http.getRed({
-        //     red_log_id: this.id
-        // }).then(res => {
-        //     console.log(res)
-        // })
+
     },
     stopRecord() {
         this.alert('录音结束')

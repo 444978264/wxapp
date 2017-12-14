@@ -1,5 +1,6 @@
 // test.js
 import extend from '../../libs/extends.js';
+import popover from '../template/popover/popover.js';
 
 extend({
     /**
@@ -17,6 +18,7 @@ extend({
     pagesize: 20,
     has_next: true,
     loading: false,
+    ...popover,
     fetch() {
         if (!this.has_next) return
         this.loading = true;
@@ -43,7 +45,13 @@ extend({
         })
     },
     getContent(e) {
-        let { id } = this.dataset(e);
+        let { id, status } = this.dataset(e);
+        if (status == 2) {
+            this.$push('get_red', {
+                id: id
+            })
+            return
+        }
         this.$push('content', {
             id: id
         })
@@ -64,6 +72,7 @@ extend({
      */
     onReady: function () {
 
+        
     },
 
     /**

@@ -1,0 +1,30 @@
+.g_popover{
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:6666;
+}
+.g_popover .g_mark{
+    height:100%;
+    background:rgba(0,0,0,.35)
+}
+.g_popover-container{
+    position:absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin:auto;
+    width:80%;
+    height:80%;
+    /* background:#fff; */
+    display:flex;
+    flex-direction: column;
+}
+.g_popover_content{
+    flex:1;
+    border-radius:5px;
+    background:#fff;
+}

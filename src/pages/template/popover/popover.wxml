@@ -1,0 +1,14 @@
+<template name="popover">
+  <view class="g_popover">
+    <view class="g_mark"></view>
+    <view class="g_popover-container text-center">
+        <view class="g_popover_content">
+            <text>今日最佳</text>  
+            <scroll-view>
+                
+            </scroll-view> 
+        </view>
+        <text style="padding:10px;" bindtap="_removePop">关闭</text>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,36 @@
+<view>
+    <view class="header">
+        <view class="red_header"></view>
+    </view>
+    <view class="text-center info">
+        <image class="avatar" style="width:60px;" src="{{result.user.head_ico}}" mode="widthFix" />
+        <text>{{result.user.nickname}}</text>
+        <text>{{result.title}}</text>
+        <text style="font-size:30px;color:#cf161e;line-height:50px;">{{mine!=null?(mine.amount||'--'):result.status==2?"奖励已经被领完":'--'}}</text>
+    </view>
+    <view class="list">
+        <text class="list-title">共{{list.length}}人参与，剩余{{result.leave_count}}份奖金</text>
+        <view class="list-content">
+            <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
+                <view class="list-item-desc">
+                    <image style="width:60px;height:60px;border-radius:5px;" src="{{item.user.head_ico}}" mode="widthFix" />
+                    <view style="padding-left:10px;">
+                        <span>{{item.user.nickname}}</span>
+                        <view class="subinfo">
+                            <button style="margin-right:10px;" bindtap="startPlay" type="default" size="mini" data-url="{{item.speech_path}}" hover-class="btn-click">
+                                <image mode="widthFix" style="width:20px" src="../../img/voice3.svg" />
+                            </button>
+                            <text style="font-size:11px;color:#d2d2d2">准确率{{item.match_percent}}%</text>
+                        </view>
+                    </view>
+                </view>
+                <text>{{item.status==0?"失败":item.amount}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <button style="background:#cf161e;color:#fff;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
+            抢更多红包
+        </button>
+    </view>
+</view>

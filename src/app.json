@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/content/content",
+    "pages/get_red/get_red",
     "pages/content_detail/content_detail",
     "pages/test/test"    
   ],

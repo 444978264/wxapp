@@ -1,4 +1,6 @@
+<import src="../template/popover/popover.wxml" />
 <view class="page">
+    <template wx:if="{{false}}" is="popover" data="{{...totalResult}}"/>    
     <view class="header">
         <view class="rich rank" style="background:#feb207;height:80px;width:80px;border-radius:50%;">
             <text style="color:#cc5e23;font-size:14px;">今日土豪</text>
@@ -26,7 +28,7 @@
             <view wx:if="{{item.status!=2}}" class="avatar">
                 <image style="width:100%" mode="widthFix" src="{{item.user.head_ico}}" />
             </view>
-            <view class="red-content" data-id="{{item.id}}"  bindtap="getContent">
+            <view class="red-content" data-id="{{item.id}}" data-status="{{item.status}}"  bindtap="getContent">
                 <view>
                     <image style="width:30px;padding-top:5px;" mode="widthFix" src="../../img/voice2.svg" />
                 </view>

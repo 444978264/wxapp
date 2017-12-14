@@ -23,23 +23,23 @@ var config = {
             console.log('开始播放')
         })
         this.innerAudioContext.onError((res) => {
-            console.log(res.errMsg)
-            console.log(res.errCode)
+            console.log(res.errCode,res.errMsg)
         })
     },
     // 上传文件
-    uploadFile(tempFilePath, id, cbk) {
-        console.log(id, api.uploadUrl);
+    uploadFile(tempFilePath, data, cbk) {
+        console.log(data, api.uploadUrl);
         wx.uploadFile({
             url: api.uploadUrl,
             filePath: tempFilePath,
             name: 'file',
             formData: {
-                red_log_id: id,
+                ...data,
                 token: api.TOKEN
             },
             success: res => {
-                cbk && cbk(res)
+                console.log(res);
+                cbk && cbk(JSON.parse(res.data))
             },
             fail: err => {
                 console.log(err)
@@ -72,7 +72,7 @@ var config = {
             this.uploadFile(tempFilePath, id, cbk)
         })
         this.recorderManager.onFrameRecorded((res) => {
-            const { frameBuffer } = res
+            const { frameBuffer } = res;
             console.log('frameBuffer.byteLength', frameBuffer.byteLength)
         })
         this.recorderManager.start(options)
