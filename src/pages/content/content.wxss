@@ -52,10 +52,11 @@ page{
   background:#fff6e4;
   padding:20px 20px 60px;
   position:absolute;
+  left:50%;
   width:70%;
   border-radius: 5px;
   bottom:100%;
-  transform:translateY(30%);
+  transform:translate(-50%,30%);
   text-align:center;
 }
 

@@ -57,8 +57,8 @@ const ajax = (url, params, config) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  // return `https://mi.yunruikj.com/hx/index.php/apx/${c}/${a}`
-  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
+  return `https://wss.yunruikj.com/red/${c}/${a}`
+  // return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
 const uploadUrl = getUrl('index', 'ai_do');

@@ -29,8 +29,9 @@ var config = {
     // 上传文件
     uploadFile(tempFilePath, data, cbk) {
         console.log(data, api.uploadUrl);
+        console.log(this.$http.uploadUrl,"upload")
         wx.uploadFile({
-            url: api.uploadUrl,
+            url: this.$http.uploadUrl,
             filePath: tempFilePath,
             name: 'file',
             formData: {
@@ -51,7 +52,7 @@ var config = {
         const options = {
             duration: 15000,
             sampleRate: 16000,
-            numberOfChannels: 1,
+            numberOfChannels: 2,
             encodeBitRate: 24000,
             format: 'aac',//'mp3',
             frameSize: 50

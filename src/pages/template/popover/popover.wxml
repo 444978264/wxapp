@@ -3,12 +3,29 @@
     <view class="g_mark"></view>
     <view class="g_popover-container text-center">
         <view class="g_popover_content">
-            <text>今日最佳</text>  
-            <scroll-view>
-                
+            <view class="g_popover_header">
+                <image style="width:25px;" mode="widthFix" src="../../../img/cup.svg" />
+                <text class="g_popover_title">{{titleOfPop}}</text>  
+            </view>
+            <scroll-view scroll-y class="scroll-view">
+                <view class="scroll-view-item" wx:for="{{sourceOfPop}}" wx:key="index">
+                   <view class="scroll-view-item-info">
+                    <span style="width:24px;color:#d2d2d2;">{{index+1}}</span>
+                    <image class="g_avatar" mode="widthFix" src="{{item.head_ico}}" />
+                    <view class="g_info">
+                        <text>{{item.nickname}} </text>
+                        <text>1231321</text>
+                    </view>
+                   </view>
+                   <view style="width:25%;overlfow:hidden;font-size:16px;text-align:right">
+                      <span>￥{{item.total_amount}}</span>
+                   </view>
+                </view>
             </scroll-view> 
         </view>
-        <text style="padding:10px;" bindtap="_removePop">关闭</text>
+        <view class="g_popover_footer">
+          <text style="line" bindtap="_removePop">关闭</text>
+        </view>
     </view>
   </view>
 </template>

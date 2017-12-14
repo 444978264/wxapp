@@ -1,11 +1,11 @@
 <import src="../template/popover/popover.wxml" />
 <view class="page">
-    <template wx:if="{{false}}" is="popover" data="{{...totalResult}}"/>    
+    <template wx:if="{{sourceOfPop!=null}}" is="popover" data="{{titleOfPop,sourceOfPop}}"/>    
     <view class="header">
-        <view class="rich rank" style="background:#feb207;height:80px;width:80px;border-radius:50%;">
+        <view class="rich rank" bindtap="getRich" style="background:#feb207;height:80px;width:80px;border-radius:50%;">
             <text style="color:#cc5e23;font-size:14px;">今日土豪</text>
         </view>
-        <view class="great rank" style="background:#dd380a;height:80px;width:80px;border-radius:50%;">
+        <view class="great rank" bindtap="getWinner" style="background:#dd380a;height:80px;width:80px;border-radius:50%;">
             <text style="color:#f8dc17;font-size:14px;">手气最佳</text>
         </view>
         <view class="rank-count">
