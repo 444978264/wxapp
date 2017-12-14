@@ -1,8 +1,8 @@
 // test.js
 import extend from '../../libs/extends.js';
-import popover from '../template/popover/popover.js';
+import { temp_pop } from '../template/template';
 import _ from '../../libs/deepcopy';
-extend({
+let config = _.extend({}, temp_pop, {
     /**
      * 页面的初始数据
      */
@@ -12,17 +12,12 @@ extend({
             access_count: '--',
             all_get_count: '--',
             total: '--'
-        },
-        sourceOfPop: null,
-        titleOfPop: '',
-        rich: null,
-        winner: null
+        }
     },
     page: 1,
     pagesize: 20,
     has_next: true,
     loading: false,
-    ...popover,
     fetch() {
         if (!this.has_next) return
         this.loading = true;
@@ -60,42 +55,6 @@ extend({
             id: id
         })
     },
-    getRich() {
-        if (this.data.rich != null) {
-            this.setData({
-                sourceOfPop: this.data.rich,
-                titleOfPop: "今日土豪榜TOP10"
-            })
-            return
-        }
-        this.$http.rich().then(sourceOfPop => {
-            if (!sourceOfPop) return
-            this.setData({
-                sourceOfPop,
-                rich: sourceOfPop,
-                titleOfPop: "今日土豪榜TOP10"
-            })
-            console.log(sourceOfPop)
-        })
-    },
-    getWinner() {
-        if (this.data.winner != null) {
-            this.setData({
-                sourceOfPop: this.data.winner,
-                titleOfPop: "今日手气最佳TOP10"
-            })
-            return
-        }
-        this.$http.winner().then(sourceOfPop => {
-            if (!sourceOfPop) return
-            this.setData({
-                sourceOfPop,
-                winner: sourceOfPop,
-                titleOfPop: "今日手气最佳TOP10"
-            })
-            console.log(sourceOfPop)
-        })
-    },
     publishRed(e) {
         console.log('发红包去咯')
     },
@@ -113,35 +72,12 @@ extend({
     onReady: function () {
 
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
 
     },
-
     /**
      * 页面上拉触底事件的处理函数
      */
@@ -149,7 +85,6 @@ extend({
         if (this.loading) return
         this.fetch()
     },
-
     /**
      * 用户点击右上角分享
      */
@@ -157,3 +92,5 @@ extend({
 
     }
 })
+
+extend(config);

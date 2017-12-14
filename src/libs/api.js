@@ -61,7 +61,7 @@ export const getUrl = (c, a) => {
   // return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
-const uploadUrl = getUrl('index', 'ai_do');
+let uploadUrl = getUrl('index', 'ai_do');
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);

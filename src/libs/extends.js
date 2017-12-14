@@ -1,17 +1,19 @@
 import options from '../utils/util';
 import api from './api';
+import _ from './deepcopy';
 // 全局录音
 const recorderManager = wx.getRecorderManager();
 // 全局播放
 const innerAudioContext = wx.createInnerAudioContext();
 //全局app
-var appInstance = getApp();
+let $app = getApp();
 
 var config = {
     /**
      * 页面的初始数据
      */
-    $app: appInstance,
+    ...options,
+    $app,
     recorderManager,
     innerAudioContext,
     $http: api,
@@ -78,15 +80,22 @@ var config = {
         })
         this.recorderManager.start(options)
     },
-    _willMount(params) {
-        console.log(params, this)
+    // 预加载---未实现
+    $preLoad(path){
+
+    },
+    // 设置导航
+    $setBar(params){
+        wx.setNavigationBarColor({
+            ...params,
+            animation: {
+                duration: 300,
+                timingFunc: 'linear'
+            }
+        })
     }
 }
-Object.assign(config, options);
 export default function Init(params) {
     Object.assign(params, config);
-    params.$preLoad = function (data) {
-        config._willMount(data)
-    }
     Page(params);
 }

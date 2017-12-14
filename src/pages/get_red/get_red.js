@@ -21,13 +21,9 @@ extend({
         this.getOne();
         this.fetch();
         this.getOneMine();
-        wx.setNavigationBarColor({
+        this.$setBar({
             frontColor: "#ffffff",
             backgroundColor: "#c33b25",
-            animation: {
-                duration: 300,
-                timingFunc: 'linear'
-            }
         })
     },
     startPlay(e) {
