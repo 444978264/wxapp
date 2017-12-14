@@ -50,10 +50,10 @@ var config = {
     $recordStart(id, cbk) {
         const options = {
             duration: 15000,
-            sampleRate: 8000,
+            sampleRate: 16000,
             numberOfChannels: 1,
-            encodeBitRate: 16000,
-            format: 'mp3',
+            encodeBitRate: 24000,
+            format: 'aac',//'mp3',
             frameSize: 50
         }
         this.recorderManager.onStart(() => {
