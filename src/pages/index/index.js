@@ -24,6 +24,7 @@ extend({
             page: this.page,
             pagesize: this.pagesize
         }, ).then(res => {
+            if (!res) return
             this.loading = false;
             let { list } = this.data;
             list = list.concat(res.result);
@@ -34,6 +35,7 @@ extend({
     },
     total() {
         this.$http.total().then(res => {
+            if (!res) return
             this.setData({
                 totalResult: res
             })
