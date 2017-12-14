@@ -1,7 +1,7 @@
 // test.js
 import extend from '../../libs/extends.js';
 import popover from '../template/popover/popover.js';
-
+import _ from '../../libs/deepcopy';
 extend({
     /**
      * 页面的初始数据
@@ -14,7 +14,7 @@ extend({
             total: '--'
         },
         sourceOfPop: null,
-        titleOfPop:'',
+        titleOfPop: '',
         rich: null,
         winner: null
     },
@@ -64,7 +64,7 @@ extend({
         if (this.data.rich != null) {
             this.setData({
                 sourceOfPop: this.data.rich,
-                titleOfPop:"今日土豪榜TOP10"
+                titleOfPop: "今日土豪榜TOP10"
             })
             return
         }
@@ -73,7 +73,7 @@ extend({
             this.setData({
                 sourceOfPop,
                 rich: sourceOfPop,
-                titleOfPop:"今日土豪榜TOP10"
+                titleOfPop: "今日土豪榜TOP10"
             })
             console.log(sourceOfPop)
         })
@@ -82,7 +82,7 @@ extend({
         if (this.data.winner != null) {
             this.setData({
                 sourceOfPop: this.data.winner,
-                titleOfPop:"今日手气最佳TOP10"
+                titleOfPop: "今日手气最佳TOP10"
             })
             return
         }
@@ -91,7 +91,7 @@ extend({
             this.setData({
                 sourceOfPop,
                 winner: sourceOfPop,
-                titleOfPop:"今日手气最佳TOP10"
+                titleOfPop: "今日手气最佳TOP10"
             })
             console.log(sourceOfPop)
         })
@@ -111,7 +111,6 @@ extend({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
 
     },
 

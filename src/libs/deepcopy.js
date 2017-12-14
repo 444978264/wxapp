@@ -1,63 +1,118 @@
-// function extend() {
-// 	var src, copyIsArray, copy, name, options, clone,
-// 		target = arguments[0] || {},
-// 		i = 1,
-// 		length = arguments.length,
-// 		deep = false;
+function getProto(obj) {
+    // return Object.getPrototypeOf;
+    return obj.getPrototypeOf;
+}
+function class2type() {
+    return {};
+}
+function hasOwn() {
+    return class2type.hasOwnProperty;
+}
 
-// 	// Handle a deep copy situation
-// 	if ( typeof target === "boolean" ) {
-// 		deep = target;
+function fnToString() {
+    return hasOwn.toString
+}
+function ObjectFunctionString() {
+    return fnToString.call(Object)
+}
 
-// 		// skip the boolean and the target
-// 		target = arguments[ i ] || {};
-// 		i++;
-// 	}
+let app = {
+    isFunction(obj) {
+        return typeof obj === "function" && typeof obj.nodeType !== "number";
+    },
+    isPlainObject(obj) {
+        var proto, Ctor;
 
-// 	// Handle case when target is a string or something (possible in deep copy)
-// 	if ( typeof target !== "object" && !jQuery.isFunction(target) ) {
-// 		target = {};
-// 	}
+        if (!obj || toString.call(obj) !== "[object Object]") {
+            return false;
+        }
 
-// 	// extend jQuery itself if only one argument is passed
-// 	if ( i === length ) {
-// 		target = this;
-// 		i--;
-// 	}
+        proto = getProto(obj);
 
-// 	for ( ; i < length; i++ ) {
-// 		// Only deal with non-null/undefined values
-// 		if ( (options = arguments[ i ]) != null ) {
-// 			// Extend the base object
-// 			for ( name in options ) {
-// 				src = target[ name ];
-// 				copy = options[ name ];
+        if (!proto) {
+            return true;
+        }
 
-// 				// Prevent never-ending loop
-// 				if ( target === copy ) {
-// 					continue;
-// 				}
+        // Objects with prototype are plain iff they were constructed by a global Object function
+        Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+        return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+    },
+    isEmptyObj(obj) {
+        var name;
+        for (name in obj) {
+            return false;
+        }
+        return true;
+    }
+}
 
-// 				// Recurse if we're merging plain objects or arrays
-// 				if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {
-// 					if ( copyIsArray ) {
-// 						copyIsArray = false;
-// 						clone = src && jQuery.isArray(src) ? src : [];
+app.extend = function () {
+    var options, name, src, copy, copyIsArray, clone,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
 
-// 					} else {
-// 						clone = src && jQuery.isPlainObject(src) ? src : {};
-// 					}
+    // Handle a deep copy situation
+    if (typeof target === "boolean") {
+        deep = target;
 
-// 					// Never move original objects, clone them
-// 					target[ name ] = jQuery.extend( deep, clone, copy );
+        // Skip the boolean and the target
+        target = arguments[i] || {};
+        i++;
+    }
 
-// 				// Don't bring in undefined values
-// 				} else if ( copy !== undefined ) {
-// 					target[ name ] = copy;
-// 				}
-// 			}
-// 		}
-// 	}
+    // Handle case when target is a string or something (possible in deep copy)
+    if (typeof target !== "object" && !app.isFunction(target)) {
+        target = {};
+    }
 
-// 	// Return the modified object
-// 	return target;
+    // Extend app itself if only one argument is passed
+    if (i === length) {
+        target = this;
+        i--;
+    }
+
+    for (; i < length; i++) {
+
+        // Only deal with non-null/undefined values
+        if ((options = arguments[i]) != null) {
+
+            // Extend the base object
+            for (name in options) {
+                src = target[name];
+                copy = options[name];
+
+                // Prevent never-ending loop
+                if (target === copy) {
+                    continue;
+                }
+
+                // Recurse if we're merging plain objects or arrays
+                if (deep && copy && (app.isPlainObject(copy) ||
+                    (copyIsArray = Array.isArray(copy)))) {
+
+                    if (copyIsArray) {
+                        copyIsArray = false;
+                        clone = src && Array.isArray(src) ? src : [];
+
+                    } else {
+                        clone = src && app.isPlainObject(src) ? src : {};
+                    }
+
+                    // Never move original objects, clone them
+                    target[name] = app.extend(deep, clone, copy);
+
+                    // Don't bring in undefined values
+                } else if (copy !== undefined) {
+                    target[name] = copy;
+                }
+            }
+        }
+    }
+
+    // Return the modified object
+    return target;
+};
+
+export default app
