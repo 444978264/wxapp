@@ -26,11 +26,10 @@ extend({
         })
     },
     getDetail() {
-        this.push("content_detail");
+        this.$push("content_detail");
     },
     recording() {
         if (!this.data.isNormal) return
-        this.alert('正在录音',"",15000)
         this.$recordStart({
             red_log_id: this.id
         }, res => {
@@ -50,11 +49,6 @@ extend({
 
     },
     stopRecord() {
-        wx.hideLoading();
-        wx.showLoading({
-            mask:true,
-            title:'开始识别语音'
-        }) 
         this.recorderManager.stop();
     },
     /**

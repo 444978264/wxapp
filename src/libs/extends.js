@@ -1,5 +1,6 @@
 import options from '../utils/util';
 import api from './api';
+import { TOKEN } from './api';
 import _ from './deepcopy';
 // 全局录音
 const recorderManager = wx.getRecorderManager();
@@ -30,19 +31,24 @@ var config = {
     },
     // 上传文件
     uploadFile(tempFilePath, data, cbk) {
-        console.log(data, api.uploadUrl);
-        console.log(this.$http.uploadUrl, "upload")
+        console.log('开始上传文件', "upload")
         wx.uploadFile({
             url: this.$http.uploadUrl,
             filePath: tempFilePath,
             name: 'file',
             formData: {
                 ...data,
-                token: this.$http.TOKEN
+                token: TOKEN
             },
             success: res => {
-                console.log(res);
-                cbk && cbk(JSON.parse(res.data))
+                let result = JSON.parse(res.data);
+                console.log(result)
+                if (result.code < 0) {
+                    this.alert(result.msg)
+                    return
+                }
+                console.log('上传成功，开始识别语音')
+                cbk && cbk(result)
             },
             fail: err => {
                 console.log(err)
@@ -59,26 +65,47 @@ var config = {
             format: 'aac',//'mp3',
             frameSize: 50
         }
-        this.recorderManager.onStart(() => {        
-            console.log('recorder start')
+        this.recorderManager.onStart(() => {
+            this.alert('正在录音', "", options.duration)
         })
-        this.recorderManager.onResume(() => {
-            console.log('recorder resume')
-        })
-        this.recorderManager.onPause(() => {
-            console.log('recorder pause')
-        })
+        // this.recorderManager.onResume(() => {
+        //     console.log('recorder resume')
+        // })
+        // this.recorderManager.onPause(() => {
+        //     console.log('recorder pause')
+        // })
+        // this.recorderManager.onFrameRecorded((res) => {
+        //     const { frameBuffer } = res;
+        //     console.log('frameBuffer.byteLength', frameBuffer.byteLength)
+        // })
         // 停止事件回调
         this.recorderManager.onStop((res) => {
             console.log('recorder stop', res)
+            wx.hideLoading();
+            wx.showLoading({
+                mask: true,
+                title: '开始识别语音'
+            })
             const { tempFilePath } = res;
             this.uploadFile(tempFilePath, id, cbk)
         })
-        this.recorderManager.onFrameRecorded((res) => {
-            const { frameBuffer } = res;
-            console.log('frameBuffer.byteLength', frameBuffer.byteLength)
+
+        // 检查是否获得录音权限
+        wx.getSetting({
+            success: res => {
+                if (!res.authSetting['scope.record']) {
+                    wx.authorize({
+                        scope: 'scope.record',
+                        success: () => {
+                            // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+                            // this.recorderManager.start(options)
+                        }
+                    })
+                } else {
+                    this.recorderManager.start(options)
+                }
+            }
         })
-        this.recorderManager.start(options)
     },
     // 预加载---未实现
     $preLoad(path) {
@@ -96,6 +123,6 @@ var config = {
     }
 }
 export default function Init(params) {
-    // Object.assign(params, config);
-    Page(_.extend({}, params, config));
+    Object.assign(params, config);
+    Page(params);
 }

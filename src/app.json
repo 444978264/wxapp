@@ -19,20 +19,8 @@
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "广告红包",
     "navigationBarTextStyle": "#fff",
-    "backgroundColor": "#eeeeee"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/list/list",
-        "text": "图库"
-      },
-      {
-        "pagePath": "pages/location/location",
-        "text": "发布"
-      }
-    ],
-    "position": "top"
+    "backgroundColor": "#eeeeee",
+    "enablePullDownRefresh":true
   },
   "debug": true
 }

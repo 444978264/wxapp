@@ -6,7 +6,7 @@ extend({
      */
     data: {
         result: null,
-        second:1,
+        second:5,
         showBtn: false
     },
     id:null,

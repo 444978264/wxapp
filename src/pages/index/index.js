@@ -19,7 +19,7 @@ let config = _.extend({}, temp_pop, {
     has_next: true,
     loading: false,
     // 获取首页数据列表
-    fetch() {
+    fetch(finish) {
         if (!this.has_next) return
         this.loading = true;
         this.$http.lst({
@@ -29,10 +29,15 @@ let config = _.extend({}, temp_pop, {
             if (!res) return
             this.loading = false;
             let { list } = this.data;
-            list = list.concat(res.result);
+            if (this.page > 1) {
+                list = list.concat(res.result);
+            } else {
+                list = res.result;
+            }
             this.setData({ list });
             this.page++;
             this.has_next = res.has_next;
+            finish && finish();
         })
     },
     total() {
@@ -64,8 +69,8 @@ let config = _.extend({}, temp_pop, {
         }).then(res => {
             //token失效处理
             if (!res.code && res.type == "sos") return;
-            console.log(res,666)
-            if (res.status==0) {
+            console.log(res, 666)
+            if (!res || res.status == 0) {
                 this.$push('content', {
                     id: id
                 })
@@ -77,7 +82,6 @@ let config = _.extend({}, temp_pop, {
         })
     },
     publishRed(e) {
-        console.log('发红包去咯')
         this.$push('envelopes');
     },
     /**
@@ -99,7 +103,12 @@ let config = _.extend({}, temp_pop, {
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+        this.page = 1;
+        this.fetch(() => {
+            wx.hideNavigationBarLoading() //完成停止加载
+            wx.stopPullDownRefresh() //停止下拉刷新
+        });
     },
     /**
      * 页面上拉触底事件的处理函数

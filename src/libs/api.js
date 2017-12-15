@@ -1,4 +1,4 @@
-let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
+export let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
 
 //设置全局token
@@ -21,7 +21,6 @@ const ajax = (url, params, config) => {
       },
       fail: err => reject(err)
     }, config);
-
     if (!result.data) {
       result.data = {
         token: TOKEN
@@ -79,7 +78,6 @@ export const getUrl = (c, a) => {
 let uploadUrl = getUrl('index', 'ai_do');
 
 let uploadImg = getUrl('index', 'upload');
-
 
 // 生成语音红包
 export const sendRed = (params, config) => ajax(getUrl('index', 'send_red'), params, config);

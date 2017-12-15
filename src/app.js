@@ -1,5 +1,5 @@
 //app.js
-import { login,setToken } from 'libs/api'
+import { login, setToken } from 'libs/api'
 App({
   onLaunch: function (res) {
     console.log('this is launch', res)
@@ -7,7 +7,7 @@ App({
     //调用API从本地缓存中获取数据
     // this.login();
   },
-  login(fn){
+  login(fn) {
     this.getUserInfo((code, { encryptedData, iv }) => {
       let params = {
         code: code,
@@ -15,11 +15,11 @@ App({
         iv
       };
       wx.setStorage({
-        key:'code',
-        data:params
+        key: 'code',
+        data: params
       })
       //更新数据
-      login(params,fn)
+      login(params, fn)
     })
   },
   getUserInfo: function (cb) {
