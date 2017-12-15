@@ -59,8 +59,8 @@ const ajax = (url, params, config) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  return `https://wss.yunruikj.com/red/${c}/${a}`
-  // return `http://www.yunruischedule.com:8888/red/${c}/${a}`
+  // return `https://wss.yunruikj.com/red/${c}/${a}`
+  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
 let uploadUrl = getUrl('index', 'ai_do');
@@ -85,6 +85,8 @@ export const recognize = (params, config) => ajax(getUrl('index', 'ai_do'), para
 export const getRedLog = (params, config) => ajax(getUrl('index', 'lst_get_log'), params, config);
 //获得个人单个红包获得的金额
 export const getOneMine = (params, config) => ajax(getUrl('index', 'get_one_mine'), params, config);
+
+export const login = (params, config) => ajax(getUrl('index', 'auth'), params, config);
 
 
 export default {

@@ -1,35 +1,44 @@
 //app.js
-
+import { login,setToken } from 'libs/api'
 App({
   onLaunch: function (res) {
-    console.log('this is launch',res)
+    console.log('this is launch', res)
     this.globalData.page = res.path;
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    this.getUserInfo((code, { encryptedData, iv }) => {
+      //更新数据
+      login({
+        code: code,
+        encryptedData,
+        iv
+      }).then(res => {
+        setToken(res.token)
+        wx.setStorageSync("token",res.token);
+      })
+    })
   },
-  getUserInfo:function(cb){
+  getUserInfo: function (cb) {
     var that = this
-    if(this.globalData.userInfo){
+    if (this.globalData.userInfo) {
       typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
+    } else {
       //调用登录接口
       wx.login({
         success: function (data) {
-          // console.log(data)  登陆凭证
+          // console.log(data.code) // 登陆凭证获取openid
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo;
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              console.log(res)
+              typeof cb == "function" && cb(data.code, res)
             }
           })
         }
       })
     }
   },
-  globalData:{
-    userInfo:null,
-    page:null
+  globalData: {
+    userInfo: null,
+    page: null
   },
 })

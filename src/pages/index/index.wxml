@@ -2,6 +2,10 @@
 <view class="page">
     <template wx:if="{{sourceOfPop!=null}}" is="popover" data="{{titleOfPop,sourceOfPop}}"/>    
     <view class="header">
+        <navigator class="usercenter" url="" push hover-class="className">
+            <image style="width:36rpx;" src="../../img/user.svg" mode="widthFix" />
+            <span>我的</span>
+        </navigator>
         <view class="rich rank" bindtap="getRich" style="background:#feb207;height:80px;width:80px;border-radius:50%;">
             <text style="color:#cc5e23;font-size:14px;">今日土豪</text>
         </view>
