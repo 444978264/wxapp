@@ -11,7 +11,7 @@
         </view>
         <view class="con-details">
           <image src="{{list[index].src}}" style="width: 60px;height: 60px;margin-right: 5px;" wx:if="{{list[index].src}}"></image>
-          <textarea bindblur="textAreaBlur" data-idx="{{index}}" placeholder="请输入文字描述" placeholder-style="color:#ccc;" value="{{list[index]['content']}}" class="text-con"/>
+          <textarea bindblur="textAreaBlur" bindconfirm="textAreaBlur" data-idx="{{index}}" placeholder="请输入文字描述" placeholder-style="color:#ccc;" value="{{list[index]['content']}}" class="text-con"/>
         </view>
       </view>
 
