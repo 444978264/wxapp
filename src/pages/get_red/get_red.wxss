@@ -1,5 +1,5 @@
 .header{
-    height:70px;
+    height:140rpx;
     overflow: hidden;
     position: relative;
 }
@@ -9,18 +9,18 @@
     bottom:0;
     left:50%;
     transform: translateX(-50%);
-    width:800px;
-    height:800px;
+    width:1600rpx;
+    height:1600rpx;
     border-radius:50%;
 }
 
 .info{
     position: relative;
     display:flex;
-    padding-top:40px;
+    padding-top:80rpx;
     flex-direction: column;
-    line-height: 30px;
-    font-size:16px;
+    line-height: 60rpx;
+    font-size:32rpx;
 }
 
 .avatar{
@@ -33,19 +33,19 @@
 
 
 .list{
-    padding:10px;
-    padding-bottom:50px;
+    padding:20rpx;
+    padding-bottom:100rx;
 }
 .list-title{
-    font-size:14px;
+    font-size:28rpx;
     color:#d2d2d2;
 }
 .list-item{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:10px 0;
-    border-bottom:1px solid #efefef;
+    padding:20rpx 0;
+    border-bottom:2rpx solid #efefef;
 }
 .list-item-desc{
     display:flex;
@@ -62,7 +62,7 @@ button[size="mini"]{
 }
 
 .subinfo{
-    padding-top:5px;
+    padding-top:10rpx;
     display:flex;
     justify-content: flex-start;
     align-items: center;
@@ -72,8 +72,8 @@ button[size="mini"]{
     position: fixed;
     bottom:0;
     left: 0;
-    border-top:1px solid #efefef;
-    padding:5px 20px;
+    border-top:2rpx solid #efefef;
+    padding:10rpx 40rpx;
     box-sizing: border-box;
     width:100%;
     background:#fff;

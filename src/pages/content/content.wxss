@@ -3,20 +3,20 @@ page{
   background:#39383d;
 }
 .header{
-  padding:10px;
+  padding:20rpx;
   display:flex;
   justify-content: flex-start;
 }
 .info{
-  padding-left:8px;
+  padding-left:16rpx;
   color:#fff;
-  font-size: 13px;
+  font-size: 26rpx;
 }
 .statement{
   background:#a2e65b;
   color:rgba(0,0,0,.95);
-  padding:10px 6px;
-  border-radius:5px;
+  padding:20rpx 12rpx;
+  border-radius:10rpx;
   position: relative;
 }
 .statement::before{
@@ -24,8 +24,8 @@ page{
   position:absolute;
   left:0;
   transform: rotate(-45deg) translateX(-50%);
-  width:10px;
-  height:10px;
+  width:20rpx;
+  height:20rpx;
   background:#a2e65b;
 }
 
@@ -50,11 +50,11 @@ page{
 }
 .content{
   background:#fff6e4;
-  padding:20px 20px 60px;
+  padding:40rpx 40rpx 120rpx;
   position:absolute;
   left:50%;
   width:70%;
-  border-radius: 5px;
+  border-radius: 10rpx;
   bottom:100%;
   transform:translate(-50%,30%);
   text-align:center;
@@ -67,17 +67,17 @@ page{
   align-items:center;
 }
 .record-btn{
-  width:40px;
-  height: 40px;
+  width:80rpx;
+  height: 80rpx;
   background:#fec93b;
-  padding:10px;
+  padding:20rpx;
   border-radius:50%;
-  box-shadow:1px 2px 2px 1px rgba(0,0,0,.45)
+  box-shadow:2rpx 4rpx 4rpx 2rpx rgba(0,0,0,.45)
 }
 .tip{
-  font-size:12px;
+  font-size:24rpx;
   font-weight:600;
-  line-height:40px;
+  line-height:80rpx;
   color:#7a3629;
 }
 navigator{

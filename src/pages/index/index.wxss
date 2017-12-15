@@ -14,7 +14,7 @@ page{
     align-items:center;
     position: relative;
     background:#302e33;
-    height:240px;
+    height:480rpx;
 }
 .rank {
     display:flex;
@@ -27,10 +27,10 @@ page{
     top:100%;
     transform: translate(-50%,-50%);
     display:flex;
-    padding:20px 10px;
+    padding:40rpx 20rpx;
     background:#fff;
     width:80%;
-    border-radius:5px;
+    border-radius:10rpx;
 }
 .rank-count view{
     flex:1;
@@ -44,21 +44,21 @@ page{
     justify-content: center;
 }
 .subtitle{
-    font-size:12px;
+    font-size:24rpx;
     color:#d2d2d2;
 }
 
 .list{
     flex-grow: 1;
     background:#f0f0f0;
-    padding-top:60px;
-    padding-bottom:50px;
+    padding-top:120rpx;
+    padding-bottom:100rpx;
 }
 .list-item{
     display:flex;
     width:100%;
-    padding:0 15px;
-    margin-bottom:35px;
+    padding:0 30rpx;
+    margin-bottom:70rpx;
     box-sizing:border-box;
 }
 .list-item.default{
@@ -68,27 +68,27 @@ page{
     justify-content: flex-end;
 }
 .avatar{
-    width: 50px;
-    height:50px;
+    width: 100rpx;
+    height:100rpx;
     background:#03c5a2;
-    border-radius:5px;
+    border-radius:10rpx;
     overflow: hidden;
 }
 .red-content{
     background:#fd595a;
-    padding:10px 10px 15px;
-    margin:0 15px;
+    padding:20rpx 20rpx 30rpx;
+    margin:0 30rpx;
     position: relative;
-    border-radius:5px;
-    width:190px;
+    border-radius:10rpx;
+    width:380rpx;
     display:flex;
 }
 .red-content::after{
     position: absolute;
     content:"";
-    height:15px;
-    width:15px;
-    top:8px;
+    height:30rpx;
+    width:30rpx;
+    top:16rpx;
     background:#fd595a;
     transform: rotate(-45deg) translateX(-50%);
 }
@@ -100,13 +100,13 @@ page{
 }
 .list-item.disabled .red-content::after{
     right:0;
-    top:20px;
+    top:40rpx;
     transform: rotate(-45deg) translateX(50%);
 }
 .red-content .red-command{
     flex-grow: 1;
-    padding-left:10px;
-    padding-bottom:15px;
+    padding-left:20rpx;
+    padding-bottom:30rpx;
     display:flex;
     flex-direction: column;
     overflow: hidden;
@@ -122,16 +122,16 @@ page{
     position: absolute;
     bottom:0;
     background:#fff;
-    font-size:11px;
+    font-size:22rpx;
     width:100%;
     left:0;
-    border-radius:0 0 5px 5px;
-    padding:2px 10px;
+    border-radius:0 0 10rpx 10rpx;
+    padding:4rpx 20rpx;
     box-sizing:border-box;
 }
 
 .publish{
-    padding:5px 20px;
+    padding:10rpx 40rpx;
     position:fixed;
     bottom:0;
     width:100%;
@@ -141,6 +141,6 @@ page{
 .publish button{
     background:#fec84a;
     color:#ce6224;
-    font-size:16px;
+    font-size:32rpx;
     font-weight:550;
 }
