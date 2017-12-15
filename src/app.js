@@ -5,6 +5,9 @@ App({
     console.log('this is launch', res)
     this.globalData.page = res.path;
     //调用API从本地缓存中获取数据
+    this.login();
+  },
+  login(){
     this.getUserInfo((code, { encryptedData, iv }) => {
       //更新数据
       login({

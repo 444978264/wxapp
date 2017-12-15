@@ -1,3 +1,6 @@
+<import src="../template/article/img.wxml" />
+<import src="../template/article/text.wxml" />
+
 <view wx:if="result!=null" class="main">
     <view class="header">   
         <view class="info">
@@ -7,7 +10,9 @@
         <span class="ps" style="font-size:11px;">提示：红包口令在页面底部</span>    
     </view>
     <view>
-        {{result.article.content}}
+        <block wx:if="result!=null">   
+            <template wx:key="index" wx:for="{{result.article.content}}" is="{{item.type}}" data="{{...item}}"/>
+        </block>
     </view>
     <view class="hit-count">
         <span>访问量{{result.article.hit_count}}</span>

@@ -1,4 +1,5 @@
 @import '/pages/template/popover/popover.wxss';
+@import '/pages/template/article/article.wxss';
 
 .text-center{
     text-align: center;

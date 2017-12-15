@@ -1,5 +1,5 @@
 .main{
-    padding:0 20rpx;
+    padding:0 20rpx 40rpx;
 }
 .header{
     padding:10rpx 0;

@@ -18,6 +18,7 @@ extend({
         let { id } = options;
         this.id = id;
         let result = this.getItemSync('red_detail');
+        result.article.content = JSON.parse(result.article.content);
         this.setData({ result })
     },
     /**
