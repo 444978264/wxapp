@@ -37,12 +37,12 @@ extend({
             console.log(res)
             let params = {
                 red_log_id: this.id,
-                ai_id:res.result.id
+                ai_id: res.result.id
             }
             this.$http.getRed(params).then(res => {
                 if (!res) return
-                this.$push('get_red',{
-                    id:this.id
+                this.$push('get_red', {
+                    id: this.id
                 })
                 console.log(res)
             })

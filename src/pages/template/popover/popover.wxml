@@ -4,7 +4,7 @@
     <view class="g_popover-container text-center">
         <view class="g_popover_content">
             <view class="g_popover_header">
-                <image style="width:25px;" mode="widthFix" src="../../../img/cup.svg" />
+                <image style="width:25px;" mode="widthFix" src="../../img/cup.svg" />
                 <text class="g_popover_title">{{titleOfPop}}</text>  
             </view>
             <scroll-view scroll-y class="scroll-view">

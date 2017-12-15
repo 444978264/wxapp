@@ -18,6 +18,7 @@ let config = _.extend({}, temp_pop, {
     pagesize: 20,
     has_next: true,
     loading: false,
+    // 获取首页数据列表
     fetch() {
         if (!this.has_next) return
         this.loading = true;
@@ -51,8 +52,22 @@ let config = _.extend({}, temp_pop, {
             })
             return
         }
-        this.$push('content', {
-            id: id
+        this.checkMine(id)
+    },
+    // 检查是否抢过这个红包
+    checkMine(id) {
+        this.$http.getOneMine({
+            red_log_id: id
+        }).then(res => {
+            if (!res) {
+                this.$push('content', {
+                    id: id
+                })
+                return
+            }
+            this.$push('get_red', {
+                id: id
+            })
         })
     },
     publishRed(e) {
@@ -76,7 +91,7 @@ let config = _.extend({}, temp_pop, {
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        
     },
     /**
      * 页面上拉触底事件的处理函数

@@ -30,7 +30,9 @@ const ajax = (url, params, config) => {
       result.data.token = TOKEN;
     }
     //显示loading
-    wx.showLoading();
+    wx.showLoading({
+      mask:true
+    });
     wx.request(result);
   });
   return promise.then(res => {
