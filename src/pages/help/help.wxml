@@ -1,0 +1,15 @@
+<view class="container" style="padding: 8px;">
+  <view style="width: 100%;">
+    <view class="helplist {{num == index ? 'cur' : ''}}" wx:for="{{helpinfo}}" wx:key="index" wx:for-item="items" data-num='{{index}}' bindtap='checkDetails'>
+      <view class="title">
+        <text>{{items.title}}</text>
+        <view class="more">
+          <view class="line" style="margin-top: 8rpx;"></view>
+          <view class="line" style="margin-top: 3px;"></view>
+          <view class="line" style="margin-top: 3px;"></view>
+        </view>
+      </view>
+      <view class="content">{{items.content}}</view>
+    </view>
+  </view>
+</view>

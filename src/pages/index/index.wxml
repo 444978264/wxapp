@@ -2,7 +2,7 @@
 <view class="page">
     <template wx:if="{{sourceOfPop!=null}}" is="popover" data="{{titleOfPop,sourceOfPop}}"/>    
     <view class="header">
-        <navigator class="usercenter" url="" push hover-class="className">
+        <navigator class="usercenter" url="/pages/usercenter/usercenter" push hover-class="className">
             <image style="width:36rpx;" src="../../img/user.svg" mode="widthFix" />
             <span>我的</span>
         </navigator>

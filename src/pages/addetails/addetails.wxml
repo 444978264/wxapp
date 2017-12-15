@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="ad_details">
+    <view class="details">
+      <view class="des">用户在抢红包时会先阅读该广告详情, 请在此认真介绍你的产品或服务</view>
+
+      <view class="section" wx:for="{{list}}" wx:key="index">
+        <view class="group delete-icon" bindtap='deleteCon' data-idx="{{index}}">
+          <block>
+            <icon type="cancel" size="20"/>
+          </block>
+        </view>
+        <view class="con-details">
+          <image src="{{list[index].src}}" style="width: 60px;height: 60px;margin-right: 5px;" wx:if="{{list[index].src}}"></image>
+          <textarea bindblur="textAreaBlur" data-idx="{{index}}" placeholder="请输入文字描述" placeholder-style="color:#ccc;" value="{{list[index]['content']}}" class="text-con"/>
+        </view>
+      </view>
+
+      <view class="add-btn" bindtap='addCon'>
+        <image src='/img/action.svg' style="width: 30px;height:30px;"></image>
+      </view>
+
+    </view>
+
+    <view class="addContent {{ shade ? 'show' : '' }}">
+        <view class="con-lists con-common" bindtap='sureAdd' wx:for="{{conType}}" wx:key="index" wx:for-item="items" data-idx="{{index}}">{{items}}</view>
+        <view class="cancel con-common" bindtap='cancel'>取消</view>
+      </view>
+
+
+
+      <view class="btns">
+        <button class="btns-common" bindtap='preview'>预览</button>
+        <button class="btns-common finish" bindtap='finish'>完成</button>
+      </view>
+
+  </view>
+
+  <view class="mask {{ shade ? 'show' : '' }}" bindtap='cancel'></view>
+
+</view>

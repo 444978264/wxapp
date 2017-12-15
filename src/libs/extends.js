@@ -54,12 +54,12 @@ var config = {
         const options = {
             duration: 15000,
             sampleRate: 16000,
-            numberOfChannels: 2,
+            numberOfChannels: 1,
             encodeBitRate: 24000,
             format: 'aac',//'mp3',
             frameSize: 50
         }
-        this.recorderManager.onStart(() => {
+        this.recorderManager.onStart(() => {        
             console.log('recorder start')
         })
         this.recorderManager.onResume(() => {

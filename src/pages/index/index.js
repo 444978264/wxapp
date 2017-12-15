@@ -64,7 +64,8 @@ let config = _.extend({}, temp_pop, {
         }).then(res => {
             //token失效处理
             if (!res.code && res.type == "sos") return;
-            if (!res) {
+            console.log(res,666)
+            if (res.status==0) {
                 this.$push('content', {
                     id: id
                 })
@@ -77,6 +78,7 @@ let config = _.extend({}, temp_pop, {
     },
     publishRed(e) {
         console.log('发红包去咯')
+        this.$push('envelopes');
     },
     /**
      * 生命周期函数--监听页面加载

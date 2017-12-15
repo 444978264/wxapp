@@ -29,7 +29,7 @@ export const login = () => {
 }
 
 // showToast
-export const alert = (title, type) => {
+export const alert = (title, type, time,success) => {
   switch (type) {
     case 'warn':
       return wx.showToast({
@@ -43,7 +43,7 @@ export const alert = (title, type) => {
       return wx.showToast({
         title: title,
         icon: type || 'success',
-        duration: 2000
+        duration: time || 2000
       })
   }
 }
@@ -112,7 +112,7 @@ export const goback = id => {
 // 数据缓存--sync 同步
 export const setItem = (key, data, success) => wx.setStorage({ key, data, success });
 export const setItemSync = wx.setStorageSync;
-export const getItem = (key, success) => wx.getStorage({ key, sucess });
+export const getItem = (key, success) => wx.getStorage({ key, success });
 export const getItemSync = wx.getStorageSync;
 export const getItems = (success, fail) => wx.getStorageInfo({ success, fail });
 export const getItemsSync = wx.getStorageInfoSync;

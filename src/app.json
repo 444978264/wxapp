@@ -5,7 +5,14 @@
     "pages/get_red/get_red",
     "pages/content_detail/content_detail",
     "pages/login/login",
-    "pages/test/test"    
+    "pages/mypackets/mypackets",
+    "pages/usercenter/usercenter",
+    "pages/addetails/addetails",
+    "pages/area/area",
+    "pages/help/help",
+    "pages/envelopes/envelopes",
+    "pages/withdrawals/withdrawals",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "dark",

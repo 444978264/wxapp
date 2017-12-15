@@ -1,0 +1,32 @@
+.helplist {
+  font-size: 26rpx;
+  background-color: #fff;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.helplist:last-child {
+  margin-bottom: 0;
+}
+.title {
+  overflow: hidden;
+  padding: 8px 6px;
+  box-sizing: border-box;
+}
+.more {
+  width: 16px;
+  float: right;
+}
+.line {
+  width: 14px;
+  height: 4rpx;
+  background-color: #000;
+}
+.content {
+  border-top: 1px solid #f0f0f0;
+  padding: 8px 6px;
+  box-sizing: border-box;
+  display: none;
+}
+.helplist.cur .content {
+  display: block;
+}

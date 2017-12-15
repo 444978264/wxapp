@@ -1,0 +1,25 @@
+<view class="container">
+  <view style="background-color: #fff;width: 100%;">
+    <view class="userhelp">
+      <button class="help" bindtap="toHelp">帮助</button>
+    </view>
+
+
+    <view class="userassets">
+      <view class="assetslist">
+        <view class="assets-common" bindtap='toMypacket'>
+          <view class="icon"><i class="iconfont icon-hongbao1-copy"></i></view>
+          <text>我的红包</text>
+        </view>
+        <view class="assets-common" bindtap='toMybalance'>
+          <view class="icon"><i class="iconfont icon-qiandai"></i></view>
+          <text>我的余额</text>
+        </view>
+        <view class="assets-common">
+          <view class="icon"><i class="iconfont icon-caiwufeiyongqianjinbihuobi"></i></view>
+          <text>我的K币</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

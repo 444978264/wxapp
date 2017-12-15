@@ -72,11 +72,21 @@ const ajax = (url, params, config) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  // return `https://wss.yunruikj.com/red/${c}/${a}`
-  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
+  return `https://wss.yunruikj.com/red/${c}/${a}`
+  // return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
 let uploadUrl = getUrl('index', 'ai_do');
+
+let uploadImg = getUrl('index', 'upload');
+
+
+// 生成语音红包
+export const sendRed = (params, config) => ajax(getUrl('index', 'send_red'), params, config);
+// 我的红包(发出)
+export const myPacket = (params, config) => ajax(getUrl('index', 'my_lst'), params, config);
+// 支付完成
+export const payCbk = (params, config) => ajax(getUrl('index', 'pay_callback'), params, config);
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
@@ -119,5 +129,9 @@ export default {
   uploadUrl,
   getRed,
   getRedLog,
-  getOneMine
+  getOneMine,
+  uploadImg,
+  sendRed,
+  myPacket,
+  payCbk
 }

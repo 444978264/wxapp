@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="pattern">
+    <view class="pattern-title">
+      <text class="pattern-list {{num == index ? 'cur' : ''}}" wx:for="{{pattern}}" wx:key="index" wx:for-item="items" data-num="{{index}}" bindtap='choosePattern'>{{items}}<text class="line"></text></text>
+    </view>
+    <view class="pattern-content">
+      <view class="entertainment" wx:if="{{firstshow}}">
+        
+      </view>
+      <view class="advertisement" wx:else>
+        <view class="input-common">
+          <text class="input-title">设置口令</text><input type="text" bindblur="cmdInputEvent" class="input-content" placeholder='口令可以为一句广告语'></input>
+        </view>
+        <view class="input-common">
+          <text class="input-title">总奖金</text><input type="number" bindblur='bonusInputEvent' class="input-content" placeholder='建议100'></input><text class="unit">元</text>
+        </view>
+        <view class="input-common">
+          <text class="input-title">总份数</text><input type="number" bindblur='phrInputEvent' class="input-content"></input><text class="unit">份</text>
+        </view>
+        <text class="way" bindtap='toHelp'>红包份数越多广告效果越好<text class="iconfont icon-icontishiwenhao"></text></text>
+        <view class="input-common moreoption margin-bottom-2" bindtap='moreOption'>
+          <view style="float: left;">更多选项(可选)</view>
+          <view class="more">
+            <view class="moreline" style="margin-top: 3px;"></view>
+            <view class="moreline" style="margin-top: 6rpx;"></view>
+            <view class="moreline" style="margin-top: 6rpx;"></view>
+          </view>
+        </view>
+        <view class="option-name {{ isMore ? 'show' : '' }}">
+          <view class="input-common margin-bottom-2">
+            <text class="input-title">品牌名称</text><input type="text" class="input-content" bindblur='getbrandName' placeholder='如:加多宝' value="{{brandName}}"></input>
+          </view>
+          <view class="input-common margin-bottom-2">
+            <text class="input-title">品牌logo</text>
+            <view class="imgUp" bindtap='imgUp'>
+              <image src="{{logoUrl}}" class="img-icon up-img-icon" wx:if="{{logoUrl != ''}}"></image>
+              <image src="/img/add_member.svg" class="img-icon up-img-icon {{ logoUrl != '' ? 'hide' : ''}}"></image>
+            </view>
+          </view>
+          <view class="input-common margin-bottom-2">
+            <text class="input-title">广告详情</text>
+            <view class="toEdit" bindtap='toEdit'><text class="toCheck">去编辑</text><image class="img-icon" src='/img/arrow.svg'></image></view>
+          </view>
+          <view class="input-common margin-bottom-2">
+            <text class="input-title">投放区域</text>
+
+            <view class="toEdit {{ greater ? 'more' : ''}}" bindtap='chooseRegion'>
+              <text wx:for="{{curRegion}}" wx:key="index" wx:for-item="items" class="cities toCheck" decode="{{true}}">{{items}}&nbsp;</text>
+              <image class="img-icon" src='/img/arrow.svg'></image>
+            </view>
+
+            <view class="region {{ shade ? 'show' : '' }}">
+              <view class="region-lists region-common" bindtap='sureRegion' wx:for="{{regionArr}}" wx:key="index" wx:for-item="items" data-idx="{{index}}">{{items}}</view>
+              <view class="cancel region-common" bindtap='cancel'>取消</view>
+            </view>
+          </view>
+        </view>
+        <button class="generate" bindtap='generate'>生成语音红包</button>
+      </view>
+    </view>
+  </view>
+  
+
+  <view class="mask {{ shade ? 'show' : '' }}" bindtap='cancel'></view>
+  
+</view>

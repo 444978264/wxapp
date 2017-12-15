@@ -1,0 +1,80 @@
+.balance {
+  font-size: 24rpx;
+  width: 100%;
+}
+.money-nums {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 2px;
+}
+.balance-title {
+  padding: 30rpx 0;
+  text-align: center;
+}
+.extract {
+  background-color: #fff;
+  padding-top: 20px;
+}
+.extract-title {
+  padding-left: 5px;
+}
+.section {
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  padding: 16px 0 16px 5px;
+}
+.nums {
+  padding-left: 20rpx;
+}
+.checkAll {
+  background-color: #fff;
+  width: 50px;
+  height: 30px;
+  color: #f75c5a;
+  font-size: 24rpx;
+  padding: 0;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+.checkAll::after {
+  border-color: #f75c5a;
+}
+.remind {
+  padding: 10px 0 10px 5px;
+}
+.getmoney {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.getmoney button {
+  background-color: #fd595a;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height:3.5;
+}
+.link-msg {
+  color: #158bf5;
+}
+.insufficient {
+  text-align: center;
+  margin-top: 20px;
+}
+.division {
+  width: 2px;
+  height: 12px;
+  margin: 0 8rpx;
+  background-color: #ccc;
+  display: inline-block;
+}
+.help-btn {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
