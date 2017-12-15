@@ -6,11 +6,17 @@
             <image style="width:36rpx;" src="../../img/user.svg" mode="widthFix" />
             <span>我的</span>
         </navigator>
-        <view class="rich rank" bindtap="getRich" style="background:#feb207;height:80px;width:80px;border-radius:50%;">
-            <text style="color:#cc5e23;font-size:14px;">今日土豪</text>
+        <view style="position:relative;padding:10rpx;">
+            <image class="frame sign" bindtap="getRich" mode="widthFix" src="../../img/rate1.png" />
+            <view class="rich rank">
+                <image class="frame" mode="widthFix" src="{{winner[0].head_ico}}" />
+            </view>
         </view>
-        <view class="great rank" bindtap="getWinner" style="background:#dd380a;height:80px;width:80px;border-radius:50%;">
-            <text style="color:#f8dc17;font-size:14px;">手气最佳</text>
+        <view style="position:relative;padding:10rpx;">
+            <image class="frame sign" bindtap="getWinner" mode="widthFix" src="../../img/rate2.png" />
+            <view class="great rank">
+               <image class="frame" mode="widthFix" src="{{winner[0].head_ico}}" />
+            </view>
         </view>
         <view class="rank-count">
             <view class="content">

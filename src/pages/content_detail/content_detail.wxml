@@ -10,7 +10,7 @@
         <span class="ps" style="font-size:11px;">提示：红包口令在页面底部</span>    
     </view>
     <view>
-        <block wx:if="result!=null">   
+        <block wx:if="result!=null&&result.article.length">   
             <template wx:key="index" wx:for="{{result.article.content}}" is="{{item.type}}" data="{{...item}}"/>
         </block>
     </view>

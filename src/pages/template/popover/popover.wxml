@@ -14,10 +14,10 @@
                     <image class="g_avatar" mode="widthFix" src="{{item.head_ico}}" />
                     <view class="g_info">
                         <text>{{item.nickname}} </text>
-                        <text>1231321</text>
+                        <text style="font-size:20rpx">发了{{item.countx}}个红包</text>
                     </view>
                    </view>
-                   <view style="width:25%;overlfow:hidden;font-size:16px;text-align:right">
+                   <view style="width:25%;overlfow:hidden;font-size:32rpx;font-weight:600;text-align:right">
                       <span>￥{{item.total_amount}}</span>
                    </view>
                 </view>

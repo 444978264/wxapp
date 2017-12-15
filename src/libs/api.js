@@ -1,4 +1,4 @@
-let TOKEN = wx.getStorageSync('token') || '456456';//[123123,456456,789798]
+let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
 
 //设置全局token
@@ -29,16 +29,29 @@ const ajax = (url, params, config) => {
     } else {
       result.data.token = TOKEN;
     }
+    console.log(result.data)
     //显示loading
     wx.showLoading({
-      mask:true
+      mask: true
     });
     wx.request(result);
   });
   return promise.then(res => {
     if (res.code <= -9999) {
-      console.log(res, 'promise')
-      return false
+      console.log(res.msg)
+      wx.navigateTo({
+        url: '/pages/login/login',
+        success: function (data) {
+          console.log(data)
+        },
+        fail: function (err) {
+          console.log(err)
+        }
+      })
+      return {
+        type: 'sos',
+        code: false
+      }
     }
     if (res.code < 0) {
       wx.showToast({
@@ -86,7 +99,12 @@ export const getRedLog = (params, config) => ajax(getUrl('index', 'lst_get_log')
 //获得个人单个红包获得的金额
 export const getOneMine = (params, config) => ajax(getUrl('index', 'get_one_mine'), params, config);
 
-export const login = (params, config) => ajax(getUrl('index', 'auth'), params, config);
+export const login = (params, fn, config) => ajax(getUrl('index', 'auth'), params, config).then(res => {
+  setToken(res.token)
+  console.log(TOKEN)
+  fn && fn(res);
+  wx.setStorageSync("token", res.token);
+});
 
 
 export default {

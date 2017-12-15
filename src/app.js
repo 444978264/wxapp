@@ -5,19 +5,21 @@ App({
     console.log('this is launch', res)
     this.globalData.page = res.path;
     //调用API从本地缓存中获取数据
-    this.login();
+    // this.login();
   },
-  login(){
+  login(fn){
     this.getUserInfo((code, { encryptedData, iv }) => {
-      //更新数据
-      login({
+      let params = {
         code: code,
         encryptedData,
         iv
-      }).then(res => {
-        setToken(res.token)
-        wx.setStorageSync("token",res.token);
+      };
+      wx.setStorage({
+        key:'code',
+        data:params
       })
+      //更新数据
+      login(params,fn)
     })
   },
   getUserInfo: function (cb) {

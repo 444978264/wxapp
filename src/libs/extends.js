@@ -25,20 +25,20 @@ var config = {
             console.log('开始播放')
         })
         this.innerAudioContext.onError((res) => {
-            console.log(res.errCode,res.errMsg)
+            console.log(res.errCode, res.errMsg)
         })
     },
     // 上传文件
     uploadFile(tempFilePath, data, cbk) {
         console.log(data, api.uploadUrl);
-        console.log(this.$http.uploadUrl,"upload")
+        console.log(this.$http.uploadUrl, "upload")
         wx.uploadFile({
             url: this.$http.uploadUrl,
             filePath: tempFilePath,
             name: 'file',
             formData: {
                 ...data,
-                token: api.TOKEN
+                token: this.$http.TOKEN
             },
             success: res => {
                 console.log(res);
@@ -81,11 +81,11 @@ var config = {
         this.recorderManager.start(options)
     },
     // 预加载---未实现
-    $preLoad(path){
+    $preLoad(path) {
 
     },
     // 设置导航
-    $setBar(params){
+    $setBar(params) {
         wx.setNavigationBarColor({
             ...params,
             animation: {
@@ -96,6 +96,6 @@ var config = {
     }
 }
 export default function Init(params) {
-    Object.assign(params, config);
-    Page(params);
+    // Object.assign(params, config);
+    Page(_.extend({}, params, config));
 }

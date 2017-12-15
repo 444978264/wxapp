@@ -1,13 +1,13 @@
 export default {
-    data:{
+    data: {
         sourceOfPop: null,
         titleOfPop: '',
         rich: null,
         winner: null
     },
-    _removePop(e){
+    _removePop(e) {
         this.setData({
-            sourceOfPop:null
+            sourceOfPop: null
         })
     },
     getRich() {
@@ -18,17 +18,9 @@ export default {
             })
             return
         }
-        this.$http.rich().then(sourceOfPop => {
-            if (!sourceOfPop) return
-            this.setData({
-                sourceOfPop,
-                rich: sourceOfPop,
-                titleOfPop: "今日土豪榜TOP10"
-            })
-            console.log(sourceOfPop)
-        })
     },
     getWinner() {
+        console.log(3333)
         if (this.data.winner != null) {
             this.setData({
                 sourceOfPop: this.data.winner,
@@ -36,14 +28,19 @@ export default {
             })
             return
         }
-        this.$http.winner().then(sourceOfPop => {
-            if (!sourceOfPop) return
-            this.setData({
-                sourceOfPop,
-                winner: sourceOfPop,
-                titleOfPop: "今日手气最佳TOP10"
-            })
-            console.log(sourceOfPop)
-        })
     },
+    getDataSource() {
+        this.$http.rich().then(rich => {
+            if (!rich) return
+            this.setData({
+                rich
+            })
+        })
+        this.$http.winner().then(winner => {
+            if (!winner) return
+            this.setData({
+                winner
+            })
+        })
+    }
 }

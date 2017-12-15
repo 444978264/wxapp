@@ -4,6 +4,7 @@
     "pages/content/content",
     "pages/get_red/get_red",
     "pages/content_detail/content_detail",
+    "pages/login/login",
     "pages/test/test"    
   ],
   "window": {

@@ -12,7 +12,7 @@ let config = _.extend({}, temp_pop, {
             access_count: '--',
             all_get_count: '--',
             total: '--'
-        }
+        },
     },
     page: 1,
     pagesize: 20,
@@ -52,6 +52,9 @@ let config = _.extend({}, temp_pop, {
             })
             return
         }
+        // this.$push('content', {
+        //     id: id
+        // })
         this.checkMine(id)
     },
     // 检查是否抢过这个红包
@@ -59,6 +62,8 @@ let config = _.extend({}, temp_pop, {
         this.$http.getOneMine({
             red_log_id: id
         }).then(res => {
+            //token失效处理
+            if (!res.code && res.type == "sos") return;
             if (!res) {
                 this.$push('content', {
                     id: id
@@ -79,6 +84,7 @@ let config = _.extend({}, temp_pop, {
     onLoad: function (options) {
         this.fetch();
         this.total();
+        this.getDataSource();
         // this.$preLoad('hello world')
     },
     /**
@@ -91,7 +97,7 @@ let config = _.extend({}, temp_pop, {
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-        
+
     },
     /**
      * 页面上拉触底事件的处理函数
