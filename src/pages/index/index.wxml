@@ -9,7 +9,7 @@
         <view style="position:relative;padding:10rpx;">
             <image class="frame sign" bindtap="getRich" mode="widthFix" src="../../img/rate1.png" />
             <view class="rich rank">
-                <image class="frame" mode="widthFix" src="{{winner[0].head_ico}}" />
+                <image class="frame" mode="widthFix" src="{{rich[0].head_ico}}" />
             </view>
         </view>
         <view style="position:relative;padding:10rpx;">
