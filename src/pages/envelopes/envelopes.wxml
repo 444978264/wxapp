@@ -5,7 +5,16 @@
     </view>
     <view class="pattern-content">
       <view class="entertainment" wx:if="{{firstshow}}">
-        
+        <view class="input-common">
+          <text class="input-title">设置口令</text><input type="text" bindblur="cmdInputEvent" class="input-content" placeholder='牛郎牛年恋刘娘'></input>
+        </view>
+        <text class="way" bindtap='toHelp'>小伙伴说对口令后才可领取随机奖励<text class="iconfont icon-icontishiwenhao"></text></text>
+        <view class="input-common">
+          <text class="input-title">总奖金</text><input type="number" bindblur='bonusInputEvent' class="input-content" placeholder='0.00'></input><text class="unit">元</text>
+        </view>
+        <view class="input-common">
+          <text class="input-title">总份数</text><input type="number" bindblur='phrInputEvent' class="input-content"></input><text class="unit">份</text>
+        </view>
       </view>
       <view class="advertisement" wx:else>
         <view class="input-common">
@@ -55,11 +64,14 @@
             </view>
           </view>
         </view>
-        <button class="generate" bindtap='generate'>生成语音红包</button>
+        
       </view>
+
+      <button class="generate" bindtap='generate'>生成语音红包</button>
+
     </view>
   </view>
-  
+
 
   <view class="mask {{ shade ? 'show' : '' }}" bindtap='cancel'></view>
   

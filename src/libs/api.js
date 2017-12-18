@@ -84,6 +84,8 @@ export const sendRed = (params, config) => ajax(getUrl('index', 'send_red'), par
 export const myPacket = (params, config) => ajax(getUrl('index', 'my_lst'), params, config);
 // 支付完成
 export const payCbk = (params, config) => ajax(getUrl('index', 'pay_callback'), params, config);
+// 我的余额
+export const myBalance = (params, config) => ajax(getUrl('index', 'my_balance'), params, config);
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
@@ -130,5 +132,6 @@ export default {
   uploadImg,
   sendRed,
   myPacket,
-  payCbk
+  payCbk,
+  myBalance
 }

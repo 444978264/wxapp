@@ -11,6 +11,8 @@
   margin-bottom: 50rpx;
   background-color: #fd595a;
   box-sizing: border-box;
+  border-radius: 6px;
+  overflow:hidden;
 }
 .title {
   width: 100%;

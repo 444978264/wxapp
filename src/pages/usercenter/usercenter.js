@@ -15,32 +15,15 @@ extend({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // app.getUserInfo(userInfo => {
-    //   //更新数据
-    //   this.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
+    wx.getUserInfo({
+      success: res => {
+        console.log(res,"res");
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
+    })
   },
-  // init() {
-  //   wx.showLoading({
-  //     mask: true
-  //   })
-  //   cameraLst().then(res => {
-  //     if (!res) return;
-  //     console.log(res)
-  //     if (!this.gallery_id) {
-  //       //获取上次浏览记录
-  //       let { last_visited } = res.g_info;
-  //       this.gallery_id = last_visited;
-  //     }
-  //     this.setData({
-  //       lst: res.result,
-  //       data: res.g_info
-  //     })
-  //     wx.hideLoading();
-  //   })
-  // },
   toHelp: function() {
     wx.navigateTo({
       url: '../help/help'

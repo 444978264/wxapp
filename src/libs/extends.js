@@ -135,9 +135,8 @@ var config = {
     },
     // 需要下拉刷新的函数需写在fetch中  并 由 $openRefresh=>true函数 来开启
     onPullDownRefresh: function () {
-        if (!this.$openRefresh || !this.$openRefresh()) return
+        if (!this.$openRefresh || !this.$openRefresh()) return;
         wx.showNavigationBarLoading() //在标题栏中显示加载
-        this.page = 1;
         this.fetch().then(() => {
             wx.hideNavigationBarLoading() //完成停止加载
             wx.stopPullDownRefresh() //停止下拉刷新
