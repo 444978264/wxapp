@@ -9,13 +9,16 @@ extend({
     userInfo: {},
     disabled: true
   },
+  loading: false,
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  init() {
+    if (this.loading) return;
     this.$loading.start({
       title: '正在登录中...'
     })
+    this.loading = true;
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.$app.login(userInfo => {
       wx.hideNavigationBarLoading() //完成停止加载
@@ -24,6 +27,7 @@ extend({
         userInfo: this.$app.globalData.userInfo,
         disabled: false
       })
+      this.loading = false;
       if (getCurrentPages().length > 1) {
         this.goback();
       } else {
@@ -31,27 +35,16 @@ extend({
       }
     })
   },
+  onLoad: function (options) {
+    this.init();
+  },
   defaultTap() {
     this.$push('index')
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    this.init();
   }
 })

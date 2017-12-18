@@ -34,7 +34,7 @@
 
 .list{
     padding:20rpx;
-    padding-bottom:100rx;
+    padding-bottom:100rpx;
 }
 .list-title{
     font-size:28rpx;

@@ -18,8 +18,10 @@ var config = {
     $http,
     recorderManager,
     innerAudioContext,
+    _PLAY:true,
     // 播放    
     $play(url) {
+        url = `${url}?time=${+new Date()}`;
         this.innerAudioContext.autoplay = true;
         this.innerAudioContext.src = url;
         this.innerAudioContext.onPlay(() => {
@@ -43,6 +45,10 @@ var config = {
             success: res => {
                 let result = JSON.parse(res.data);
                 console.log(result)
+                if (result.code <=-9999) {
+                    this.$push('login');
+                    return
+                }
                 if (result.code < 0) {
                     this.alert(result.msg)
                     return

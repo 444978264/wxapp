@@ -3,14 +3,14 @@ import extend from '../../libs/extends.js';
 import { temp_pop } from '../template/template';
 import _ from '../../libs/deepcopy';
 let config = _.extend({}, temp_pop, {
-    /**
-     * 页面的初始数据
-     */
     // 打开刷新
     $openRefresh(){
         this.page = 1;
         return true 
     },
+    /**
+     * 页面的初始数据
+     */
     data: {
         list: [],
         totalResult: {
@@ -95,24 +95,12 @@ let config = _.extend({}, temp_pop, {
         // this.$preLoad('hello world')
     },
     /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-    /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
         if (this.loading) return
         this.fetch()
     },
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })
 
 extend(config);

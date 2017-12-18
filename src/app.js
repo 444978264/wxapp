@@ -28,18 +28,23 @@ App({
       typeof cb == "function" && cb(this.globalData.userInfo)
     } else {
       //调用登录接口
-      wx.login({
-        success: function (data) {
-          // console.log(data.code) // 登陆凭证获取openid
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo;
-              console.log(res)
-              typeof cb == "function" && cb(data.code, res)
+      wx.getSetting ({
+        success:(config)=>{
+          console.log(config,456465)
+          wx.login({
+            success: function (data) {
+              // console.log(data.code) // 登陆凭证获取openid
+              wx.getUserInfo({
+                success: function (res) {
+                  that.globalData.userInfo = res.userInfo;
+                  console.log(res)
+                  typeof cb == "function" && cb(data.code, res)
+                }
+              })
             }
           })
         }
-      })
+      })  
     }
   },
   globalData: {
