@@ -28,9 +28,8 @@
       </view>
     </view>
   </view>
-
   <view class="ad_bg">
-    <image src="../../img/user_center.png"></image>
+    <image src="../../img/user_center.png" mode="widthFix"></image>
   </view>
 
 </view>
