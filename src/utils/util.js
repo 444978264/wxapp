@@ -44,6 +44,7 @@ export const alert = (title, type, time, success) => {
     case 'warn':
       return wx.showToast({
         title: title,
+        icon:'warn',
         image: '../../img/tip.svg',
         duration: 2000
       })

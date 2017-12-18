@@ -99,3 +99,21 @@ navigator{
   left:0;
   z-index:-1;
 }
+
+.agreement{
+  position:absolute;
+  width:100%;
+  text-align: center;
+  bottom:40rpx;
+  left:50%;
+  transform: translateX(-50%);
+  font-size:24rpx;
+  color:#fec93b;
+}
+checkbox .wx-checkbox-input{
+  width:26rpx;
+  height:26rpx;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+  font-size:24rpx;  
+}

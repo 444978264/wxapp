@@ -6,7 +6,8 @@ extend({
     },
     data: {
         result: null,
-        isNormal: true
+        isNormal: true,
+        agreement:true
     },
     id: null,
     loading: false,
@@ -32,6 +33,10 @@ extend({
         this.$push("content_detail");
     },
     recording() {
+        if(!this.data.agreement){
+            this.alert('请同意下面说明',"warn")
+            return
+        }
         if (!this.data.isNormal){
             this.$push('content_detail')
             return
@@ -56,6 +61,12 @@ extend({
     },
     stopRecord() {
         this.recorderManager.stop();
+    },
+    checkboxChange(value){
+        let {agreement} = this.data;
+        this.setData({
+            agreement:!agreement
+        })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -84,13 +95,6 @@ extend({
             })
         }
     },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
     /**
      * 用户点击右上角分享
      */

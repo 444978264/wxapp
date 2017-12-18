@@ -1,5 +1,5 @@
 <view wx:if="{{result!=null}}" class="header">
-    <image style="width:50px;border-radius:5px;" mode="widthFix" src="{{result.user.head_ico}}"></image>
+    <image style="width:50px;height:50%;border-radius:5px;" mode="widthFix" src="{{result.user.head_ico}}"></image>
     <view class="info">
         <span>{{result.user.nickname}}</span>
         <view style="padding-left:8px;margin-top:5px;">
@@ -24,6 +24,13 @@
         <view class="footer">
             <image class="record-btn" bind:touchstart="recording" bind:touchend="stopRecord" src="/img/record.svg"></image>
             <text class="tip">按住 读口令</text>
+        </view>
+        <view class="agreement">
+            <checkbox-group bindchange="checkboxChange">
+                <label style="width:100%;">
+                    <checkbox checked="{{agreement}}" value="{{agreement}}" />抢到的金额平台将扣除6%的手续费
+                </label>
+            </checkbox-group>
         </view>
         <image class="red_bottom" style="width:100%" mode="widthFix" src="../../img/red_bottom2.png"></image>
     </view>

@@ -72,6 +72,13 @@ var config = {
             frameSize: 50
         }
         this.recorderManager.onStart(() => {
+            wx.showToast({
+                title:'正在录音...',
+                mask:true,
+                icon:'loading',
+                image:'../../img/voice2.svg',
+                duration: options.duration
+            })
             // let s = options.duration;
             // this._timer = setInterval(()=>{
             //     if(s<2000){
@@ -79,7 +86,7 @@ var config = {
             //     }
             //     this.alert('正在录音', "", options.duration);
             // },1000)
-            this.alert('正在录音', "", options.duration); 
+            // this.alert('正在录音', "", options.duration); 
         })
         // this.recorderManager.onResume(() => {
         //     console.log('recorder resume')
