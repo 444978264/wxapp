@@ -21,7 +21,8 @@ extend({
     curRegion: ['全国'],
     greater: false,
     // 保存广告详情
-    details: []
+    details: [],
+    modeType: 'et'
   },
   onLoad: function(option) {
     
@@ -45,10 +46,26 @@ extend({
   },
   // 选择模式
   choosePattern: function(e) {
-    this.setData({
-      num: e.currentTarget.dataset.num,
-      firstshow: !this.data.firstshow
-    })
+    var num = e.currentTarget.dataset.num;
+    if(num == 0) {
+      this.setData({
+        num: num,
+        firstshow: true,
+        command: '',
+        bonus: '',
+        phr: '',
+        modeType: 'et'
+      })
+    } else {
+      this.setData({
+        num: num,
+        firstshow: false,
+        command: '',
+        bonus: '',
+        phr: '',
+        modeType: 'ad'
+      })
+    }
   },
   toHelp: function() {
     wx.navigateTo({
@@ -174,16 +191,29 @@ extend({
   generate: function() {
     var res = this.checkVal();
     if(!res) return;
-    var obj = {
-      'type': 'ad',
-      'amount': this.data.bonus,
-      'total_count': this.data.phr,
-      'title': this.data.command,
-      'ad_content': this.data.details,
-      'img': this.data.logoUrl,
-      'area': this.data.curRegion,
-      'brand_title': this.data.brandName
+    console.log(this.data.modeType,"modeType");
+    if (this.data.modeType == 'ad') {
+      var obj = {
+        'type': 'ad',
+        'amount': this.data.bonus,
+        'total_count': this.data.phr,
+        'title': this.data.command,
+        'ad_content': this.data.details,
+        'img': this.data.logoUrl,
+        'area': this.data.curRegion,
+        'brand_title': this.data.brandName
+      }
+    } else {
+      var obj = {
+        'type': '',
+        'amount': this.data.bonus,
+        'total_count': this.data.phr,
+        'title': this.data.command
+      }
     }
+
+  console.log(obj,"obj");
+    
     this.$http.sendRed(obj).then(res => {
       var obj = res.pay.result;
       var id = res.id;

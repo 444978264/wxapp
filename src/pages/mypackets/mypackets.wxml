@@ -1,14 +1,15 @@
 <view class="container">
   <view class="packetslist">
-    <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad">
-       <view class="every-packet" wx:for="{{packetslist}}" wx:key="index" wx:for-item="items">
+
+      <view class="every-packet" wx:for="{{packetslist}}" wx:key="index" wx:for-item="items">
         <text class="title packet-common">{{items.title}}</text>
         <view class="content packet-common">
           <text class="amount">共{{items.amount}}元 / </text>
           <text class="">共{{items.total_count}}份 , 剩余{{items.leave_count}}份</text>
         </view>
-        <view class="type">广告红包</view>
+        <view class="type" wx:if="{{items.type == 'ad'}}">广告红包</view>
+        <view class="type" wx:else>娱乐红包</view>
       </view> 
-    </scroll-view>
+      
   </view>
 </view>

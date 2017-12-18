@@ -47,7 +47,7 @@
 .pattern-list.cur .line {
   background-color: #fb5859;
 }
-.advertisement {
+.advertisement, .entertainment {
   padding-top: 20rpx;
 }
 .input-common {
@@ -83,6 +83,7 @@
   width: 100%;
   text-align: center;
   margin-bottom: 20rpx;
+  color: #ccc;
 }
 .moreoption {
   display: block;

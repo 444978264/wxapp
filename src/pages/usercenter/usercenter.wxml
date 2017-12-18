@@ -1,9 +1,15 @@
-<view class="container">
+<view class="">
   <view style="background-color: #fff;width: 100%;">
     <view class="userhelp">
       <button class="help" bindtap="toHelp">帮助</button>
     </view>
 
+    <view class="userinfo">
+      <view style="width: 100%;">
+        <image class="user-img" src="{{userInfo.avatarUrl}}" style=""></image>
+      </view>
+      <text class="user-name">{{userInfo.nickName}}</text>
+    </view>
 
     <view class="userassets">
       <view class="assetslist">
@@ -22,4 +28,9 @@
       </view>
     </view>
   </view>
+
+  <view class="ad_bg">
+    <image src="../../img/user_center.png"></image>
+  </view>
+
 </view>
