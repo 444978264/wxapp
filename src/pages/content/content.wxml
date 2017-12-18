@@ -10,19 +10,21 @@
     </view>
 </view>
 <view wx:if="{{result!=null}}" class="main">
-  <view class="content">
-    <span wx:if="{{isNormal}}" style="font-size:18px;font-weight:500;color:#7a3629;">
-        {{result.title}} 
-    </span>
-    <span wx:else style="font-size:18px;font-weight:500;color:#7a3629;">
-        这是一个广告口令红包
-    </span>
-    <navigator url="/pages/content_detail/content_detail?id={{result.id}}" wx:if="{{!isNormal}}">点击查看</navigator>
-  </view>
-  <view class="container">
-    <view class="footer">
-        <image class="record-btn" bind:touchstart="recording" bind:touchend="stopRecord" src="/img/record.svg"></image>
-        <text class="tip">按住 读口令</text>
+    <image class="red_top"  style="width:100%;height:100%;" src="../../img/red_top.png" mode="aspectFill"></image> 
+    <view class="container">
+        <view class="content">
+            <span wx:if="{{isNormal}}" style="font-size:18px;font-weight:500;color:#7a3629;">
+                {{result.title}} 
+            </span>
+            <span wx:else style="font-size:18px;font-weight:500;color:#7a3629;">
+                这是一个广告口令红包
+            </span>
+            <navigator url="/pages/content_detail/content_detail?id={{result.id}}" wx:if="{{!isNormal}}">点击查看</navigator>
+        </view>
+        <view class="footer">
+            <image class="record-btn" bind:touchstart="recording" bind:touchend="stopRecord" src="/img/record.svg"></image>
+            <text class="tip">按住 读口令</text>
+        </view>
+        <image class="red_bottom" style="width:100%" mode="widthFix" src="../../img/red_bottom2.png"></image>
     </view>
-  </view>
 </view>

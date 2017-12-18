@@ -72,7 +72,14 @@ var config = {
             frameSize: 50
         }
         this.recorderManager.onStart(() => {
-            this.alert('正在录音', "", options.duration)
+            // let s = options.duration;
+            // this._timer = setInterval(()=>{
+            //     if(s<2000){
+            //         clearInterval(this._timer);
+            //     }
+            //     this.alert('正在录音', "", options.duration);
+            // },1000)
+            this.alert('正在录音', "", options.duration); 
         })
         // this.recorderManager.onResume(() => {
         //     console.log('recorder resume')

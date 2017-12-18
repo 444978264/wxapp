@@ -40,7 +40,7 @@ page{
 }
 .container{
   flex-grow: 1;
-  background:#c33b25;
+  background:transparent;
   height:100%;
   display:flex;
   align-items:center;
@@ -50,14 +50,16 @@ page{
 }
 .content{
   background:#fff6e4;
+  min-height:100rpx;
   padding:40rpx 40rpx 120rpx;
   position:absolute;
   left:50%;
   width:70%;
   border-radius: 10rpx;
-  bottom:100%;
-  transform:translate(-50%,30%);
+  top:0;
+  transform:translate(-50%,0);
   text-align:center;
+  z-index:-1;
 }
 
 .footer{
@@ -82,4 +84,18 @@ page{
 }
 navigator{
   color:#66a2d4;
+}
+
+.red_top{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+  transform: translateY(-50%)
+}
+.red_bottom{
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:-1;
 }

@@ -32,7 +32,10 @@ extend({
         this.$push("content_detail");
     },
     recording() {
-        if (!this.data.isNormal) return
+        if (!this.data.isNormal){
+            this.$push('content_detail')
+            return
+        }
         this.$recordStart({
             red_log_id: this.id
         }, res => {

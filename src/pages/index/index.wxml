@@ -1,6 +1,6 @@
 <import src="../template/popover/popover.wxml" />
 <view class="page">
-    <template wx:if="{{sourceOfPop!=null}}" is="popover" data="{{titleOfPop,sourceOfPop}}"/>    
+    <template wx:if="{{sourceOfPop!=null}}" is="popover" data="{{...titleOfPop,sourceOfPop}}"/>    
     <view class="header">
         <navigator class="usercenter" url="/pages/usercenter/usercenter" push hover-class="className">
             <image style="width:36rpx;" src="../../img/user.svg" mode="widthFix" />

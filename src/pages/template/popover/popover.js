@@ -14,17 +14,22 @@ export default {
         if (this.data.rich != null) {
             this.setData({
                 sourceOfPop: this.data.rich,
-                titleOfPop: "今日土豪榜TOP10"
+                titleOfPop: {
+                    text:"今日土豪榜TOP10",
+                    type:'rich'
+                }
             })
             return
         }
     },
     getWinner() {
-        console.log(3333)
         if (this.data.winner != null) {
             this.setData({
                 sourceOfPop: this.data.winner,
-                titleOfPop: "今日手气最佳TOP10"
+                titleOfPop: {
+                    text:"今日手气最佳TOP10",
+                    type:'winner'
+                }
             })
             return
         }
