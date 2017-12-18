@@ -61,8 +61,8 @@
     width:75%;
 }
 .g_avatar{
-    width:80rpx;
-    height:80rpx;
+    width:90rpx;
+    height:90rpx;
     border-radius:10rpx;
 }
 .g_info{
@@ -70,6 +70,7 @@
     padding-left:16rpx;
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
     text-align: left;
     overflow: hidden;
     text-overflow:ellipsis;

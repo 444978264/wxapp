@@ -30,7 +30,6 @@ App({
       //调用登录接口
       wx.getSetting ({
         success:(config)=>{
-          console.log(config,456465)
           wx.login({
             success: function (data) {
               // console.log(data.code) // 登陆凭证获取openid

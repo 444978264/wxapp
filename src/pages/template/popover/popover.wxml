@@ -4,7 +4,7 @@
     <view class="g_popover-container text-center">
         <view class="g_popover_content">
             <view class="g_popover_header">
-                <image style="width:25px;" mode="widthFix" src="../../img/cup.svg" />
+                <image style="width:50rpx;" mode="widthFix" src="../../img/cup.svg" />
                 <text class="g_popover_title">{{titleOfPop}}</text>  
             </view>
             <scroll-view scroll-y class="scroll-view">
@@ -14,10 +14,10 @@
                     <image class="g_avatar" mode="widthFix" src="{{item.head_ico}}" />
                     <view class="g_info">
                         <text>{{item.nickname}} </text>
-                        <text style="font-size:20rpx">发了{{item.countx}}个红包</text>
+                        <text style="font-size:24rpx;color:#d2d2d2">发了{{item.countx}}个红包</text>
                     </view>
                    </view>
-                   <view style="width:25%;overlfow:hidden;font-size:32rpx;font-weight:600;text-align:right">
+                   <view style="width:25%;overlfow:hidden;font-size:40rpx;font-weight:500;text-align:right">
                       <span>￥{{item.total_amount}}</span>
                    </view>
                 </view>

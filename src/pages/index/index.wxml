@@ -20,15 +20,15 @@
         </view>
         <view class="rank-count">
             <view class="content">
-                <text>{{totalResult.access_count}}</text>
+                <text class="text-bold">{{totalResult.access_count}}</text>
                 <text class="subtitle">今日红包数</text>
             </view>
             <view class="content">
-                <text>{{totalResult.all_get_count}}</text>
+                <text class="text-bold">{{totalResult.all_get_count}}</text>
                 <text class="subtitle">抢到人数</text>
             </view>
             <view class="content">
-                <text>{{totalResult.total}}</text>
+                <text class="text-bold">{{totalResult.total}}</text>
                 <text class="subtitle">今日访问量</text>
             </view>
         </view>
