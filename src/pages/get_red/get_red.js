@@ -21,8 +21,7 @@ extend({
     onLoad: function (options) {
         let { id } = options;
         this.red_log_id = id;
-        // this.red_log_id = 271;
-        this.getOne();
+        // this.getOne();
         this.fetch();
         this.getOneMine();
         this.$setBar({
@@ -45,6 +44,9 @@ extend({
         })
     },
     fetch() {
+
+        this.getOne();
+
         return this.$http.getRedLog({
             red_log_id: this.red_log_id
         }).then(res => {
