@@ -17,7 +17,7 @@
                         <text style="font-size:24rpx;color:#d2d2d2">{{type=="rich"?"发了":"收了"}}{{item.countx}}个红包</text>
                     </view>
                    </view>
-                   <view style="width:25%;overlfow:hidden;font-size:40rpx;font-weight:500;text-align:right">
+                   <view style="width:30%;overlfow:hidden;font-size:40rpx;font-weight:500;text-align:right">
                       <span>￥{{item.total_amount}}</span>
                    </view>
                 </view>

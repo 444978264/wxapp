@@ -4,9 +4,12 @@ import { temp_pop } from '../template/template';
 import _ from '../../libs/deepcopy';
 let config = _.extend({}, temp_pop, {
     // 打开刷新
-    $openRefresh(){
+    $openRefresh() {
+        this.total();
+        this.getDataSource();
         this.page = 1;
-        return true 
+        this.has_next = true;
+        return true
     },
     /**
      * 页面的初始数据
@@ -28,21 +31,22 @@ let config = _.extend({}, temp_pop, {
         if (!this.has_next) return
         this.loading = true;
         return this.$http.lst({
-                page: this.page,
-                pagesize: this.pagesize
-            }, ).then(res => {
-                if (!res) return
-                this.loading = false;
-                let { list } = this.data;
-                if (this.page > 1) {
-                    list = list.concat(res.result);
-                } else {
-                    list = res.result;
-                }
-                this.setData({ list });
-                this.page++;
-                this.has_next = res.has_next;
-            })
+            page: this.page,
+            pagesize: this.pagesize
+        }).then(res => {
+            if (!res) return
+            this.loading = false;
+            if (!res.result.length) return;
+            let { list } = this.data;
+            if (this.page > 1) {
+                list = list.concat(res.result);
+            } else {
+                list = res.result;
+            }
+            this.setData({ list });
+            this.page++;
+            this.has_next = res.has_next;
+        })
     },
     total() {
         this.$http.total().then(res => {

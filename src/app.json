@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/login/login",
     "pages/content/content",
     "pages/get_red/get_red",
     "pages/content_detail/content_detail",
-    "pages/login/login",
     "pages/mypackets/mypackets",
     "pages/usercenter/usercenter",
     "pages/addetails/addetails",

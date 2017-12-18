@@ -58,7 +58,7 @@
     display:flex;
     text-align: left;
     overflow: hidden;
-    width:75%;
+    width:70%;
 }
 .g_avatar{
     width:90rpx;

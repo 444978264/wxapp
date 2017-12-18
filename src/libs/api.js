@@ -1,8 +1,8 @@
 import { $loading } from '../utils/util';
 export let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
-const host = 'http://www.yunruischedule.com:8888';
-// const host = 'https://wss.yunruikj.com';
+// const host = 'http://www.yunruischedule.com:8888';
+const host = 'https://wss.yunruikj.com';
 
 
 //设置全局token

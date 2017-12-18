@@ -31,7 +31,7 @@ extend({
       if (getCurrentPages().length > 1) {
         this.goback();
       } else {
-        this.$push('index');
+        this.$redirect('index');
       }
     })
   },
