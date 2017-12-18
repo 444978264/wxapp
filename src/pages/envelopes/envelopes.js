@@ -22,7 +22,7 @@ extend({
     greater: false,
     // 保存广告详情
     details: [],
-    modeType: 'et'
+    modeType: 'ad'
   },
   onLoad: function(option) {
     
