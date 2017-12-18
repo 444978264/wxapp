@@ -1,5 +1,5 @@
 import options from '../utils/util';
-import api from './api';
+import $http from './api';
 import { TOKEN } from './api';
 import _ from './deepcopy';
 // 全局录音
@@ -15,9 +15,9 @@ var config = {
      */
     ...options,
     $app,
+    $http,
     recorderManager,
     innerAudioContext,
-    $http: api,
     // 播放    
     $play(url) {
         this.innerAudioContext.autoplay = true;
@@ -81,9 +81,8 @@ var config = {
         // 停止事件回调
         this.recorderManager.onStop((res) => {
             console.log('recorder stop', res)
-            wx.hideLoading();
-            wx.showLoading({
-                mask: true,
+            wx.hideToast();
+            this.$loading.start({
                 title: '开始识别语音'
             })
             const { tempFilePath } = res;
@@ -120,7 +119,17 @@ var config = {
                 timingFunc: 'linear'
             }
         })
-    }
+    },
+    // 需要下拉刷新的函数需写在fetch中  并 由 $openRefresh=>true函数 来开启
+    onPullDownRefresh: function () {
+        if (!this.$openRefresh || !this.$openRefresh()) return
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+        this.page = 1;
+        this.fetch().then(() => {
+            wx.hideNavigationBarLoading() //完成停止加载
+            wx.stopPullDownRefresh() //停止下拉刷新
+        });
+    },
 }
 export default function Init(params) {
     Object.assign(params, config);

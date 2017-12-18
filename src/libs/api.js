@@ -1,3 +1,4 @@
+import { $loading } from '../utils/util';
 export let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
 
@@ -16,7 +17,7 @@ const ajax = (url, params, config) => {
       },
       data: params,
       success: res => {
-        wx.hideLoading();
+        $loading.done();
         resolve(res.data)
       },
       fail: err => reject(err)
@@ -30,9 +31,7 @@ const ajax = (url, params, config) => {
     }
     console.log(result.data)
     //显示loading
-    wx.showLoading({
-      mask: true
-    });
+    $loading.start();
     wx.request(result);
   });
   return promise.then(res => {
@@ -71,8 +70,8 @@ const ajax = (url, params, config) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  return `https://wss.yunruikj.com/red/${c}/${a}`
-  // return `http://www.yunruischedule.com:8888/red/${c}/${a}`
+  // return `https://wss.yunruikj.com/red/${c}/${a}`
+  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
 }
 
 let uploadUrl = getUrl('index', 'ai_do');

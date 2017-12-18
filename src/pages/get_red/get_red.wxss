@@ -55,7 +55,8 @@ button[size="mini"]{
     display:flex !important;
     justify-content: center;
     align-items: center;
-    padding:.2em 1.04em
+    padding:.2em 1.04em;
+    margin:0;
 }
 .btn-click{
     background:#00b228;

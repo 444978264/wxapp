@@ -1,6 +1,9 @@
 // test.js
 import extend from '../../libs/extends.js';
 extend({
+    $openRefresh(){
+        return true 
+    },
     data: {
         result: null,
         isNormal: true
@@ -11,7 +14,7 @@ extend({
         if (this.loading) return
         this.loading = true;
         console.log(this.id)
-        this.$http.getOne({
+        return this.$http.getOne({
             red_log_id: this.id
         }).then(result => {
             if (!result) return
@@ -78,13 +81,6 @@ extend({
             })
         }
     },
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
     /**
      * 页面上拉触底事件的处理函数
      */

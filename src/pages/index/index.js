@@ -6,6 +6,11 @@ let config = _.extend({}, temp_pop, {
     /**
      * 页面的初始数据
      */
+    // 打开刷新
+    $openRefresh(){
+        this.page = 1;
+        return true 
+    },
     data: {
         list: [],
         totalResult: {
@@ -19,26 +24,25 @@ let config = _.extend({}, temp_pop, {
     has_next: true,
     loading: false,
     // 获取首页数据列表
-    fetch(finish) {
+    fetch() {
         if (!this.has_next) return
         this.loading = true;
-        this.$http.lst({
-            page: this.page,
-            pagesize: this.pagesize
-        }, ).then(res => {
-            if (!res) return
-            this.loading = false;
-            let { list } = this.data;
-            if (this.page > 1) {
-                list = list.concat(res.result);
-            } else {
-                list = res.result;
-            }
-            this.setData({ list });
-            this.page++;
-            this.has_next = res.has_next;
-            finish && finish();
-        })
+        return this.$http.lst({
+                page: this.page,
+                pagesize: this.pagesize
+            }, ).then(res => {
+                if (!res) return
+                this.loading = false;
+                let { list } = this.data;
+                if (this.page > 1) {
+                    list = list.concat(res.result);
+                } else {
+                    list = res.result;
+                }
+                this.setData({ list });
+                this.page++;
+                this.has_next = res.has_next;
+            })
     },
     total() {
         this.$http.total().then(res => {
@@ -57,9 +61,6 @@ let config = _.extend({}, temp_pop, {
             })
             return
         }
-        // this.$push('content', {
-        //     id: id
-        // })
         this.checkMine(id)
     },
     // 检查是否抢过这个红包
@@ -98,17 +99,6 @@ let config = _.extend({}, temp_pop, {
      */
     onReady: function () {
 
-    },
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-        wx.showNavigationBarLoading() //在标题栏中显示加载
-        this.page = 1;
-        this.fetch(() => {
-            wx.hideNavigationBarLoading() //完成停止加载
-            wx.stopPullDownRefresh() //停止下拉刷新
-        });
     },
     /**
      * 页面上拉触底事件的处理函数

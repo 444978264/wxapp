@@ -13,7 +13,12 @@ extend({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.$loading.start({
+      title: '正在登录中...'
+    })
+    wx.showNavigationBarLoading() //在标题栏中显示加载
     this.$app.login(userInfo => {
+      wx.hideNavigationBarLoading() //完成停止加载
       //更新数据
       this.setData({
         userInfo: this.$app.globalData.userInfo,
@@ -21,7 +26,7 @@ extend({
       })
       if (getCurrentPages().length > 1) {
         this.goback();
-      }else{
+      } else {
         this.$push('index');
       }
     })

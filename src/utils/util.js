@@ -28,13 +28,22 @@ export const login = () => {
   })
 }
 
+
+// title	String	是	提示的内容	
+// icon	String	否	图标，有效值 "success", "loading"	
+// image	String	否	自定义图标的本地路径，image 的优先级高于 icon	1.1.0
+// duration	Number	否	提示的延迟时间，单位毫秒，默认：1500	
+// mask	Boolean	否	是否显示透明蒙层，防止触摸穿透，默认：false	
+// success	Function	否	接口调用成功的回调函数	
+// fail	Function	否	接口调用失败的回调函数	
+// complete	Function	否	接口调用结束的回调函数（调用成功、失败都会执行）
+
 // showToast
-export const alert = (title, type, time,success) => {
+export const alert = (title, type, time, success) => {
   switch (type) {
     case 'warn':
       return wx.showToast({
         title: title,
-        // icon: 'loading',
         image: '../../img/tip.svg',
         duration: 2000
       })
@@ -47,6 +56,19 @@ export const alert = (title, type, time,success) => {
       })
   }
 }
+// 显示loading
+export const $loading = {
+  start(params) {
+    let init = params || {};
+    init.mask = init.mask ? init.mask : true;
+    wx.showLoading(init)
+  },
+  done() {
+    wx.hideLoading();
+  }
+}
+
+
 
 // 获取dataset的值
 export const dataset = e => e.currentTarget.dataset;
@@ -127,6 +149,7 @@ export const clearStorageSync = wx.clearStorageSync;
 export default {
   formatTime,
   login,
+  $loading,
   alert,
   dataset,
   $push: push,

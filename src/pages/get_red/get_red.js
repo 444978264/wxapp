@@ -4,6 +4,10 @@ extend({
     /**
      * 页面的初始数据
      */
+    $openRefresh:function(){
+        // something extra to do 
+        return true
+    },
     data: {
         result: null,
         show: false,
@@ -41,7 +45,7 @@ extend({
         })
     },
     fetch() {
-        this.$http.getRedLog({
+        return this.$http.getRedLog({
             red_log_id: this.red_log_id
         }).then(res => {
             if (!res) return
@@ -53,7 +57,7 @@ extend({
     },
     getOneMine() {
         this.$http.getOneMine({
-            red_log_id:this.red_log_id    
+            red_log_id: this.red_log_id
         }).then(res => {
             if (!res) return
             this.setData({
@@ -75,12 +79,6 @@ extend({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
-    },
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
 
     },
     /**
