@@ -5,9 +5,9 @@ import api from '../../libs/api.js';
 
 extend({
   data: {
-    num: 0,
+    num: 1,
     pattern: ['娱乐模式','广告模式'],
-    firstshow: true,
+    firstshow: false,
     isMore: false,
     logoUrl: '',
     command: '',
