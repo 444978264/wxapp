@@ -23,7 +23,7 @@
         </view>
         <view class="footer">
             <image class="record-btn" bind:touchstart="recording" bind:touchend="stopRecord" src="/img/record.svg"></image>
-            <text class="tip">按住 读口令</text>
+            <text class="tip">按住 读口令(15s内)</text>
         </view>
         <view class="agreement">
             <checkbox-group bindchange="checkboxChange">

@@ -72,11 +72,12 @@ var config = {
             frameSize: 50
         }
         this.recorderManager.onStart(() => {
+            console.log(this.$http.getImg('voice2.svg'))
             wx.showToast({
                 title:'正在录音...',
                 mask:true,
                 icon:'loading',
-                image:'../../img/voice2.svg',
+                image:'../../img/voice.png',
                 duration: options.duration
             })
             // let s = options.duration;

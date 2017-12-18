@@ -1,6 +1,9 @@
 import { $loading } from '../utils/util';
 export let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = wx.getStorageSync('localInfo') || {};
+const host = 'http://www.yunruischedule.com:8888';
+// const host = 'https://wss.yunruikj.com';
+
 
 //设置全局token
 export const setToken = token => TOKEN = token;
@@ -70,9 +73,12 @@ const ajax = (url, params, config) => {
 
 //获取接口地址
 export const getUrl = (c, a) => {
-  // return `https://wss.yunruikj.com/red/${c}/${a}`
-  return `http://www.yunruischedule.com:8888/red/${c}/${a}`
+  return `${host}/red/${c}/${a}`
 }
+export const getImg = path => {
+  return `${host}/static/red/${path}`
+}
+
 
 let uploadUrl = getUrl('index', 'ai_do');
 
@@ -133,5 +139,6 @@ export default {
   sendRed,
   myPacket,
   payCbk,
-  myBalance
+  myBalance,
+  getImg
 }

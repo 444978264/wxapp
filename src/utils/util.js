@@ -15,20 +15,6 @@ function formatNumber(n) {
 }
 export const FormatTime = formatTime;
 
-// 重新登陆
-export const login = () => {
-  wx.navigateTo({
-    url: '/pages/login/login',
-    success: function (res) {
-      console.log(res)
-    },
-    fail: function (err) {
-      console.log(err)
-    }
-  })
-}
-
-
 // title	String	是	提示的内容	
 // icon	String	否	图标，有效值 "success", "loading"	
 // image	String	否	自定义图标的本地路径，image 的优先级高于 icon	1.1.0
@@ -44,7 +30,7 @@ export const alert = (title, type, time, success) => {
     case 'warn':
       return wx.showToast({
         title: title,
-        icon:'warn',
+        icon: 'warn',
         image: '../../img/tip.svg',
         duration: 2000
       })
@@ -68,8 +54,6 @@ export const $loading = {
     wx.hideLoading();
   }
 }
-
-
 
 // 获取dataset的值
 export const dataset = e => e.currentTarget.dataset;
@@ -102,7 +86,6 @@ export const redirect = (path, params) => {
       }
       return `${start}&${next}=${params[next]}`
     }, '')
-    console.log(str)
   }
   wx.redirectTo({
     url: `/pages/${path}/${path}${str}`,
@@ -149,7 +132,6 @@ export const clearStorageSync = wx.clearStorageSync;
 
 export default {
   formatTime,
-  login,
   $loading,
   alert,
   dataset,
