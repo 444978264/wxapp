@@ -13,7 +13,7 @@
                     <span style="width:46rpx;color:#d2d2d2;flex:1">{{index+1}}</span>
                     <image class="g_avatar" mode="widthFix" src="{{item.head_ico}}" />
                     <view class="g_info">
-                        <text>{{item.nickname}}jfkldsjaf</text>
+                        <text>{{item.nickname}}</text>
                         <text style="font-size:24rpx;color:#d2d2d2">{{type=="rich"?"发了":"收了"}}{{item.countx}}个红包</text>
                     </view>
                    </view>
