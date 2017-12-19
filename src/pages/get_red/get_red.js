@@ -43,10 +43,8 @@ extend({
             this.setData({ result });
         })
     },
-    fetch() {
-
+    fetch() {  
         this.getOne();
-
         return this.$http.getRedLog({
             red_log_id: this.red_log_id
         }).then(res => {
