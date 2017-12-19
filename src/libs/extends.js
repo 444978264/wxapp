@@ -46,6 +46,7 @@ var config = {
                 let result = JSON.parse(res.data);
                 console.log(result)
                 if (result.code <=-9999) {
+                    this.removeItemSync('token');
                     this.$push('login');
                     return
                 }

@@ -1,6 +1,6 @@
-import { $loading } from '../utils/util';
-export let TOKEN = wx.getStorageSync('token'); //|| '456456';//[123123,456456,789798]
-const INFO = wx.getStorageSync('localInfo') || {};
+import { $loading, removeItemSync, getItemSync, setItemSync } from '../utils/util';
+export let TOKEN = getItemSync('token'); //|| '456456';//[123123,456456,789798]
+const INFO = getItemSync('localInfo') || {};
 // const host = 'http://www.yunruischedule.com:8888';
 const host = 'https://wss.yunruikj.com';
 
@@ -39,6 +39,7 @@ const ajax = (url, params, config) => {
   });
   return promise.then(res => {
     if (res.code <= -9999) {
+      removeItemSync('token');
       console.log(res.msg)
       wx.navigateTo({
         url: '/pages/login/login',
@@ -109,8 +110,6 @@ export const rich = (params, config) => ajax(getUrl('index', 'rich'), params, co
 export const winner = (params, config) => ajax(getUrl('index', 'winner'), params, config);
 //获得红包
 export const getRed = (params, config) => ajax(getUrl('index', 'get_red'), params, config);
-//获得红包
-export const recognize = (params, config) => ajax(getUrl('index', 'ai_do'), params, config);
 //获得红包日志
 export const getRedLog = (params, config) => ajax(getUrl('index', 'lst_get_log'), params, config);
 //获得个人单个红包获得的金额
@@ -120,7 +119,7 @@ export const login = (params, fn, config) => ajax(getUrl('index', 'auth'), param
   setToken(res.token)
   console.log(TOKEN)
   fn && fn(res);
-  wx.setStorageSync("token", res.token);
+  setItemSync("token", res.token);
 });
 
 

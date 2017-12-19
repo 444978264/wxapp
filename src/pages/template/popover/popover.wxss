@@ -58,14 +58,16 @@
     display:flex;
     text-align: left;
     overflow: hidden;
-    width:70%;
+    width:65%;
 }
 .g_avatar{
+    flex:2;
     width:90rpx;
     height:90rpx;
     border-radius:10rpx;
 }
 .g_info{
+    flex:4.5;
     font-size:28rpx;
     padding-left:16rpx;
     display:flex;
@@ -77,14 +79,21 @@
     white-space: nowrap;
 }
 .g_info text{
-    width:100%;
-    /* line-height: 50rpx; */
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    box-sizing:border-box;
 }
 
 .g_popover_footer{
     height:100rpx;
     line-height: 100rpx;
+}
+
+.total_amount{
+    width:35%;
+    overflow:hidden;
+    font-size:40rpx;
+    font-weight:500;
+    text-align:right;
 }

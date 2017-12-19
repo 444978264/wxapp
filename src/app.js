@@ -1,5 +1,6 @@
 //app.js
 import { login, setToken } from 'libs/api'
+import { redirect } from 'utils/util'
 App({
   onLaunch: function (res) {
     console.log('this is launch', res)
@@ -24,12 +25,14 @@ App({
   },
   getUserInfo: function (cb) {
     var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
+    let token = wx.getStorageSync('token');
+    if (token) {
+      // token存在就直接跳转index页面
+      redirect('index')
     } else {
       //调用登录接口
-      wx.getSetting ({
-        success:(config)=>{
+      wx.getSetting({
+        success: (config) => {
           wx.login({
             success: function (data) {
               // console.log(data.code) // 登陆凭证获取openid
@@ -43,7 +46,7 @@ App({
             }
           })
         }
-      })  
+      })
     }
   },
   globalData: {

@@ -5,7 +5,7 @@ extend({
    * 页面的初始数据
    */
   data: {
-    motto: '立即 进入',
+    motto: '进入',
     userInfo: {},
     disabled: true
   },
@@ -21,13 +21,13 @@ extend({
     this.loading = true;
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.$app.login(userInfo => {
+      this.loading = false;
       wx.hideNavigationBarLoading() //完成停止加载
       //更新数据
       this.setData({
         userInfo: this.$app.globalData.userInfo,
         disabled: false
       })
-      this.loading = false;
       if (getCurrentPages().length > 1) {
         this.goback();
       } else {
