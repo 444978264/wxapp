@@ -22,7 +22,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "测试转发",
+					"pathName": "pages/index/index",
+					"query": "recmd_userid=12313",
+					"scene": "1008"
+				}
+			]
 		}
 	}
 }

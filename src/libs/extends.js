@@ -18,7 +18,7 @@ var config = {
     $http,
     recorderManager,
     innerAudioContext,
-    _PLAY:true,
+    _PLAY: true,
     // 播放    
     $play(url) {
         url = `${url}?time=${+new Date()}`;
@@ -45,7 +45,7 @@ var config = {
             success: res => {
                 let result = JSON.parse(res.data);
                 console.log(result)
-                if (result.code <=-9999) {
+                if (result.code <= -9999) {
                     this.removeItemSync('token');
                     this.$push('login');
                     return
@@ -75,10 +75,10 @@ var config = {
         this.recorderManager.onStart(() => {
             console.log(this.$http.getImg('voice2.svg'))
             wx.showToast({
-                title:'正在录音...',
-                mask:true,
-                icon:'loading',
-                image:'../../img/voice.png',
+                title: '正在录音...',
+                mask: true,
+                icon: 'loading',
+                image: '../../img/voice.png',
                 duration: options.duration
             })
             // let s = options.duration;
@@ -151,8 +151,51 @@ var config = {
             wx.stopPullDownRefresh() //停止下拉刷新
         });
     },
+    /**
+     * 用户点击右上角分享
+     */
+    $shareParams: {
+        title: '广告口令红包',
+        desc: '最具人气的口令红包小程序!',
+        params: null,
+        success: function (res) {
+            console.log(res)
+        },
+    },
+    onShareAppMessage: function () {
+        wx.updateShareMenu({
+            withShareTicket: true,
+            success() {
+                console.log("更新转发配置成功")
+            }
+        });
+        let router = getCurrentPages();
+        let len = router.length - 1;
+        const route = router[len].route;
+        let { title, desc, params, ...other } = this.$shareParams;
+        if (params) {
+            params.recmd_userid = this.getItemSync('userid')
+        }else{
+            params = {};
+            params.recmd_userid = this.getItemSync('userid')
+        }
+        let str = this.serialize(params);
+        console.log(`${route}${str}`)
+        return {
+            title,
+            desc,
+            path: `${route}${str}`,
+            ...other
+        }
+    },
+    $init(){
+        console.log('一些初始化请求可以放这里')
+    },
+    onShow: function () {
+        this.$init();
+    }
 }
 export default function Init(params) {
-    Object.assign(params, config);
-    Page(params);
+    // Object.assign(params, config);
+    Page(_.extend(true, {}, config, params));
 }

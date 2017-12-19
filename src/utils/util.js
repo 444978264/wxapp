@@ -59,7 +59,8 @@ export const $loading = {
 export const dataset = e => e.currentTarget.dataset;
 
 //跳转页面---保留当前页面，跳转到应用内的某个页面，使用wx.navigateBack可以返回到原页面。
-export const push = (path, params) => {
+export function serialize(params) {
+  if (!params) return "";
   var str = '';
   if (params) {
     const keys = Object.keys(params);
@@ -69,41 +70,25 @@ export const push = (path, params) => {
       }
       return `${start}&${next}=${params[next]}`
     }, '')
-    console.log(str)
   }
+  return str
+}
+export const push = (path, params) => {
+  let str = serialize(params);
   wx.navigateTo({
     url: `/pages/${path}/${path}${str}`,
   })
 }
 // 关闭当前页面，跳转到应用内的某个页面。
 export const redirect = (path, params) => {
-  var str = '';
-  if (params) {
-    const keys = Object.keys(params);
-    str = keys.reduce((start, next) => {
-      if (start == '') {
-        return `?${next}=${params[next]}`
-      }
-      return `${start}&${next}=${params[next]}`
-    }, '')
-  }
+  let str = serialize(params);
   wx.redirectTo({
     url: `/pages/${path}/${path}${str}`,
   })
 }
 //关闭所有页面，打开到应用内的某个页面。
 export const reLaunch = (path, params) => {
-  var str = '';
-  if (params) {
-    const keys = Object.keys(params);
-    str = keys.reduce((start, next) => {
-      if (start == '') {
-        return `?${next}=${params[next]}`
-      }
-      return `${start}&${next}=${params[next]}`
-    }, '')
-    console.log(str)
-  }
+  let str = serialize(params);
   wx.reLaunch({
     url: `/pages/${path}/${path}${str}`,
   })
@@ -133,6 +118,7 @@ export const clearStorageSync = wx.clearStorageSync;
 export default {
   formatTime,
   $loading,
+  serialize,
   alert,
   dataset,
   $push: push,

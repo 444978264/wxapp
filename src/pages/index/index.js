@@ -3,6 +3,10 @@ import extend from '../../libs/extends.js';
 import { temp_pop } from '../template/template';
 import _ from '../../libs/deepcopy';
 let config = _.extend({}, temp_pop, {
+    // 分享配置
+    $shareParams: {
+        title: '主页',
+    },
     // 打开刷新
     $openRefresh() {
         this.total();
@@ -22,10 +26,16 @@ let config = _.extend({}, temp_pop, {
             total: '--'
         },
     },
+    recmd_userid: null,
     page: 1,
     pagesize: 20,
     has_next: true,
     loading: false,
+    recmd() {
+        this.$http.recmd({
+            recmd_userid: this.recmd_userid
+        })
+    },
     // 获取首页数据列表
     fetch() {
         if (!this.has_next) return
@@ -72,9 +82,6 @@ let config = _.extend({}, temp_pop, {
         this.$http.getOneMine({
             red_log_id: id
         }).then(res => {
-            //token失效处理
-            if (!res.code && res.type == "sos") return;
-            console.log(res, 666)
             if (!res || res.status == 0) {
                 this.$push('content', {
                     id: id
@@ -89,13 +96,19 @@ let config = _.extend({}, temp_pop, {
     publishRed(e) {
         this.$push('envelopes');
     },
+    $init() {
+        this.recmd();
+        this.fetch();
+        this.total();
+        this.getDataSource();
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.fetch();
-        this.total();
-        this.getDataSource();
+        let { recmd_userid } = options;
+        this.recmd_userid = recmd_userid;
+        this.$init();
         // this.$preLoad('hello world')
     },
     /**
@@ -104,7 +117,7 @@ let config = _.extend({}, temp_pop, {
     onReachBottom: function () {
         if (this.loading) return
         this.fetch()
-    },
+    }
 })
 
 extend(config);

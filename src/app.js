@@ -1,10 +1,11 @@
 //app.js
-import { login, setToken } from 'libs/api'
-import { redirect } from 'utils/util'
+import { login, setToken, recmd } from 'libs/api'
+import { redirect, setItemSync, getItemSync } from 'utils/util'
 App({
   onLaunch: function (res) {
     console.log('this is launch', res)
-    this.globalData.page = res.path;
+    let { query } = res;
+    this.globalData.page = query;
     //调用API从本地缓存中获取数据
     // this.login();
   },
@@ -13,19 +14,24 @@ App({
       let params = {
         code: code,
         encryptedData,
-        iv
+        iv,
       };
-      wx.setStorage({
-        key: 'code',
-        data: params
-      })
       //更新数据
-      login(params, fn)
+      login(params).then(res => {
+        setToken(res.token);
+        setItemSync("userid", res.userid);
+        setItemSync("token", res.token);
+        fn && fn(res);
+        let { recmd_userid } = this.globalData.page;
+        recmd({
+          recmd_userid: recmd_userid
+        })
+      });
     })
   },
   getUserInfo: function (cb) {
-    var that = this
-    let token = wx.getStorageSync('token');
+    var that = this;
+    let token = getItemSync('token');
     if (token) {
       // token存在就直接跳转index页面
       redirect('index')

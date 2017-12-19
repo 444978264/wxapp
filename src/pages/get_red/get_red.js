@@ -4,7 +4,7 @@ extend({
     /**
      * 页面的初始数据
      */
-    $openRefresh:function(){
+    $openRefresh: function () {
         // something extra to do 
         return true
     },
@@ -43,7 +43,7 @@ extend({
             this.setData({ result });
         })
     },
-    fetch() {  
+    fetch() {
         this.getOne();
         return this.$http.getRedLog({
             red_log_id: this.red_log_id
@@ -73,6 +73,7 @@ extend({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.fetch();
+        this.getOneMine();
     },
 })

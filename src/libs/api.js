@@ -7,10 +7,11 @@ const host = dev ? config.local : config.host;
 
 //设置全局token
 export const setToken = token => TOKEN = token;
-
 //新的fetch---Promise封装 2017-08-01
+let collections = [];
+let lock = false;
 const ajax = (url, params, config) => {
-  var promise = new Promise((resolve, reject) => {
+  let promise = new Promise((resolve, reject) => {
     let result = Object.assign({
       url: url,
       method: 'POST',
@@ -21,10 +22,35 @@ const ajax = (url, params, config) => {
       data: params,
       success: res => {
         $loading.done();
+        if (lock) return
+        if (res.data.code <= -9999) {
+          lock = true;
+          removeItemSync('token');
+          /***请求队列处理***/
+          collections.splice(task.idx, 1);
+          // 防止一个页面 多个请求 token失效 同时打开login页面 引起的错误  
+          collections.forEach(function (t) {
+            // 取消后面的所有请求
+            t.abort();
+          })
+          collections = [];
+          /**********************/
+          wx.navigateTo({
+            url: '/pages/login/login',
+            success: function (data) {
+              lock = false;
+            },
+            fail: function (err) {
+              console.log(err)
+            }
+          })
+          return false
+        }
         resolve(res.data)
       },
       fail: err => reject(err)
     }, config);
+
     if (!result.data) {
       result.data = {
         token: TOKEN
@@ -35,26 +61,13 @@ const ajax = (url, params, config) => {
     console.log(result.data)
     //显示loading
     $loading.start();
-    wx.request(result);
+    let task = wx.request(result);
+    // 请求队列
+    collections.push(task);
+    //设置对应的队列下标
+    task.idx = collections.length - 1;
   });
   return promise.then(res => {
-    if (res.code <= -9999) {
-      removeItemSync('token');
-      console.log(res.msg)
-      wx.navigateTo({
-        url: '/pages/login/login',
-        success: function (data) {
-          console.log(data)
-        },
-        fail: function (err) {
-          console.log(err)
-        }
-      })
-      return {
-        type: 'sos',
-        code: false
-      }
-    }
     if (res.code < 0) {
       wx.showToast({
         title: res.msg,
@@ -114,13 +127,10 @@ export const getRed = (params, config) => ajax(getUrl('index', 'get_red'), param
 export const getRedLog = (params, config) => ajax(getUrl('index', 'lst_get_log'), params, config);
 //获得个人单个红包获得的金额
 export const getOneMine = (params, config) => ajax(getUrl('index', 'get_one_mine'), params, config);
-
-export const login = (params, fn, config) => ajax(getUrl('index', 'auth'), params, config).then(res => {
-  setToken(res.token)
-  console.log(TOKEN)
-  fn && fn(res);
-  setItemSync("token", res.token);
-});
+// 登录
+export const login = (params, config) => ajax(getUrl('index', 'auth'), params, config);
+//邀请人
+export const recmd = (params, config) => ajax(getUrl('index', 'recmd'), params, config);
 
 
 export default {
@@ -130,6 +140,7 @@ export default {
   getOne,
   lst,
   total,
+  recmd,
   rich,
   winner,
   uploadUrl,
