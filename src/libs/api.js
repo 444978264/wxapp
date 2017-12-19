@@ -1,9 +1,9 @@
 import { $loading, removeItemSync, getItemSync, setItemSync } from '../utils/util';
+import config from '../config/config';
+import dev from '../is_develop';
 export let TOKEN = getItemSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = getItemSync('localInfo') || {};
-// const host = 'http://www.yunruischedule.com:8888';
-const host = 'https://wss.yunruikj.com';
-
+const host = dev ? config.local : config.host;
 
 //设置全局token
 export const setToken = token => TOKEN = token;
