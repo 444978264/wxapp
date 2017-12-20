@@ -32,10 +32,10 @@
         </view>
     </view>
     <view class="footer">
-        <navigator class="btn-link" url="/pages/content_detail/content_detail" push hover-class="className">
+        <button class="btn-link" plain type="default" open-type="share" class="btn-link" url="/pages/content_detail/content_detail" push hover-class="className">
             <image class="icon" mode="widthFix" src="../../img/share.svg"/>
             <text>分享</text>
-        </navigator>
+        </button>
         <button style="background:#cf161e;color:#fff;flex:1;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
             抢更多红包
         </button>

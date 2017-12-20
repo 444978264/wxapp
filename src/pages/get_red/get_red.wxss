@@ -84,15 +84,18 @@ button[size="mini"]{
 }
 .btn-link{
     width:86rpx;
+    height:78rpx;
     display:flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding:0 10rpx;
+    border:0 !important;
 }
 .btn-link .icon{
     width:48rpx;
 }
 .btn-link text{
     font-size:22rpx;
+    line-height: 22rpx;
 }
