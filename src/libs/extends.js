@@ -7,15 +7,12 @@ import shareConfig from '../config/share.config';
 const recorderManager = wx.getRecorderManager();
 // 全局播放
 const innerAudioContext = wx.createInnerAudioContext();
-//全局app
-let $app = getApp();
 
 var config = {
     /**
      * 页面的初始数据
      */
     ...options,
-    $app,
     $http,
     recorderManager,
     innerAudioContext,

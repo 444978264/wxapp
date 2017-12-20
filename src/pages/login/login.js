@@ -1,5 +1,6 @@
 // login.js
 import extend from '../../libs/extends.js';
+let $app = getApp();
 extend({
   /**
    * 页面的初始数据
@@ -20,12 +21,11 @@ extend({
     })
     this.loading = true;
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.$app.login(userInfo => {
+    $app.login(userInfo => {
       this.loading = false;
       wx.hideNavigationBarLoading() //完成停止加载
       //更新数据
       this.setData({
-        // userInfo: this.$app.globalData.userInfo,
         userInfo: userInfo,
         disabled: false
       })

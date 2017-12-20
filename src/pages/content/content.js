@@ -1,5 +1,6 @@
 // test.js
 import extend from '../../libs/extends.js';
+//全局app
 extend({
     $shareParams: {
         title: 'content',
