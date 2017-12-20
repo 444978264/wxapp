@@ -1,7 +1,7 @@
 <view class="container">
   <view class="packetslist">
 
-      <view class="every-packet" wx:for="{{packetslist}}" wx:key="index" wx:for-item="items">
+      <view class="every-packet" wx:for="{{packetslist}}" wx:key="index" wx:for-item="items" bindtap='gotodetail' data-idx="{{items.id}}">
         <text class="title packet-common">{{items.title}}</text>
         <view class="content packet-common">
           <text class="amount">共{{items.amount}}元 / </text>

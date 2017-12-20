@@ -32,7 +32,12 @@ extend({
       })
       this.has_next = res.has_next;
     })
-    
+  },
+  gotodetail(e) {
+    var {idx} = this.dataset(e);
+    this.$redirect('content',{
+      id: idx
+    })
   },
   //页面滑动到底部
   onReachBottom() {
