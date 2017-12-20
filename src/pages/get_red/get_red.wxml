@@ -6,6 +6,9 @@
         <image class="avatar" style="width:60px;" src="{{result.user.head_ico}}" mode="widthFix" />
         <text>{{result.user.nickname}}</text>
         <text>{{result.title}}</text>
+        <navigator style="color:#2b99ff" wx:if="{{result.article}}" url="/pages/content_detail/content_detail" push hover-class="className">
+            详情
+        </navigator>
         <text style="font-size:30px;color:#cf161e;line-height:50px;">{{mine!=null?(mine.amount||'--'):result.status==2?"奖励已经被领完":'--'}}</text>
     </view>
     <view class="list">
@@ -29,8 +32,16 @@
         </view>
     </view>
     <view class="footer">
-        <button style="background:#cf161e;color:#fff;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
+        <navigator class="btn-link" url="/pages/content_detail/content_detail" push hover-class="className">
+            <image class="icon" mode="widthFix" src="../../img/share.svg"/>
+            <text>分享</text>
+        </navigator>
+        <button style="background:#cf161e;color:#fff;flex:1;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
             抢更多红包
         </button>
+        <navigator class="btn-link" url="/pages/envelopes/envelopes" push hover-class="className">
+            <image class="icon" mode="widthFix" src="../../img/red.svg"/>
+            <text>发红包</text>
+        </navigator>
     </view>
 </view>

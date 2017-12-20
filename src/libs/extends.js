@@ -1,6 +1,6 @@
 import options from '../utils/util';
 import $http from './api';
-import { TOKEN } from './api';
+import { TOKEN, getImg } from './api';
 import _ from './deepcopy';
 import shareConfig from '../config/share.config';
 // 全局录音--唯一
@@ -155,6 +155,7 @@ var config = {
         title: '广告口令红包',
         desc: '最具人气的口令红包小程序!',
         params: null,
+        imageUrl: getImg('share_now.png'),
         path: '/pages/index/index',
         success: function (res) {
             console.log(res)

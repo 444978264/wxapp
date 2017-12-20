@@ -74,8 +74,25 @@ button[size="mini"]{
     bottom:0;
     left: 0;
     border-top:2rpx solid #efefef;
-    padding:10rpx 40rpx;
+    padding:10rpx 20rpx;
     box-sizing: border-box;
     width:100%;
     background:#fff;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.btn-link{
+    width:86rpx;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:0 10rpx;
+}
+.btn-link .icon{
+    width:48rpx;
+}
+.btn-link text{
+    font-size:22rpx;
 }

@@ -37,7 +37,6 @@ extend({
     },
     startPlay(e) {
         let { url } = this.dataset(e);
-        console.log(url);
         this.$play(url);
     },
     getOne() {
@@ -47,6 +46,7 @@ extend({
             if (!result) return
             this.loading = false;
             this.setData({ result });
+            this.setItem("red_detail", result);
         })
     },
     fetch() {
@@ -57,7 +57,6 @@ extend({
             this.setData({
                 list: res
             });
-            console.log(res)
         })
     },
     getOneMine() {
@@ -68,7 +67,6 @@ extend({
             this.setData({
                 mine: res
             })
-            console.log(res);
         })
     },
     returnHome() {
