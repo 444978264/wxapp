@@ -4,9 +4,9 @@ import { temp_pop } from '../template/template';
 import _ from '../../libs/deepcopy';
 let config = _.extend({}, temp_pop, {
     // 分享配置
-    $shareParams: {
-        title: '主页',
-    },
+    // $shareParams: {
+    //     title: '主页',
+    // },
     // 打开刷新
     $openRefresh() {
         this.total();

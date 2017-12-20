@@ -152,7 +152,7 @@ var config = {
      * 用户点击右上角分享
      */
     $shareParams: {
-        title: '广告口令红包',
+        title: '读口令拿红包',
         desc: '最具人气的口令红包小程序!',
         params: null,
         imageUrl: getImg('share_now.png'),

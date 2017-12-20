@@ -2,9 +2,9 @@
 import extend from '../../libs/extends.js';
 //全局app
 extend({
-    $shareParams: {
-        title: 'content',
-    },
+    // $shareParams: {
+    //     title: 'content',
+    // },
     $openRefresh() {
         return true
     },
