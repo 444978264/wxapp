@@ -9,46 +9,63 @@ extend({
     userInfo: {},
     disabled: false,
     lst: [],
-    data: null
+    data: null,
+    friendsList: [],
+    show: false
   },
+  page: 1,
+  has_next: false,
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     wx.getUserInfo({
       success: res => {
-        console.log(res,"res");
         this.setData({
           userInfo: res.userInfo
         })
       }
     })
   },
-  toHelp: function() {
+  toHelp() {
     wx.navigateTo({
       url: '../help/help'
     })
   },
-  toMybalance: function() {
+  toMybalance() {
     wx.navigateTo({
       url: '../withdrawals/withdrawals'
     })
   },
-  toMypacket: function () {
+  toMypacket() {
     wx.navigateTo({
       url: '../mypackets/mypackets'
+    })
+  },
+  getMyfriendsList() {
+    this.$http.friendsList({
+      page: this.page,
+      pagesize: 20
+    }).then(res => {
+      this.setData({
+        friendsList: res.result
+      })
+      this.has_next = res.has_next;
+    })
+  },
+  checkCode() {
+    this.setData({
+      show: true
+    })
+  },
+  hideCode() {
+    this.setData({
+      show: false
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  chooseItem(e) {
-    const { id } = dataset(e);
-    console.log(id)
-    redirect('download', {
-      gallery_id: id
-    })
-  },
   onReady: function () {
 
   },
@@ -57,7 +74,7 @@ extend({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.init();
+    this.getMyfriendsList();
   },
 
   /**
@@ -85,7 +102,9 @@ extend({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(!this.has_next) return;
+    this.page++;
+    this.getMyfriendsList();
   },
 
   /**

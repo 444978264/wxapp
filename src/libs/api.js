@@ -107,6 +107,8 @@ export const payCbk = (params, config) => ajax(getUrl('index', 'pay_callback'), 
 export const myBalance = (params, config) => ajax(getUrl('index', 'my_balance'), params, config);
 // 帮助列表
 export const helpLst = (params, config) => ajax(getUrl('index', 'help_lst'), params, config);
+// 邀请好友列表
+export const friendsList = (params, config) => ajax(getUrl('index', 'my_recmd_lst'), params, config);
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
@@ -152,5 +154,6 @@ export default {
   payCbk,
   myBalance,
   getImg,
-  helpLst
+  helpLst,
+  friendsList
 }
