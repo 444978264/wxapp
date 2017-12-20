@@ -3,22 +3,16 @@ import $http from './api';
 import { TOKEN } from './api';
 import _ from './deepcopy';
 import shareConfig from '../config/share.config';
-// 全局录音
+// 全局录音--唯一
 const recorderManager = wx.getRecorderManager();
-// 全局播放
+// 全局播放--唯一
 const innerAudioContext = wx.createInnerAudioContext();
 
 var config = {
-    /**
-     * 页面的初始数据
-     */
     ...options,
     $http,
-    recorderManager,
-    innerAudioContext,
     //初次渲染开关，防止onLoad 和 onShow 中事件多次触发，在onReady 中 关闭
     $firstRender: true,
-    _PLAY: true,
     // 播放    
     $play(url) {
         url = `${url}?time=${+new Date()}`;
@@ -197,7 +191,12 @@ var config = {
         }
     }
 }
+
 export default function Init(params) {
     // Object.assign(params, config);
-    Page(_.extend(true, {}, config, params));
+    let init = _.extend(true, {}, config, params);
+    // 不可放进config中，深拷贝会复制多个全局对象
+    init.recorderManager = recorderManager;
+    init.innerAudioContext = innerAudioContext;
+    Page(init);
 }

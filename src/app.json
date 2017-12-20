@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
     "pages/content/content",
     "pages/get_red/get_red",
     "pages/content_detail/content_detail",
@@ -22,5 +22,5 @@
     "backgroundColor": "#eeeeee",
     "enablePullDownRefresh":true
   },
-  "debug": true
+  "debug": false
 }

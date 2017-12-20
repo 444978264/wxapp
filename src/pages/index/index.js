@@ -65,7 +65,6 @@ let config = _.extend({}, temp_pop, {
             this.setData({
                 totalResult: res
             })
-            console.log(res)
         })
     },
     getContent(e) {
@@ -114,7 +113,6 @@ let config = _.extend({}, temp_pop, {
         if (!this.$firstRender) {
             this.$init();
         }
-        console.log(this.recmd_userid)
         this.recmd();
     },
     /**

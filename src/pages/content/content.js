@@ -93,10 +93,6 @@ extend({
      * 生命周期函数--监听页面显示
      */
     onShow: function (options) {
-        console.log(this.recmd_userid)
-        if(!this.$firstRender){
-            this.fetch();
-        }
         this.recmd();
         let result = this.getItemSync('red_detail');
         if (result && result.read) {

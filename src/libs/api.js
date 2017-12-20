@@ -59,7 +59,6 @@ const ajax = (url, params, config) => {
     } else {
       result.data.token = TOKEN;
     }
-    console.log(result.data)
     //显示loading
     $loading.start();
     let task = wx.request(result);
@@ -81,7 +80,6 @@ const ajax = (url, params, config) => {
     if (res.simple_client && typeof res.result == 'object') {
       res.result.g_info = res.simple_client;
     }
-    console.log(res, '源数据')
     return res.result
   }).catch(err => console.log(err, url, 'fail'))
 }
