@@ -98,10 +98,9 @@ let config = _.extend({}, temp_pop, {
         this.$push('envelopes');
     },
     $init() {
-        this.recmd();
+        this.getDataSource();
         this.fetch();
         this.total();
-        this.getDataSource();
     },
     /**
      * 生命周期函数--监听页面加载
@@ -110,7 +109,13 @@ let config = _.extend({}, temp_pop, {
         let { recmd_userid } = options;
         this.recmd_userid = recmd_userid;
         this.$init();
-        // this.$preLoad('hello world')
+    },
+    onShow: function () {
+        if (!this.$firstRender) {
+            this.$init();
+        }
+        console.log(this.recmd_userid)
+        this.recmd();
     },
     /**
      * 页面上拉触底事件的处理函数

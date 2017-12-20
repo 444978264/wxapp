@@ -16,6 +16,8 @@ var config = {
     $http,
     recorderManager,
     innerAudioContext,
+    //初次渲染开关，防止onLoad 和 onShow 中事件多次触发，在onReady 中 关闭
+    $firstRender: true,
     _PLAY: true,
     // 播放    
     $play(url) {
@@ -140,6 +142,9 @@ var config = {
             }
         })
     },
+    onReady: function () {
+        this.$firstRender = false;
+    },
     // 需要下拉刷新的函数需写在fetch中  并 由 $openRefresh=>true函数 来开启
     onPullDownRefresh: function () {
         if (!this.$openRefresh || !this.$openRefresh()) return;
@@ -190,12 +195,6 @@ var config = {
             path: `${path}${str}`,
             ...other
         }
-    },
-    $init() {
-        console.log('一些初始化请求可以放这里')
-    },
-    onShow: function () {
-        this.$init();
     }
 }
 export default function Init(params) {

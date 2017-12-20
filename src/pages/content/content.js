@@ -82,24 +82,21 @@ extend({
     /**
      * 生命周期函数--监听页面加载
      */
+
     onLoad: function (options) {
         let { id, recmd_userid } = options;
         this.recmd_userid = recmd_userid
         this.id = id;
         this.fetch();
-        this.recmd();
-    },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
     },
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
-        this.fetch();
+    onShow: function (options) {
+        console.log(this.recmd_userid)
+        if(!this.$firstRender){
+            this.fetch();
+        }
         this.recmd();
         let result = this.getItemSync('red_detail');
         if (result && result.read) {
@@ -109,5 +106,5 @@ extend({
                 isNormal: true
             })
         }
-    },
+    }
 })

@@ -26,8 +26,8 @@
 				{
 					"id": 0,
 					"name": "测试转发",
-					"pathName": "pages/index/index",
-					"query": "recmd_userid=12313",
+					"pathName": "pages/content/content",
+					"query": "recmd_userid=12313&id=355",
 					"scene": "1008"
 				}
 			]

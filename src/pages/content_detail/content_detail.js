@@ -6,10 +6,10 @@ extend({
      */
     data: {
         result: null,
-        second:5,
+        second: 5,
         showBtn: false
     },
-    id:null,
+    id: null,
     /**
      * 生命周期函数--监听页面加载
      */
@@ -24,7 +24,7 @@ extend({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    onShow: function () {
         this.timer = setInterval(() => {
             let { second } = this.data;
             if (second < 2) {
@@ -38,10 +38,13 @@ extend({
             this.setData({ second });
         }, 1000)
     },
+    onHide: function () {
+        clearInterval(this.timer);
+    },
     defaultTap() {
-        let {result} = this.data;
+        let { result } = this.data;
         result.read = true;
-        this.setItemSync('red_detail',result);
+        this.setItemSync('red_detail', result);
         this.goback();
     }
 })

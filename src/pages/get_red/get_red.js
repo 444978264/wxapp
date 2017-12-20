@@ -18,12 +18,18 @@ extend({
     /**
      * 生命周期函数--监听页面加载
      */
+    $init() {
+        this.getOne();
+        this.fetch();
+        this.getOneMine();
+    },
     onLoad: function (options) {
         let { id } = options;
         this.red_log_id = id;
-        // this.getOne();
-        this.fetch();
-        this.getOneMine();
+        this.$init();
+    },
+    onReady: function () {
+        this.$firstRender = false;
         this.$setBar({
             frontColor: "#ffffff",
             backgroundColor: "#c33b25",
@@ -44,7 +50,6 @@ extend({
         })
     },
     fetch() {
-        this.getOne();
         return this.$http.getRedLog({
             red_log_id: this.red_log_id
         }).then(res => {
@@ -73,7 +78,8 @@ extend({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.fetch();
-        this.getOneMine();
+        if (!this.$firstRender) {
+            this.$init()
+        }
     },
 })
