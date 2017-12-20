@@ -23,11 +23,12 @@ const ajax = (url, params, config) => {
       success: res => {
         $loading.done();
         if (lock) return
+        // 从队列中删除这次请求
+        collections.splice(task.idx, 1);        
         if (res.data.code <= -9999) {
           lock = true;
           removeItemSync('token');
           /***请求队列处理***/
-          collections.splice(task.idx, 1);
           // 防止一个页面 多个请求 token失效 同时打开login页面 引起的错误  
           collections.forEach(function (t) {
             // 取消后面的所有请求

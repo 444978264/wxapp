@@ -24,6 +24,15 @@ export const FormatTime = formatTime;
 // fail	Function	否	接口调用失败的回调函数	
 // complete	Function	否	接口调用结束的回调函数（调用成功、失败都会执行）
 
+export const $shareMenu = {
+  show(params) {
+    wx.showShareMenu(params)
+  },
+  hide(params) {
+    wx.hideShareMenu(params)
+  }
+}
+
 // showToast
 export const alert = (title, type, time, success) => {
   switch (type) {
@@ -93,7 +102,6 @@ export const reLaunch = (path, params) => {
     url: `/pages/${path}/${path}${str}`,
   })
 }
-
 export const goback = id => {
   wx.navigateBack({
     delta: id || 1
@@ -118,6 +126,7 @@ export const clearStorageSync = wx.clearStorageSync;
 export default {
   formatTime,
   $loading,
+  $shareMenu,
   serialize,
   alert,
   dataset,

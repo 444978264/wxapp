@@ -1,6 +1,9 @@
 // test.js
 import extend from '../../libs/extends.js';
 extend({
+    $shareParams: {
+        title: 'content',
+    },
     $openRefresh() {
         return true
     },
@@ -70,6 +73,7 @@ extend({
         })
     },
     recmd() {
+        if (!this.recmd_userid) return
         this.$http.recmd({
             recmd_userid: this.recmd_userid
         })

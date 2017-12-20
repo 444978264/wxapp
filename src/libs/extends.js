@@ -2,6 +2,7 @@ import options from '../utils/util';
 import $http from './api';
 import { TOKEN } from './api';
 import _ from './deepcopy';
+import shareConfig from '../config/share.config';
 // 全局录音
 const recorderManager = wx.getRecorderManager();
 // 全局播放
@@ -158,6 +159,7 @@ var config = {
         title: '广告口令红包',
         desc: '最具人气的口令红包小程序!',
         params: null,
+        path: '/pages/index/index',
         success: function (res) {
             console.log(res)
         },
@@ -172,23 +174,27 @@ var config = {
         let router = getCurrentPages();
         let len = router.length - 1;
         const route = router[len].route;
-        let { title, desc, params, ...other } = this.$shareParams;
+        let { title, desc, params, path, ...other } = this.$shareParams;
+        // 当前页面是否在允许转发的配置里
+        if (shareConfig.includes(route)) {
+            path = route;
+        }
         if (params) {
             params.recmd_userid = this.getItemSync('userid')
-        }else{
+        } else {
             params = {};
             params.recmd_userid = this.getItemSync('userid')
         }
         let str = this.serialize(params);
-        console.log(`${route}${str}`)
+        console.log(`${path}${str}`)
         return {
             title,
             desc,
-            path: `${route}${str}`,
+            path: `${path}${str}`,
             ...other
         }
     },
-    $init(){
+    $init() {
         console.log('一些初始化请求可以放这里')
     },
     onShow: function () {

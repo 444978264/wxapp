@@ -25,7 +25,8 @@ extend({
       wx.hideNavigationBarLoading() //完成停止加载
       //更新数据
       this.setData({
-        userInfo: this.$app.globalData.userInfo,
+        // userInfo: this.$app.globalData.userInfo,
+        userInfo: userInfo,
         disabled: false
       })
       if (getCurrentPages().length > 1) {

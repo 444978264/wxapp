@@ -32,6 +32,7 @@ let config = _.extend({}, temp_pop, {
     has_next: true,
     loading: false,
     recmd() {
+        if (!this.recmd_userid) return
         this.$http.recmd({
             recmd_userid: this.recmd_userid
         })
