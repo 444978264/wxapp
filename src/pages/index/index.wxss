@@ -176,3 +176,7 @@ page{
     font-size:32rpx;
     font-weight:550;
 }
+
+.text-bold{
+    font-weight:700;
+}
