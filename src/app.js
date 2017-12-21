@@ -8,7 +8,22 @@ App({
     let { query } = res;
     this.globalData.page = query;
     //调用API从本地缓存中获取数据
-    // this.login();
+    this.getLocation();
+  },
+  // 获取 定位
+  getLocation() {
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+          console.log(res)
+      },
+      fail: res => {
+        console.log('fail', res)
+        this.setData({
+          sudo: false
+        })
+      }
+    })
   },
   login(fn) {
     this.getUserInfo((code, { encryptedData, iv }) => {
