@@ -28,19 +28,13 @@ extend({
     })
   },
   toHelp() {
-    wx.navigateTo({
-      url: '../help/help'
-    })
+    this.$router.push('help');
   },
   toMybalance() {
-    wx.navigateTo({
-      url: '../withdrawals/withdrawals'
-    })
+    this.$router.push('withdrawals');
   },
   toMypacket() {
-    wx.navigateTo({
-      url: '../mypackets/mypackets'
-    })
+    this.$router.push('mypackets');
   },
   getMyfriendsList() {
     this.$http.friendsList({

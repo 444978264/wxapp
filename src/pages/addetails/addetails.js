@@ -15,7 +15,9 @@ extend({
     addType: ''
   },
   onLoad() {
-    
+    this.setData({
+      list: this.getItemSync('details') ? this.getItemSync('details') : []
+    })
   },
   addCon() {
     this.setData({
@@ -28,17 +30,17 @@ extend({
     })
   },
   imgUp: function() {
+    var that = this;
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
         this.addTextArea();
-        var arealist = this.data.list;
-        var index = this.data.idx;
+        var index = that.data.idx;
+        var arealist = that.data.list;
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        
         wx.showLoading({
           title: '上传中...',
           mask: true
@@ -54,11 +56,11 @@ extend({
             wx.hideLoading();
             var data = JSON.parse(res.data);
             if (data.code < 0) {
-              alert(data.msg,"warn");
+              that.alert(data.msg,"warn");
               return;
             }
             arealist[index]['src'] = data.result;
-            this.setData({
+            that.setData({
               list: arealist
             })
           },
@@ -143,8 +145,6 @@ extend({
     this.goback();
   },
   onShow() {
-    this.setData({
-      list: this.getItemSync('details') ? this.getItemSync('details') : []
-    })
+    
   }
 })

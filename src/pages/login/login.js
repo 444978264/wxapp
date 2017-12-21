@@ -32,7 +32,7 @@ extend({
       if (getCurrentPages().length > 1) {
         this.goback();
       } else {
-        this.$redirect('index');
+        this.$router.redirect('index');
       }
     })
   },
@@ -40,7 +40,7 @@ extend({
     this.init();
   },
   defaultTap() {
-    this.$push('index')
+    this.$router.push('index')
   },
   /**
    * 生命周期函数--监听页面显示

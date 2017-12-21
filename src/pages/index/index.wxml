@@ -38,7 +38,7 @@
             <view wx:if="{{item.status!=2}}" class="avatar">
                 <image style="width:100%" mode="widthFix" src="{{item.user.head_ico}}" />
             </view>
-            <view class="red-content" data-id="{{item.id}}" data-status="{{item.status}}"  bindtap="getContent">
+            <view class="red-content" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="getContent">
                 <view>
                     <image style="width:30px;padding-top:5px;" mode="widthFix" src="../../img/voice2.svg" />
                 </view>

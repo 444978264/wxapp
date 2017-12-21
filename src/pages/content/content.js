@@ -35,7 +35,7 @@ extend({
         })
     },
     getDetail() {
-        this.$push("content_detail");
+        this.$router.push("content_detail");
     },
     recording() {
         if (!this.data.agreement) {
@@ -43,7 +43,7 @@ extend({
             return
         }
         if (!this.data.isNormal) {
-            this.$push('content_detail')
+            this.$router.push('content_detail')
             return
         }
         this.$recordStart({
@@ -56,7 +56,7 @@ extend({
             }
             this.$http.getRed(params).then(res => {
                 if (!res) return
-                this.$push('get_red', {
+                this.$router.push('get_red', {
                     id: this.id
                 })
                 console.log(res)

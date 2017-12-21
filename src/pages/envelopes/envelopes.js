@@ -42,7 +42,6 @@ extend({
         details: res.data
       })
     });
-    
   },
   // 选择模式
   choosePattern: function(e) {
@@ -68,9 +67,7 @@ extend({
     }
   },
   toHelp: function() {
-    wx.navigateTo({
-      url: '../help/help',
-    })
+    this.$router.push('help');
   },
   moreOption: function() {
     this.setData({
@@ -160,7 +157,7 @@ extend({
       this.alert('请填写品牌名称','warn');
       return;
     }
-    this.$push('addetails');
+    this.$router.push('addetails');
   },
   chooseRegion: function() {
     this.setData({
@@ -180,9 +177,7 @@ extend({
         curRegion: this.data.regionArr[0]
       })
     } else {
-      wx.navigateTo({
-        url: '../area/area'
-      })
+      this.$router.push('area');
     }
     this.setData({
       shade: false
@@ -227,9 +222,7 @@ extend({
           this.$http.payCbk({
             red_log_id: id
           }).then(res => {
-            wx.navigateTo({
-              url: '../mypackets/mypackets'
-            })
+            this.$router.redirect('mypackets');
           })
           this.clearStorage();
         },
