@@ -94,7 +94,8 @@ let config = _.extend({}, temp_pop, {
         })
     },
     publishRed(e) {
-        this.$push('envelopes');
+      this.removeItemSync('details');
+      this.$push('envelopes');
     },
     $init() {
         this.getDataSource();

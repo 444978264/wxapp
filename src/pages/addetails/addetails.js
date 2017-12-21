@@ -14,7 +14,7 @@ extend({
     chooseType: '',
     addType: ''
   },
-  onLoad: function() {
+  onLoad() {
     
   },
   addCon() {
@@ -137,10 +137,14 @@ extend({
   },
   // 完成
   finish: function() {
-    var details = JSON.stringify(this.data.list);
+    var details = this.data.list;
     console.log(details,"details");
     this.setItem('details', details);
     this.goback();
+  },
+  onShow() {
+    this.setData({
+      list: this.getItemSync('details') ? this.getItemSync('details') : []
+    })
   }
-
 })

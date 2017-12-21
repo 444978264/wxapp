@@ -34,18 +34,18 @@
   <view class="invite-list">
     <view class="invite-title">
       <view class="friendNums">我推荐的好友({{friendsList.length}})</view>
-      <view style="text-align: center;" bindtap='checkCode'>
+      <view style="text-align: center;">
         <image src="../../img/code.png" class="codeImg"></image>
         <view style="font-size: 12px;color: #ccc;">邀请码</view>
       </view>
     </view>
 
-    <view class="showBigCode {{ show ? 'on' : '' }}" bindtap='hideCode'>
+    <!-- <view class="showBigCode {{ show ? 'on' : '' }}" bindtap='hideCode'>
       <image src="../../img/myCode.jpg" class="bigCode" mode="widthFix"></image>
-    </view>
+    </view> -->
 
     <view class="invite-friends">
-      <view class="friends-list" wx:if="friendsList.length > 0">
+      <view class="friends-list" wx:if="{{friendsList.length > 0}}">
         <view wx:for="{{friendsList}}" wx:key="index" class="friend-info">
           <view class="info">
             <image src="{{friendsList[index].user.head_ico}}" class="friend-ico"></image>

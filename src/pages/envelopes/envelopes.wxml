@@ -48,7 +48,8 @@
           </view>
           <view class="input-common margin-bottom-2">
             <text class="input-title">广告详情</text>
-            <view class="toEdit" bindtap='toEdit'><text class="toCheck">去编辑</text><image class="img-icon" src='/img/arrow.svg'></image></view>
+
+            <view class="toEdit" bindtap='toEdit'><text class="toCheck">{{ details.length ? '去修改' : '去编辑' }}</text><image class="img-icon" src='/img/arrow.svg'></image></view>
           </view>
           <view class="input-common margin-bottom-2">
             <text class="input-title">投放区域</text>

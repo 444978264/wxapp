@@ -198,7 +198,7 @@ extend({
         'amount': this.data.bonus,
         'total_count': this.data.phr,
         'title': this.data.command,
-        'ad_content': this.data.details,
+        'ad_content': JSON.stringify(this.data.details),
         'img': this.data.logoUrl,
         'area': this.data.curRegion,
         'brand_title': this.data.brandName
