@@ -70,7 +70,10 @@ let config = _.extend({}, temp_pop, {
     getContent(e) {
         let { id, status } = this.dataset(e);
         if (status == 2) {
-            this.$push('get_red', {
+            // this.$router.push('get_red', {
+            //     id: id
+            // })
+            this.$router.push('get_red', {
                 id: id
             })
             return
@@ -82,19 +85,20 @@ let config = _.extend({}, temp_pop, {
         this.$http.getOneMine({
             red_log_id: id
         }).then(res => {
+            this.loading = false;
             if (!res || res.status == 0) {
-                this.$push('content', {
+                this.$router.push('content', {
                     id: id
                 })
                 return
             }
-            this.$push('get_red', {
+            this.$router.push('get_red', {
                 id: id
             })
         })
     },
     publishRed(e) {
-        this.$push('envelopes');
+        this.$router.push('envelopes');
     },
     $init() {
         this.getDataSource();

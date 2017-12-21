@@ -160,7 +160,7 @@ extend({
       this.alert('请填写品牌名称','warn');
       return;
     }
-    this.$push('addetails');
+    this.$router.push('addetails');
   },
   chooseRegion: function() {
     this.setData({

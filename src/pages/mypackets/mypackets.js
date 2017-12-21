@@ -35,7 +35,7 @@ extend({
   },
   gotodetail(e) {
     var {idx} = this.dataset(e);
-    this.$redirect('content',{
+    this.$router.redirect('content',{
       id: idx
     })
   },

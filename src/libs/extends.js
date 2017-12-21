@@ -1,4 +1,5 @@
 import options from '../utils/util';
+import $router from '../utils/route';
 import $http from './api';
 import { TOKEN, getImg } from './api';
 import _ from './deepcopy';
@@ -75,25 +76,7 @@ var config = {
                 image: '../../img/voice.png',
                 duration: options.duration
             })
-            // let s = options.duration;
-            // this._timer = setInterval(()=>{
-            //     if(s<2000){
-            //         clearInterval(this._timer);
-            //     }
-            //     this.alert('正在录音', "", options.duration);
-            // },1000)
-            // this.alert('正在录音', "", options.duration); 
         })
-        // this.recorderManager.onResume(() => {
-        //     console.log('recorder resume')
-        // })
-        // this.recorderManager.onPause(() => {
-        //     console.log('recorder pause')
-        // })
-        // this.recorderManager.onFrameRecorded((res) => {
-        //     const { frameBuffer } = res;
-        //     console.log('frameBuffer.byteLength', frameBuffer.byteLength)
-        // })
         // 停止事件回调
         this.recorderManager.onStop((res) => {
             console.log('recorder stop', res)
@@ -192,12 +175,11 @@ var config = {
         }
     }
 }
-
 export default function Init(params) {
-    // Object.assign(params, config);
     let init = _.extend(true, {}, config, params);
     // 不可放进config中，深拷贝会复制多个全局对象
     init.recorderManager = recorderManager;
     init.innerAudioContext = innerAudioContext;
+    init.$router = $router;
     Page(init);
 }

@@ -70,7 +70,7 @@ extend({
         })
     },
     returnHome() {
-        this.$reLaunch('index');
+        this.$router.reLaunch('index');
     },
     /**
      * 生命周期函数--监听页面显示

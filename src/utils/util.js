@@ -68,7 +68,7 @@ export const $loading = {
 // 获取dataset的值
 export const dataset = e => e.currentTarget.dataset;
 
-//跳转页面---保留当前页面，跳转到应用内的某个页面，使用wx.navigateBack可以返回到原页面。
+//使用wx.navigateBack可以返回到原页面。
 export function serialize(params) {
   if (!params) return "";
   var str = '';
@@ -83,26 +83,7 @@ export function serialize(params) {
   }
   return str
 }
-export const push = (path, params) => {
-  let str = serialize(params);
-  wx.navigateTo({
-    url: `/pages/${path}/${path}${str}`,
-  })
-}
-// 关闭当前页面，跳转到应用内的某个页面。
-export const redirect = (path, params) => {
-  let str = serialize(params);
-  wx.redirectTo({
-    url: `/pages/${path}/${path}${str}`,
-  })
-}
-//关闭所有页面，打开到应用内的某个页面。
-export const reLaunch = (path, params) => {
-  let str = serialize(params);
-  wx.reLaunch({
-    url: `/pages/${path}/${path}${str}`,
-  })
-}
+// 返回页面
 export const goback = id => {
   wx.navigateBack({
     delta: id || 1
@@ -121,9 +102,6 @@ export const removeItemSync = wx.removeStorageSync;
 export const clearStorage = wx.clearStorage;
 export const clearStorageSync = wx.clearStorageSync;
 
-
-
-
 export default {
   formatTime,
   $loading,
@@ -131,9 +109,6 @@ export default {
   serialize,
   alert,
   dataset,
-  $push: push,
-  $redirect: redirect,
-  $reLaunch: reLaunch,
   goback,
   setItem,
   setItemSync,
@@ -144,5 +119,5 @@ export default {
   removeItem,
   removeItemSync,
   clearStorage,
-  clearStorageSync
+  clearStorageSync,
 }
