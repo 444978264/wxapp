@@ -1,6 +1,7 @@
 //app.js
 import { login, setToken, recmd } from 'libs/api'
-import { redirect, setItemSync, getItemSync } from 'utils/util'
+import { setItemSync, getItemSync } from 'utils/util'
+import router from 'utils/route'
 App({
   onLaunch: function (res) {
     console.log('this is launch', res)
@@ -34,7 +35,7 @@ App({
     let token = getItemSync('token');
     if (token) {
       // token存在就直接跳转index页面
-      redirect('index')
+      router.redirect('index')
     } else {
       //调用登录接口
       wx.getSetting({
