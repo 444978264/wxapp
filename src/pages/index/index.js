@@ -70,9 +70,6 @@ let config = _.extend({}, temp_pop, {
     getContent(e) {
         let { id, status } = this.dataset(e);
         if (status == 2) {
-            // this.$router.push('get_red', {
-            //     id: id
-            // })
             this.$router.push('get_red', {
                 id: id
             })
