@@ -1,5 +1,5 @@
 <view class="" style="font-size: 28rpx;">
-  <view style="background-color: #fff;width: 100%;">
+  <view style="background-color: #fff;width: 100%;position: relative;">
     <view class="userhelp">
       <button class="help" bindtap="toHelp">帮助</button>
     </view>

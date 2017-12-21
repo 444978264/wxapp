@@ -14,7 +14,7 @@ extend({
     show: false
   },
   page: 1,
-  has_next: false,
+  has_next: true,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -27,6 +27,11 @@ extend({
       }
     })
   },
+  $openRefresh() {
+    this.page = 1;
+    this.has_next = true;
+    return true;
+  },
   toHelp() {
     this.$router.push('help');
   },
@@ -36,8 +41,8 @@ extend({
   toMypacket() {
     this.$router.push('mypackets');
   },
-  getMyfriendsList() {
-    this.$http.friendsList({
+  fetch() {
+    return this.$http.friendsList({
       page: this.page,
       pagesize: 20
     }).then(res => {
@@ -58,53 +63,17 @@ extend({
     })
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getMyfriendsList();
+    this.fetch();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
     if(!this.has_next) return;
     this.page++;
-    this.getMyfriendsList();
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    this.fetch();
   }
 })
