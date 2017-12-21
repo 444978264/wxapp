@@ -8,7 +8,7 @@ App({
     let { query } = res;
     this.globalData.page = query;
     //调用API从本地缓存中获取数据
-    this.getLocation();
+    // this.getLocation();
   },
   // 获取 定位
   getLocation() {
