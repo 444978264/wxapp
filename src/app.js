@@ -1,6 +1,6 @@
 //app.js
 import { login, setToken, recmd, $Location } from 'libs/api'
-import { setItemSync, getItemSync } from 'utils/util'
+import { setItemSync, getItemSync,alert } from 'utils/util'
 import router from 'utils/route'
 App({
   onLaunch: function (res) {
@@ -17,6 +17,8 @@ App({
       always && always();
       console.log(res, '百度地址')
     }, (err) => {
+      alert('定位失败')
+      console.log(err)
       fail && fail();
       always && always();
     })

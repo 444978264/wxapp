@@ -31,6 +31,13 @@ extend({
                 clearInterval(this.timer);
                 this.setData({
                     showBtn: true
+                }, () => {
+                    wx.createSelectorQuery().select('#btn-back').boundingClientRect(function (rect) {
+                        // 使页面滚动到底部
+                        wx.pageScrollTo({
+                            scrollTop: rect.bottom
+                        })
+                    }).exec()
                 })
                 return
             }

@@ -100,10 +100,10 @@ extend({
             this.alert('您不符合条件', "warn")
             return
         }
-        // if (!this.data.isNormal) {
-        //     this.$router.push('content_detail')
-        //     return
-        // }
+        if (!this.data.isNormal) {
+            this.$router.push('content_detail')
+            return
+        }
         this.$recordStart({
             red_log_id: this.id
         }, res => {

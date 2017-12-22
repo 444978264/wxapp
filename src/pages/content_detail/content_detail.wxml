@@ -25,7 +25,7 @@
             {{result.title}}
         </view>
         <view class="btn-group">
-            <button wx:if="{{showBtn}}" type="success" size="defaultSize"  bindtap="defaultTap" hover-class="defaultTap">返回读红包口令</button>
+            <button wx:if="{{showBtn}}" id="btn-back" type="primary" size="defaultSize"  bindtap="defaultTap" hover-class="defaultTap">返回读红包口令</button>
         </view>
     </view>
 </view>
