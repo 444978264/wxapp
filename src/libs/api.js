@@ -1,10 +1,14 @@
+import  bmap from './bmap-wx.min.js';
 import { $loading, removeItemSync, getItemSync, setItemSync } from '../utils/util';
 import config from '../config/config';
 import dev from '../is_develop';
 export let TOKEN = getItemSync('token'); //|| '456456';//[123123,456456,789798]
 const INFO = getItemSync('localInfo') || {};
 const host = dev ? config.local : config.host;
-
+// 新建百度地图对象 
+export const BMap = new bmap.BMapWX({
+  ak: config.secret
+});
 //设置全局token
 export const setToken = token => TOKEN = token;
 //新的fetch---Promise封装 2017-08-01
@@ -24,7 +28,7 @@ const ajax = (url, params, config) => {
         $loading.done();
         if (lock) return
         // 从队列中删除这次请求
-        collections.splice(task.idx, 1);        
+        collections.splice(task.idx, 1);
         if (res.data.code <= -9999) {
           lock = true;
           removeItemSync('token');
@@ -83,6 +87,19 @@ const ajax = (url, params, config) => {
     return res.result
   }).catch(err => console.log(err, url, 'fail'))
 }
+// 获取位置--百度地图
+export const $Location = {
+  el: BMap,
+  info(success,fail) {
+    this.el.regeocoding({
+      fail: fail,
+      success: success,
+      // iconPath: '../../img/marker_red.png',
+      // iconTapPath: '../../img/marker_red.png'
+    });
+  }
+}
+
 
 //获取接口地址
 export const getUrl = (c, a) => {
@@ -155,5 +172,6 @@ export default {
   myBalance,
   getImg,
   helpLst,
-  friendsList
+  friendsList,
+  $Location
 }

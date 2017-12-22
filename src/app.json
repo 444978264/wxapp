@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/404/404",
     "pages/content/content",
     "pages/get_red/get_red",
     "pages/content_detail/content_detail",

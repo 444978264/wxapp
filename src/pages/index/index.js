@@ -32,7 +32,7 @@ let config = _.extend({}, temp_pop, {
     has_next: true,
     loading: false,
     recmd() {
-        if (!this.recmd_userid) return
+        if (this.recmd_userid == null || !this.recmd_userid) return
         this.$http.recmd({
             recmd_userid: this.recmd_userid
         })
@@ -107,7 +107,7 @@ let config = _.extend({}, temp_pop, {
      */
     onLoad: function (options) {
         let { recmd_userid } = options;
-        this.recmd_userid = recmd_userid;
+        this.recmd_userid = recmd_userid ? recmd_userid : null;
         this.$init();
     },
     onShow: function () {

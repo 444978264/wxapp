@@ -91,12 +91,24 @@ var config = {
         // 检查是否获得录音权限
         wx.getSetting({
             success: res => {
+                console.log(res);
                 if (!res.authSetting['scope.record']) {
                     wx.authorize({
                         scope: 'scope.record',
                         success: () => {
                             // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
                             // this.recorderManager.start(options)
+                        },
+                        fail:err=>{
+                            this.$message("未开启录音授权，无法进行录音", {
+                                confirmText: '去开启',
+                                success: () => {
+                                    $router.push('404',{
+                                        prop:'record'
+                                    })
+                                },
+                                showCancel: true
+                            })
                         }
                     })
                 } else {

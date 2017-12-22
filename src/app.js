@@ -1,5 +1,5 @@
 //app.js
-import { login, setToken, recmd } from 'libs/api'
+import { login, setToken, recmd, $Location } from 'libs/api'
 import { setItemSync, getItemSync } from 'utils/util'
 import router from 'utils/route'
 App({
@@ -7,22 +7,18 @@ App({
     console.log('this is launch', res)
     let { query } = res;
     this.globalData.page = query;
-    //调用API从本地缓存中获取数据
-    // this.getLocation();
   },
   // 获取 定位
-  getLocation() {
-    wx.getLocation({
-      type: 'gcj02',
-      success: res => {
-          console.log(res)
-      },
-      fail: res => {
-        console.log('fail', res)
-        this.setData({
-          sudo: false
-        })
-      }
+  getLocation({ success, fail, always }) {
+    $Location.info((res) => {
+      let { result } = res.originalData;
+      this.globalData.location = result;
+      success && success();
+      always && always();
+      console.log(res, '百度地址')
+    }, (err) => {
+      fail && fail();
+      always && always();
     })
   },
   login(fn) {
@@ -39,9 +35,6 @@ App({
         setItemSync("token", res.token);
         fn && fn(res);
         let { recmd_userid } = this.globalData.page;
-        recmd({
-          recmd_userid: recmd_userid
-        })
       });
     })
   },
@@ -55,6 +48,7 @@ App({
       //调用登录接口
       wx.getSetting({
         success: (config) => {
+          console.log(config)
           wx.login({
             success: function (data) {
               // console.log(data.code) // 登陆凭证获取openid
@@ -62,16 +56,31 @@ App({
                 success: function (res) {
                   that.globalData.userInfo = res.userInfo;
                   typeof cb == "function" && cb(data.code, res)
+                },
+                fail: err => {
+                  console.log(err, 77)
+                  console.log(router.loading)
+                  router.redirect('404', {
+                    from: 'login',
+                    prop: 'info'
+                  })
                 }
               })
+            },
+            fail: err => {
+              console.log(err, 66)
             }
           })
+        },
+        fail: err => {
+          console.log(err, 55)
         }
       })
     }
   },
   globalData: {
     userInfo: null,
-    page: null
+    page: null,
+    location: null
   },
 })
