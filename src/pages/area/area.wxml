@@ -2,12 +2,16 @@
   <view class="city-list">
     <checkbox-group bindchange="checkboxChange" style="padding-bottom: 40px;">
       <view wx:for="{{datas}}" wx:key="index" wx:for-item="items" class="cityName" >
-        <view class="province city-common" data-idx="{{index}}" bindtap='showBtn'>{{items.province}}</view>
+        <view>
+          <checkbox class="check-box" checked='{{items.checked}}' bindtap='selectAll' data-idx="{{index}}"></checkbox>
+          <view class="province city-common" data-idx="{{index}}" bindtap='showBtn'>{{items.province}}</view>
+        </view>
+        
         <view class="drop-city {{ datas[index].toggle ? 'cur' : '' }}">
           <label  class="city city-common" wx:for="{{datas[index]['city']}}" wx:key="index" wx:for-item="cell">
-            <checkbox value="{{cell.name}}" class="check-box"/>{{cell.name}}
-          </label >
-        </view> 
+            <checkbox value="{{cell.name}}" class="check-box" checked='{{cell.checked}}' bindtap='checkCity' data-childidx="{{index}}"/>{{cell.name}}
+          </label>
+        </view>
       </view>
     </checkbox-group>
     <button class="sure-btn" bindtap='delivery'>确认</button>
