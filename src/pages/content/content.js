@@ -132,7 +132,7 @@ extend({
         })
     },
     recmd() {
-        if (this.recmd_userid==null||!this.recmd_userid) return
+        if (this.recmd_userid == null || !this.recmd_userid) return
         this.$http.recmd({
             recmd_userid: this.recmd_userid
         })

@@ -14,6 +14,8 @@
         </view>
       </view>
     </checkbox-group>
-    <button class="sure-btn" bindtap='delivery'>确认</button>
+    <form bindsubmit="$sendFormId" report-submit>
+      <button form-type="submit"  class="sure-btn" bindtap='delivery'>确认</button>
+    </form>
   </view>
 </view>

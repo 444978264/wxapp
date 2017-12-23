@@ -117,3 +117,10 @@ checkbox .wx-checkbox-input{
 checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   font-size:24rpx;  
 }
+
+button[type="default"][plain]{
+  border:0;
+  padding:0;
+  line-height: inherit;
+  width:120rpx;
+}

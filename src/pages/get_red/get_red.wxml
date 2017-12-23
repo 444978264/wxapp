@@ -11,37 +11,39 @@
         </navigator>
         <text style="font-size:30px;color:#cf161e;line-height:50px;">{{mine!=null?(mine.amount||'--'):result.status==2?"奖励已经被领完":'--'}}</text>
     </view>
-    <view class="list">
-        <text class="list-title">共{{list.length}}人参与，剩余{{result.leave_count}}份奖金</text>
-        <view class="list-content">
-            <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
-                <view class="list-item-desc">
-                    <image style="width:60px;height:60px;border-radius:5px;" src="{{item.user.head_ico}}" mode="widthFix" />
-                    <view style="padding-left:10px;">
-                        <span>{{item.user.nickname}}</span>
-                        <view class="subinfo">
-                            <button style="margin-right:10px;" bindtap="startPlay" type="default" size="mini" data-url="{{item.speech_path}}" hover-class="btn-click">
-                                <image mode="widthFix" style="width:20px" src="../../img/voice3.svg" />
-                            </button>
-                            <text style="font-size:11px;color:#d2d2d2">准确率{{item.match_percent}}%</text>
+    <form bindsubmit="$sendFormId" report-submit>
+        <view class="list">
+            <text class="list-title">共{{list.length}}人参与，剩余{{result.leave_count}}份奖金</text>
+            <view class="list-content">
+                <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
+                    <view class="list-item-desc">
+                        <image style="width:60px;height:60px;border-radius:5px;" src="{{item.user.head_ico}}" mode="widthFix" />
+                        <view style="padding-left:10px;">
+                            <span>{{item.user.nickname}}</span>
+                            <view class="subinfo">
+                                <button form-type="submit" style="margin-right:10px;" bindtap="startPlay" type="default" size="mini" data-url="{{item.speech_path}}" hover-class="btn-click">
+                                    <image mode="widthFix" style="width:20px" src="../../img/voice3.svg" />
+                                </button>
+                                <text style="font-size:11px;color:#d2d2d2">准确率{{item.match_percent}}%</text>
+                            </view>
                         </view>
                     </view>
+                    <text>{{item.status==0?"失败":item.amount}}</text>
                 </view>
-                <text>{{item.status==0?"失败":item.amount}}</text>
             </view>
         </view>
-    </view>
-    <view class="footer">
-        <button class="btn-link" plain type="default" open-type="share" class="btn-link" url="/pages/content_detail/content_detail" push hover-class="className">
-            <image class="icon" mode="widthFix" src="../../img/share.svg"/>
-            <text>分享</text>
-        </button>
-        <button style="background:#cf161e;color:#fff;flex:1;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
-            抢更多红包
-        </button>
-        <navigator class="btn-link" url="/pages/envelopes/envelopes" push hover-class="className">
-            <image class="icon" mode="widthFix" src="../../img/red.svg"/>
-            <text>发红包</text>
-        </navigator>
-    </view>
+        <view class="footer">
+            <button form-type="submit" class="btn-link" plain type="default" open-type="share" class="btn-link" url="/pages/content_detail/content_detail" push hover-class="className">
+                <image class="icon" mode="widthFix" src="../../img/share.svg"/>
+                <text>分享</text>
+            </button>
+            <button form-type="submit" style="background:#cf161e;color:#fff;flex:1;" bindtap="returnHome" type="default" size="default" data-url="{{item.speech_path}}" hover-class="defaultTap">
+                抢更多红包
+            </button>
+            <navigator class="btn-link" url="/pages/envelopes/envelopes" push hover-class="className">
+                <image class="icon" mode="widthFix" src="../../img/red.svg"/>
+                <text>发红包</text>
+            </navigator>
+        </view>
+    </form>
 </view>

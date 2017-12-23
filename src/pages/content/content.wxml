@@ -22,8 +22,12 @@
             <navigator url="/pages/content_detail/content_detail?id={{result.id}}" wx:if="{{!isNormal}}">点击查看</navigator>
         </view>
         <view class="footer">
-            <image class="record-btn" bind:longpress="recording" bind:touchend="stopRecord" src="/img/record.svg"></image>
-            <text class="tip">长按 读口令(15s内)</text>
+            <form bindsubmit="$sendFormId" report-submit>
+                <button class="btn-submit" type="default" form-type="submit" size="default" plain bind:longtap="recording" bind:touchend="stopRecord">
+                    <image class="record-btn" src="/img/record.svg"></image>
+                </button>
+                <text class="tip">长按 读口令(15s内)</text>
+            </form>
         </view>
         <view class="agreement">
             <checkbox-group bindchange="checkboxChange">
