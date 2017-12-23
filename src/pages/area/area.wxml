@@ -4,10 +4,10 @@
       <view wx:for="{{datas}}" wx:key="index" wx:for-item="items" class="cityName" >
         <view class="province city-common" data-idx="{{index}}" bindtap='showBtn'>{{items.province}}</view>
         <view class="drop-city {{ datas[index].toggle ? 'cur' : '' }}">
-            <label  class="city city-common" wx:for="{{datas[index]['city']}}" wx:key="index" wx:for-item="cell">
-              <checkbox value="{{cell}}" class="check-box"/>{{cell}}
-            </label >
-        </view>
+          <label  class="city city-common" wx:for="{{datas[index]['city']}}" wx:key="index" wx:for-item="cell">
+            <checkbox value="{{cell.name}}" class="check-box"/>{{cell.name}}
+          </label >
+        </view> 
       </view>
     </checkbox-group>
     <button class="sure-btn" bindtap='delivery'>确认</button>

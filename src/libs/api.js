@@ -126,6 +126,8 @@ export const myBalance = (params, config) => ajax(getUrl('index', 'my_balance'),
 export const helpLst = (params, config) => ajax(getUrl('index', 'help_lst'), params, config);
 // 邀请好友列表
 export const friendsList = (params, config) => ajax(getUrl('index', 'my_recmd_lst'), params, config);
+// 地区列表
+export const areaList = (params, config) => ajax(getUrl('index', 'lst_areas'), params, config);
 
 //发送验证码
 export const sendCode = (params, config) => ajax(getUrl('index', 'get_code'), params, config);
@@ -173,5 +175,6 @@ export default {
   getImg,
   helpLst,
   friendsList,
-  $Location
+  $Location,
+  areaList
 }

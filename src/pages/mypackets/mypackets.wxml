@@ -1,3 +1,7 @@
+<import src="../template/emptylist/emptylist" />
+
+<template is="noData" wx:if="{{ packetslist.length == 0 }}"/>
+
 <view class="container">
   <view class="packetslist">
 
