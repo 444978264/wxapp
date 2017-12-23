@@ -58,6 +58,8 @@
         </view>
     </view>
     <view class="publish">
-        <button type="default" size="defaultSize" bindtap="publishRed" hover-class="defaultTap">发红包</button>
+        <form bindsubmit="$sendFormId" report-submit>
+            <button form-type="submit" type="default" size="default" bindtap="publishRed" hover-class="defaultTap">发红包</button>
+        </form>
     </view>
 </view>

@@ -53,5 +53,5 @@ extend({
         result.read = true;
         this.setItemSync('red_detail', result);
         this.goback();
-    }
+    },
 })

@@ -67,9 +67,9 @@
         </view>
         
       </view>
-
-      <button class="generate" bindtap='generate'>生成语音红包</button>
-
+      <form bindsubmit="$sendFormId" report-submit>
+        <button form-type="submit"  class="generate" bindtap='generate'>生成语音红包</button>
+      </form>
     </view>
   </view>
 

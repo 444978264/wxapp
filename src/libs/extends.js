@@ -99,12 +99,12 @@ var config = {
                             // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
                             // this.recorderManager.start(options)
                         },
-                        fail:err=>{
+                        fail: err => {
                             this.$message("未开启录音授权，无法进行录音", {
                                 confirmText: '去开启',
                                 success: () => {
-                                    $router.push('404',{
-                                        prop:'record'
+                                    $router.push('404', {
+                                        prop: 'record'
                                     })
                                 },
                                 showCancel: true
@@ -120,6 +120,16 @@ var config = {
     // 预加载---未实现
     $preLoad(path) {
 
+    },
+    // 发送formid
+    $sendFormId(e) {
+        let data = e.detail;
+        this.$http.formid({
+            form_id: data.formId
+        }).then(res => {
+            if (!res) return
+            console.log(res)
+        })
     },
     // 设置导航
     $setBar(params) {

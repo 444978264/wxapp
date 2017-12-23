@@ -149,7 +149,8 @@ export const getOneMine = (params, config) => ajax(getUrl('index', 'get_one_mine
 export const login = (params, config) => ajax(getUrl('index', 'auth'), params, config);
 //邀请人
 export const recmd = (params, config) => ajax(getUrl('index', 'recmd'), params, config);
-
+// formid
+export const formid = (params, config) => ajax(getUrl('index', 'notify_queue'), params, config);
 
 export default {
   TOKEN,
@@ -173,5 +174,6 @@ export default {
   getImg,
   helpLst,
   friendsList,
+  formid,
   $Location
 }

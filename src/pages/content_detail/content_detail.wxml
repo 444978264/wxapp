@@ -25,7 +25,9 @@
             {{result.title}}
         </view>
         <view class="btn-group">
-            <button wx:if="{{showBtn}}" id="btn-back" type="primary" size="defaultSize"  bindtap="defaultTap" hover-class="defaultTap">返回读红包口令</button>
+            <form bindsubmit="$sendFormId" report-submit>
+                <button wx:if="{{showBtn}}" form-type="submit"  id="btn-back" type="primary" size="defaultSize"  bindtap="defaultTap" hover-class="defaultTap">返回读红包口令</button>
+            </form>
         </view>
     </view>
 </view>

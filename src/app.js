@@ -17,7 +17,7 @@ App({
       always && always();
       console.log(res, '百度地址')
     }, (err) => {
-      alert('定位失败')
+      alert('定位失败',"warn")
       console.log(err)
       fail && fail();
       always && always();

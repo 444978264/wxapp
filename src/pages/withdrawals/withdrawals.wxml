@@ -3,23 +3,25 @@
     <view class="balance-title">
       <text class="money-nums">{{ balance }}</text>元
     </view>
-    <view class="extract">
-      <text class="extract-title">提现到微信钱包</text>
-      <view class="section">
-        <i class="iconfont icon-renminbi" style="float: left;"></i>
-        <input type="digit" placeholder='最低1元起提' class="nums" bindblur="moneyInputEvent" value="{{extractmoney}}"></input>
-        <button class="checkAll" bindtap='checkAll'>全部</button>
+    <form bindsubmit="$sendFormId" report-submit>
+      <view class="extract">
+        <text class="extract-title">提现到微信钱包</text>
+        <view class="section">
+          <i class="iconfont icon-renminbi" style="float: left;"></i>
+          <input type="digit" placeholder='最低1元起提' class="nums" bindblur="moneyInputEvent" value="{{extractmoney}}"></input>
+          <button form-type="submit"  class="checkAll" bindtap='checkAll'>全部</button>
+        </view>
+        <view class="section" style="padding: 12px 0 12px 5px;">
+          <input type="number" placeholder='请填写手机号' class="nums" bindblur="mobileInputEvent"></input>
+        </view>
       </view>
-      <view class="section" style="padding: 12px 0 12px 5px;">
-        <input type="number" placeholder='请填写手机号' class="nums" bindblur="mobileInputEvent"></input>
+      <view class="remind">
+        <text> * 提现免手续费，预计1个工作日内到账</text>
       </view>
-    </view>
-    <view class="remind">
-      <text> * 提现免手续费，预计1个工作日内到账</text>
-    </view>
-    <view class="getmoney">
-      <button bindtap='withdrawals'>立即提现</button>
-    </view>
+      <view class="getmoney">
+        <button form-type="submit"  bindtap='withdrawals'>立即提现</button>
+      </view>
+    </form>
     <view class="insufficient">
       <text>余额不足提现？<text class="link-msg">发给好友来玩吧</text></text>
     </view>
