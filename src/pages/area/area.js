@@ -4,25 +4,18 @@ import extend from '../../libs/extends.js';
 
 extend({
   data: {
-    cityArr: [
-      { 'province': '北京', 'city': ['北京'] },
-      { 'province': '河北', 'city': ['石家庄', '唐山', '秦皇岛','邯郸','邢台','保定'] },
-      { 'province': '山西', 'city': ['太原', '大同', '阳泉','长治','晋城','朔州'] }
-    ],
+    cityArr: [],
     datas: [],
     showCity: false,
     deliveryCity: []
   },
-  onLoad: function() {
-    var listData = this.data.cityArr;
-    for (var i = 0; i < listData.length; i++) {
-      listData[i]['toggle'] = false;
-    }
-    this.setData({
-      datas: listData
-    })
+  onLoad() {
+    this.fetch();
   },
-  showBtn: function (e) {
+  $openRefresh() {
+    return true;
+  },
+  showBtn(e) {
     var idx = e.currentTarget.dataset.idx;
     var status = this.data.datas[idx].toggle;
     this.data.datas[idx].toggle = !status;
@@ -30,14 +23,36 @@ extend({
       datas: this.data.datas
     })
   },
-  checkboxChange: function(e) {
+  checkboxChange(e) {
     this.setData({
       deliveryCity: e.detail.value
     })
   },
-  delivery: function() {
+  fetch() {
+    return this.$http.areaList().then(res => {
+      var arr = [];
+      for(var i = 0; i < res.length; i++) {
+        var obj = {
+          'province': res[i].name,
+          'city': res[i].citys
+        }
+        arr.push(obj);
+      }
+      this.setData({
+        cityArr: arr
+      })
+      var listData = this.data.cityArr;
+      for (var i = 0; i < listData.length; i++) {
+        listData[i]['toggle'] = false;
+      }
+      this.setData({
+        datas: listData
+      })
+    });
+  },
+  delivery() {
     if (this.data.deliveryCity.length == 0) {
-      alert('请选择投放城市','warn');
+      this.alert('请选择投放城市','warn');
       return;
     }
     this.setItem('deliveryCity', this.data.deliveryCity);

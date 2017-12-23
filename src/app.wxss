@@ -1,6 +1,7 @@
 @import '/pages/template/popover/popover.wxss';
 @import '/pages/template/article/article.wxss';
 @import '/common/iconfont.wxss';
+@import '/pages/template/emptylist/emptylist.wxss';
 
 .text-center{
     text-align: center;

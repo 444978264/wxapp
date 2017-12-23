@@ -25,10 +25,14 @@ extend({
           packetslist: []
         })
       }
+      if (this.page <= 1) {
+        this.setData({
+          packetslist: []
+        })
+      }
       var list = this.data.packetslist.concat(res.result);
       this.setData({
         packetslist: list,
-        
       })
       this.has_next = res.has_next;
     })

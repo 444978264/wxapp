@@ -26,7 +26,8 @@
       <text>余额不足提现？<text class="link-msg">发给好友来玩吧</text></text>
     </view>
     <view class="help-btn">
-      <text class="link-msg concat">联系客服</text>
+      <button class="link-msg concat" open-type="contact" size="20" session-from="weapp">联系客服</button>
+      <!-- <text class="link-msg concat">联系客服</text> -->
       <text class="division"></text>
       <text>余额明细</text>
     </view>

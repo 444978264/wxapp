@@ -60,6 +60,14 @@
 }
 .link-msg {
   color: #158bf5;
+  background-color: transparent;
+  border: none;
+  font-size: 24rpx;
+  padding: 0;
+  display: inline;
+}
+.link-msg::after {
+  border: none;
 }
 .insufficient {
   text-align: center;
