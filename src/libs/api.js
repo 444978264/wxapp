@@ -2,7 +2,7 @@ import  bmap from './bmap-wx.min.js';
 import { $loading, removeItemSync, getItemSync, setItemSync } from '../utils/util';
 import config from '../config/config';
 import dev from '../is_develop';
-export let TOKEN = getItemSync('token'); //|| '456456';//[123123,456456,789798]
+export let TOKEN = getItemSync('token');
 const INFO = getItemSync('localInfo') || {};
 const host = dev ? config.local : config.host;
 // 新建百度地图对象 
