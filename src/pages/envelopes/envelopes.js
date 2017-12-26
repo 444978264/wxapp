@@ -30,6 +30,7 @@ extend({
   // 保存投放城市
   saveCity() {
     this.getItem('deliveryCity', res => {
+      console.log(res.data,"city");
       this.setData({
         curRegion: res.data
       })
@@ -187,6 +188,7 @@ extend({
     var res = this.checkVal();
     if(!res) return;
     console.log(this.data.modeType,"modeType");
+
     if (this.data.modeType == 'ad') {
       var obj = {
         'type': 'ad',

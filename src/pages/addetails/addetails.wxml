@@ -32,9 +32,11 @@
 
 
     <view class="btns">
-      <form bindsubmit="$sendFormId" report-submit>
-        <button  form-type="submit" class="btns-common" bindtap='preview'>预览</button>
-        <button  form-type="submit" class="btns-common finish" bindtap='finish'>完成</button>
+      <form bindsubmit="$sendFormId" report-submit style="display: block;width: 100%;">
+        <view style="display: flex;width: 100%;">
+          <button  form-type="submit" class="btns-common" bindtap='preview'>预览</button>
+          <button  form-type="submit" class="btns-common finish" bindtap='finish'>完成</button>
+        </view>
       </form>
     </view>
 
