@@ -42,7 +42,7 @@ var config = {
                 console.log(result)
                 if (result.code <= -9999) {
                     this.removeItemSync('token');
-                    this.$push('login');
+                    this.$router.push('login');
                     return
                 }
                 if (result.code < 0) {

@@ -17,7 +17,7 @@
                 {{result.title}} 
             </span>
             <span wx:else style="font-size:18px;font-weight:500;color:#7a3629;">
-                这是一个广告口令红包
+               点击查看后，获取口令
             </span>
             <navigator url="/pages/content_detail/content_detail?id={{result.id}}" wx:if="{{!isNormal}}">点击查看</navigator>
         </view>

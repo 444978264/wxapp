@@ -6,7 +6,7 @@ import api from '../../libs/api.js';
 extend({
   data: {
     num: 1,
-    pattern: ['娱乐模式','广告模式'],
+    pattern: ['娱乐模式','商家模式'],
     firstshow: false,
     isMore: false,
     logoUrl: '',

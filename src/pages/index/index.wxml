@@ -44,7 +44,7 @@
                 </view>
                 <view class="red-command">
                     <view class="title">
-                        <text style="font-size:16px;color:#fff">{{item.type=="normal"?"":"[广告红包]"}}{{item.title}}</text>
+                        <text style="font-size:16px;color:#fff">{{item.title}}</text>
                     </view>
                     <text class="subtitle">共{{item.total_count}}份,剩余{{item.leave_count}}份</text>
                 </view>

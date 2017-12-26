@@ -109,6 +109,12 @@ let config = _.extend({}, temp_pop, {
         let { recmd_userid } = options;
         this.recmd_userid = recmd_userid ? recmd_userid : null;
         this.$init();
+        // if (this.getItemSync("already_pop")) return
+        this.$message("为构建和谐网络环境，如发现以下行为，一经查处将立刻删除内容，严重者直接封禁账号处理，不予以复议。 1.不允许传播不文明及违法内容。2.不允许诱导分享。请仔细阅读，因违规造成的损失，本司概不负责。", {
+            success: () => {
+                // this.setItem("already_pop", true);
+            }
+        })
     },
     onShow: function () {
         if (!this.$firstRender) {
