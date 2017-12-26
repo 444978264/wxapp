@@ -29,12 +29,6 @@
 					"pathName": "pages/content/content",
 					"query": "recmd_userid=12313&id=355",
 					"scene": "1008"
-				},
-				{
-					"id": -1,
-					"name": "zxx",
-					"pathName": "pages/addetails/addetails",
-					"query": ""
 				}
 			]
 		}
